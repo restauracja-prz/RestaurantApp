@@ -39,10 +39,10 @@
 
 	<security:authentication-manager>
 		<security:authentication-provider>
-			<security:user-service>
-				<security:user name="admin" password="123456" authorities="ROLE_ADMIN" />
-			</security:user-service>
-		</security:authentication-provider>
+			<security:jdbc-user-service data-source-ref="restaurantDS" 
+				authorities-by-username-query="select user_id, user_position from users where user_id=?" 
+				users-by-username-query="select user_id, user_password, is_enabled from users where user_id=?"/>
+		</security:authentication-provider>	
 	</security:authentication-manager>
 
 	<jee:jndi-lookup id="restaurantDS" jndi-name="java:/LocalMySqlDS" />
