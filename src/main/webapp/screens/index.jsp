@@ -1,3 +1,4 @@
+
 <%@page contentType="text/html;charset=UTF-8" language="java" %>
 <%@page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -7,7 +8,12 @@
 <body>
 	<h2>RestaurantApp</h2>
 
+	<form:form action="${pageContext.request.contextPath}/logout" method="POST">
+	    <input type="submit" value="Logout" />
+	</form:form>
+
 	<a href="<c:url value="/admin" />">Admin</a><br />
-	<a href="<c:url value="/user" />">Uzytkownicy</a>
+	<a href="<c:url value="/user" />">Uzytkownicy</a><br />
+	<a href="<c:url value="/menu" />">Menu</a>
 </body>
 </html>

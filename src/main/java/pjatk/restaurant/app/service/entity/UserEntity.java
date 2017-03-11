@@ -1,4 +1,4 @@
-package pjatk.restaurant.app.service.user;
+package pjatk.restaurant.app.service.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

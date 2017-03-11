@@ -1,15 +1,15 @@
-package pjatk.restaurant.app.controller.admin;
+package pjatk.restaurant.app.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/admin")
-public class AdminController {
+@RequestMapping("/")
+public class HomeController {
 
 	@RequestMapping
-	private String home(Model model) {
-		return "admin";
+	public String home(Model model) {
+		return "index";
 	}
 }
