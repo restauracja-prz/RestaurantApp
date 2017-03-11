@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import pjatk.restaurant.app.service.entity.UserEntity;
 
+@Transactional
 @Repository
 public class UserDAO {
 
@@ -17,12 +18,15 @@ public class UserDAO {
 	private SessionFactory sessionFactory;
 	
 	@SuppressWarnings("unchecked")
-	@Transactional(readOnly = true)
 	public List<UserEntity> findAll() {
 		return currentSession().createQuery("SELECT u FROM UserEntity u").list();
 	}
 	
 	private Session currentSession() {
 		return sessionFactory.getCurrentSession();
+	}
+	
+	public void userSave(UserEntity user) {
+		currentSession().save(user);
 	}
 }
