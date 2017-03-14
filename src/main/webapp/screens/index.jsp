@@ -13,7 +13,9 @@
 	</form:form>
 
 	<a href="<c:url value="/admin" />">Admin</a><br />
-	<a href="<c:url value="/user" />">Uzytkownicy</a><br />
-	<a href="<c:url value="/menu" />">Menu</a>
+	<a href="<c:url value="/menu" />">Menu</a><br />
+	<a href="<c:url value="/order" />">Orders</a><br />		
+	<a href="<c:url value="/report" />">Reports</a><br />
+	<a href="<c:url value="/user" />">User management</a><br />
 </body>
 </html>
