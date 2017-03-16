@@ -30,6 +30,7 @@
 	<mvc:annotation-driven />
 
 	<security:http auto-config="true">
+		<security:intercept-url pattern="/**" access="hasAuthority('admin')" />
 		<security:intercept-url pattern="/admin**" access="hasAuthority('admin')" />
 		<security:intercept-url pattern="/user**" access="hasAuthority('admin')" />
 		<security:intercept-url pattern="/screens**" access="hasAuthority('admin')" />

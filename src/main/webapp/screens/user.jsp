@@ -17,12 +17,23 @@
 	<a href="<c:url value="/" />">Home</a><br />
 
 	<table>
+		<tr>
+			<td><b>Name</b></td>
+			<td><b>Login</b></td>
+			<td><b>Password</b></td>
+			<td><b>Position</b></td>
+			<td><b>Is Enabled</b></td>
+		</tr>
+	
 		<c:forEach items="${users}" var="user">
 				<tr>
 					<td><c:out value="${user.userRealName}" /></td>
 					<td><c:out value="${user.userId}" /></td>
 					<td><c:out value="${user.password}" /></td>
 					<td><c:out value="${user.userPosition}" /></td>
+					<td><c:out value="${user.isEnabled}" /></td>
+					<td><a href="<c:url value="/user/disable/${user.userId}" />">Disable</a><br /></td>
+					<td><a href="<c:url value="/user/enable/${user.userId}" />">Enable</a><br /></td>
 				</tr>
 		</c:forEach>
 	</table>

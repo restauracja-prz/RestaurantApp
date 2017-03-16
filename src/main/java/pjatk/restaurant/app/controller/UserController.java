@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -18,11 +19,15 @@ public class UserController {
 	@Autowired
 	private UserDAO userDAO;
 
-	@RequestMapping
-	public String home(Model model) {
+	
+	@ModelAttribute
+	public void init(Model model) {
 		model.addAttribute("users", userDAO.findAll());
 		model.addAttribute("userForm", new UserEntity());
-		
+	}
+	
+	@RequestMapping
+	public String home(Model model) {
 		return "user";
 	}
 		
@@ -35,6 +40,18 @@ public class UserController {
 		return "user";
 	}
 	
+	@RequestMapping(value = "/disable/{userId}", method = RequestMethod.GET)
+	public String userDisable(@PathVariable String userId, Model model) {
+		userDAO.userDisable(userId);
+		
+		return "redirect:/user";
+	}
 	
+	@RequestMapping(value = "/enable/{userId}", method = RequestMethod.GET)
+	public String userEnable(@PathVariable String userId, Model model) {
+		userDAO.userEnable(userId);
+		
+		return "redirect:/user";
+	}
 
 }
