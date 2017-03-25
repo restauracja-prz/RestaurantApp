@@ -42,18 +42,22 @@
 	
 	<fieldset>
 		<form:form method="post" modelAttribute="userForm" action="${saveUserUrl}">
-	  		User name:<br>
+	  		User name:
 	  			<form:input type="text" path="userRealName" />
+	  			<form:errors path="userRealName">Please enter User Name</form:errors>
 	  				<br>
-	  		User Login:<br>
+	  		User Login:
 	  			<form:input type="text" path="userId" />
-	  				<br><br>
-	  		User Password:<br>
+	  			<form:errors path="userId">Please enter user id</form:errors>
+	  				<br>
+	  		User Password:
 	  			<form:input type="password" path="password" />
-	  				<br><br>
-	  		User position:<br>
+	  			<form:errors path="userId">Please enter user password</form:errors>
+	  				<br>
+	  		User position:
 	  			<form:input type="text" path="userPosition" />
-	  				<br><br>
+	  			<form:errors path="userId">Please enter user position</form:errors>
+	  				<br>
 	  			<input type="submit" value="Submit">
 		</form:form> 
 	</fieldset>

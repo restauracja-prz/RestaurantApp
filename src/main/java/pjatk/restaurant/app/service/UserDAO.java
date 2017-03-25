@@ -38,8 +38,9 @@ public class UserDAO {
 	}
 	
 	public void userEnable(String userId) {
-		Query query =currentSession().createQuery("UPDATE UserEntity u SET u.isEnabled=true where u.userId is :userId");
+		Query query = currentSession().createQuery("UPDATE UserEntity u SET u.isEnabled=true where u.userId is :userId");
 		query.setString("userId", userId);
 		query.executeUpdate();
 	}
+	
 }

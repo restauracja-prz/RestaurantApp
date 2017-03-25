@@ -8,12 +8,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="MENU")
 public class MenuEntity {
 
 	@Id
+	@NotNull
 	@Column(name="MEAL_ID")
 	private Long mealId;
 	
