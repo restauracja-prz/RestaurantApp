@@ -13,23 +13,6 @@
 
 <a href="<c:url value="/" />">Home</a><br />
 
-<table>
-	<td><b>Meal Id</b></td>
-	<td><b>Meal Description</b></td>
-	<td><b>Cost</b></td>
-	<td><b>Is Visible</b></td>
-		<c:forEach items="${menuItems}" var="menu">
-			<tr>
-				<td><c:out value="${menu.mealId}" /></td>
-				<td><c:out value="${menu.mealTranslation.mealDescPl}" /></td>
-				<td><c:out value="${menu.mealTranslation.cost}" /></td>
-				<td><c:out value="${menu.isVisible}" /></td>
-				<td><a href="<c:url value="/menu/enable/${menu.mealId}" />">Enable</a><br /></td>
-				<td><a href="<c:url value="/menu/disable/${menu.mealId}" />">Disable</a><br /></td>				
-			</tr>
-		</c:forEach>
-</table>
-
 	<fieldset>
 		<form:form method="post" modelAttribute="menuForm" action="${saveMenuUrl}">
 	  		Meal Id:
@@ -47,6 +30,24 @@
 	  			<input type="submit" value="Submit">
 		</form:form> 
 	</fieldset>
+	
+	<table>
+	<td><b>Meal Id</b></td>
+	<td><b>Meal Description</b></td>
+	<td><b>Cost</b></td>
+	<td><b>Is Visible</b></td>
+		<c:forEach items="${menuItems}" var="menu">
+			<tr>
+				<td><c:out value="${menu.mealId}" /></td>
+				<td><c:out value="${menu.mealTranslation.mealDescPl}" /></td>
+				<td><c:out value="${menu.mealTranslation.cost}" /></td>
+				<td><c:out value="${menu.isVisible}" /></td>
+				<td><a href="<c:url value="/menu/enable/${menu.mealId}" />">Enable</a><br /></td>
+				<td><a href="<c:url value="/menu/disable/${menu.mealId}" />">Disable</a><br /></td>				
+			</tr>
+		</c:forEach>
+</table>
+	
 </body>
 
 </html>
