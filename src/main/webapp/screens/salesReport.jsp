@@ -33,20 +33,42 @@
 	<a href="<c:url value="/" />">Home</a><br />
 	
 	
-			<fieldset>
-				<form:form method="post" modelAttribute="reportForm" action="${showReportUrl}">
-			  		Choose date from:
-			  			<form:input type="text" path="dateFrom" class="date-picker" />
-			  			<form:errors path="dateFrom">Please enter date from</form:errors>
-			  				<br>
-			  		Choose date to:
-			  			<form:input type="text" path="dateTo" class="date-picker" />
-			  			<form:errors path="dateTo">Please enter date to</form:errors>
-			  				<br>
-			  			<input type="submit" value="Show report">
-				</form:form> 
-			</fieldset>
-
+	<fieldset>
+		<form:form method="post" modelAttribute="reportForm" action="${showReportUrl}">
+	  		Choose date from:
+	  			<form:input type="text" path="dateFrom" class="date-picker" />
+	  			<form:errors path="dateFrom">Please enter date from</form:errors>
+	  				<br>
+	  		Choose date to:
+	  			<form:input type="text" path="dateTo" class="date-picker" />
+	  			<form:errors path="dateTo">Please enter date to</form:errors>
+	  				<br>
+	  			<input type="submit" value="Show report">
+		</form:form> 
+	</fieldset>
+	<table>
+		<tr>
+			<td><b>Transaction Id</b></td>
+			<td><b>Ordr Id</b></td>
+			<td><b>Transaction Date</b></td>
+			<td><b>Total Cost</b></td>
+			<td><b>Total Units</b></td>
+			<td><b>Payment Type</b></td>
+			<td><b>User Id</b></td>
+		</tr>
+	
+		<c:forEach items="${reportResult}" var="report">
+				<tr>
+					<td><c:out value="${report.transactionId}" /></td>
+					<td><c:out value="${report.orderId}" /></td>
+					<td><c:out value="${report.transactionDate}" /></td>
+					<td><c:out value="${report.totalCost}" /></td>
+					<td><c:out value="${report.totalUnits}" /></td>
+					<td><c:out value="${report.paymentType}" /></td>
+					<td><c:out value="${report.userId}" /></td>
+				</tr>
+		</c:forEach>
+	</table>
 </body>
 
 </html>

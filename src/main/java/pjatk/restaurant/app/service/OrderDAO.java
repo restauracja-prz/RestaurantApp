@@ -33,5 +33,14 @@ public class OrderDAO {
 		query.setDate("dateTo", dateTo);
 		return query.list();
 	}
+	
+	public List<OrderEntity> findOrderAndStatusReport(Date dateFrom, Date dateTo) {
+		Query query = sessionFactory.getCurrentSession().createQuery(
+				"select o from OrderEntity o where o.orderDate >= :dateFrom and o.orderDate <= :dateTo");
+		query.setDate("dateFrom", dateFrom);
+		query.setDate("dateTo", dateTo);
+		return query.list();
+				
+	}
 
 }

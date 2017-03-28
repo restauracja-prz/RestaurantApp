@@ -4,7 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<spring:url value="/report/orders-and-status-report" var="showReportUrl" />
+<spring:url value="/report/order-and-status-report" var="showReportUrl" />
 
 <html>
 <head>
@@ -44,6 +44,24 @@
 		  			<input type="submit" value="Show report">
 			</form:form> 
 		</fieldset>
+		
+			<table>
+		<tr>
+			<td><b>Order Id</b></td>
+			<td><b>Order Date</b></td>
+			<td><b>Order Status</b></td>
+			<td><b>User Id</b></td>
+		</tr>
+	
+		<c:forEach items="${reportResult}" var="report">
+				<tr>
+					<td><c:out value="${report.orderId}" /></td>
+					<td><c:out value="${report.orderDate}" /></td>
+					<td><c:out value="${report.orderStatus}" /></td>
+					<td><c:out value="${report.userId}" /></td>
+				</tr>
+		</c:forEach>
+	</table>
 
 </body>
 
