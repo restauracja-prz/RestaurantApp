@@ -42,7 +42,8 @@
 			  			<form:input type="text" path="dateTo" class="date-picker" />
 			  			<form:errors path="dateTo">Please enter date to</form:errors>
 			  				<br>
-			  			<input type="submit" value="Show report">
+			  			<input type="submit" value="Show report" name="action_show_report">
+			  			<input type="submit" value="Export" name="action_export_report">
 				</form:form> 
 			</fieldset>
 
@@ -58,7 +59,7 @@
 		<c:forEach items="${reportResult}" var="report">
 				<tr>
 					<td><c:out value="${report.orderId}" /></td>
-					<td><c:out value="${report.orderId}" /></td>
+					<td><c:out value="${report.deviceId}" /></td>
 					<td><c:out value="${report.mealId}" /></td>
 					<td><c:out value="${report.unitPrice}" /></td>
 					<td><c:out value="${report.clientComment}" /></td>

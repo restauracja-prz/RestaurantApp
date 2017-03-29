@@ -4,7 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<spring:url value="/report/order-and-status-report" var="showReportUrl" />
+<spring:url value="/report/orders-and-status-report" var="showReportUrl" />
 
 <html>
 <head>
@@ -41,7 +41,8 @@
 		  			<form:input type="text" path="dateTo" class="date-picker" />
 		  			<form:errors path="dateTo">Please enter date to</form:errors>
 		  				<br>
-		  			<input type="submit" value="Show report">
+		  			<input type="submit" value="Show report" name="action_show_report">
+			  		<input type="submit" value="Export" name="action_export_report">
 			</form:form> 
 		</fieldset>
 		

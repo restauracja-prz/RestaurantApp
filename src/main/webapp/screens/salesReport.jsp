@@ -43,13 +43,14 @@
 	  			<form:input type="text" path="dateTo" class="date-picker" />
 	  			<form:errors path="dateTo">Please enter date to</form:errors>
 	  				<br>
-	  			<input type="submit" value="Show report">
+	  			<input type="submit" value="Show report" name="action_show_report">
+			  	<input type="submit" value="Export" name="action_export_report">
 		</form:form> 
 	</fieldset>
 	<table>
 		<tr>
 			<td><b>Transaction Id</b></td>
-			<td><b>Ordr Id</b></td>
+			<td><b>Order Id</b></td>
 			<td><b>Transaction Date</b></td>
 			<td><b>Total Cost</b></td>
 			<td><b>Total Units</b></td>

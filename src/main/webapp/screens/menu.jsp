@@ -32,10 +32,12 @@
 	</fieldset>
 	
 	<table>
-	<td><b>Meal Id</b></td>
-	<td><b>Meal Description</b></td>
-	<td><b>Cost</b></td>
-	<td><b>Is Visible</b></td>
+		<tr>
+			<td><b>Meal Id</b></td>
+			<td><b>Meal Description</b></td>
+			<td><b>Cost</b></td>
+			<td><b>Is Visible</b></td>
+		</tr>
 		<c:forEach items="${menuItems}" var="menu">
 			<tr>
 				<td><c:out value="${menu.mealId}" /></td>

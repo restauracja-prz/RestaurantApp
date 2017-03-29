@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import pjatk.restaurant.app.service.MenuDAO;
 import pjatk.restaurant.app.service.entity.MenuEntity;
-import pjatk.restaurant.app.service.entity.UserEntity;
 
 @Controller
 @RequestMapping("/menu")
