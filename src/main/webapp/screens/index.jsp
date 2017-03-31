@@ -14,7 +14,8 @@
 
 	<a href="<c:url value="/admin" />">Admin</a><br />
 	<a href="<c:url value="/menu" />">Menu</a><br />
-	<a href="<c:url value="/order" />">Orders</a><br />		
+	<a href="<c:url value="/order" />">Order</a><br />
+	<a href="<c:url value="/orders" />">Orders</a><br />		
 	<a href="<c:url value="/report" />">Reports</a><br />
 	<a href="<c:url value="/user" />">User management</a><br />
 </body>

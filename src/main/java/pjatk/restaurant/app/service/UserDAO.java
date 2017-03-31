@@ -27,8 +27,8 @@ public class UserDAO {
 		return sessionFactory.getCurrentSession();
 	}
 	
-	public void userSave(UserEntity user) {
-		currentSession().save(user);
+	public void userSaveOrUpdate(UserEntity user) {
+		currentSession().saveOrUpdate(user);
 	}
 	
 	public void userDisable(String userId) {
@@ -41,6 +41,10 @@ public class UserDAO {
 		Query query = currentSession().createQuery("UPDATE UserEntity u SET u.isEnabled=true where u.userId is :userId");
 		query.setString("userId", userId);
 		query.executeUpdate();
+	}
+	
+	public UserEntity findUserById(String userId) {
+		return (UserEntity) currentSession().get(UserEntity.class, userId);
 	}
 	
 }

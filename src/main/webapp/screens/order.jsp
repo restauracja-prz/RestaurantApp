@@ -5,20 +5,14 @@
 
 <html>
 <body>
-	<h2>RestaurantApp : Orders</h2>
+	<h2>RestaurantApp : Order</h2>
+	<h3>TODO</h3>
+	
+	<form:form action="${pageContext.request.contextPath}/logout" method="POST">
+	    <input type="submit" value="Logout" />
+	</form:form>
 	
 	<a href="<c:url value="/" />">Home</a><br />
-	
-		<table>
-			<c:forEach items="${orderStatus}" var="order">
-				 <tr>
-				 	<td><c:out value="${order.orderId}" /></td>
-				 	<td><c:out value="${order.orderDate}" /></td>
-				 	<td><c:out value="${order.orderStatus}" /></td>
-				 	<td><c:out value="${order.userId}" /></td>
-				 </tr>
-			</c:forEach>
-		</table>
 	
 </body>
 </html>

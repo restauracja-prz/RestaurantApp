@@ -43,7 +43,7 @@ public class UserController {
         }
 	
 		user.setIsEnabled(true);
-		userDAO.userSave(user);
+		userDAO.userSaveOrUpdate(user);
 		
 		return "redirect:/user";
 	}
@@ -61,5 +61,16 @@ public class UserController {
 		
 		return "redirect:/user";
 	}
-
+	
+	@RequestMapping(value = "/edit/{userId}", method = RequestMethod.GET)
+	public String userEdit(@PathVariable String userId, Model model) {
+		model.addAttribute("userForm", userDAO.findUserById(userId));
+		
+		return "user";
+	}
+	
+	@RequestMapping(value = "/cancelEdit", method = RequestMethod.GET)
+	public String cancelEdit(Model model) {
+		return "redirect:/user";
+	}
 }

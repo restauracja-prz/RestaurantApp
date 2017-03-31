@@ -23,18 +23,24 @@
 	  			<form:errors path="userRealName">Please enter User Name</form:errors>
 	  				<br>
 	  		User Login:
-	  			<form:input type="text" path="userId" />
+	  			<form:input type="text" path="userId" 
+	  						readonly="${ userForm.userId == null ? 'false' : 'true' }" 
+	  						cssStyle="${ userForm.userId == null ? '' : 'background-color: #d1d1d1;' }" />		
 	  			<form:errors path="userId">Please enter user id</form:errors>
 	  				<br>
 	  		User Password:
 	  			<form:input type="password" path="password" />
-	  			<form:errors path="userId">Please enter user password</form:errors>
+	  			<form:errors path="password">Please enter user password</form:errors>
 	  				<br>
 	  		User position:
 	  			<form:input type="text" path="userPosition" />
-	  			<form:errors path="userId">Please enter user position</form:errors>
+	  			<form:errors path="userPosition">Please enter user position</form:errors>
 	  				<br>
 	  			<input type="submit" value="Submit">
+	  			
+	  			<c:if test="${userForm.userId != null}">
+	  				<a href="<c:url value="/user/cancelEdit" />">Cancel edit</a>
+	  			</c:if>
 		</form:form> 
 	</fieldset>
 
@@ -56,6 +62,7 @@
 					<td><c:out value="${user.isEnabled}" /></td>
 					<td><a href="<c:url value="/user/disable/${user.userId}" />">Disable</a><br /></td>
 					<td><a href="<c:url value="/user/enable/${user.userId}" />">Enable</a><br /></td>
+					<td><a href="<c:url value="/user/edit/${user.userId}" />">Edit</a><br /></td>
 				</tr>
 		</c:forEach>
 	</table>
