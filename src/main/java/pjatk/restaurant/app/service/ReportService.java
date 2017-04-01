@@ -6,6 +6,8 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -49,7 +51,14 @@ public class ReportService {
         	dataRow.createCell(1).setCellValue(reportData.getDeviceId());
         	dataRow.createCell(2).setCellValue(reportData.getMealId());
         	dataRow.createCell(3).setCellValue(convertToString(reportData.getUnitPrice()));
-        	dataRow.createCell(4).setCellValue(reportData.getClientComment());
+        	
+        	if (reportData.getClientComment() != null) {
+        		dataRow.createCell(4).setCellValue(reportData.getClientComment());
+        	}
+        }
+        
+        for (int i = 0; i <= 4; i++) {
+        	sheet.autoSizeColumn(i);
         }
         
         try {
@@ -68,7 +77,7 @@ public class ReportService {
         XSSFRow headerRow = sheet.createRow(currentRowIndex);
         
         headerRow.createCell(0).setCellValue("Order Id");
-        headerRow.createCell(1).setCellValue("Order Date");
+        headerRow.createCell(1).setCellValue("Order Date         ");
         headerRow.createCell(2).setCellValue("Order Status");
         headerRow.createCell(3).setCellValue("User Id");
         
@@ -80,9 +89,16 @@ public class ReportService {
         	XSSFRow dataRow = sheet.createRow(currentRowIndex);
         	
         	dataRow.createCell(0).setCellValue(reportData.getOrderId());
-        	dataRow.createCell(1).setCellValue(reportData.getOrderDate());
+        	
+        	XSSFCell orderDateCell = dataRow.createCell(1);
+        	createDateCellValue(workbook, orderDateCell, reportData.getOrderDate());
+
         	dataRow.createCell(2).setCellValue(reportData.getOrderStatus());
         	dataRow.createCell(3).setCellValue(reportData.getUserId());
+        }
+        
+        for (int i = 0; i <= 3; i++) {
+        	sheet.autoSizeColumn(i);
         }
         
         try {
@@ -117,11 +133,18 @@ public class ReportService {
         	
         	dataRow.createCell(0).setCellValue(reportData.getTransactionId());
         	dataRow.createCell(1).setCellValue(reportData.getOrderId());
-        	dataRow.createCell(2).setCellValue(reportData.getTransactionDate());
+        	
+        	XSSFCell orderDateCell = dataRow.createCell(2);
+        	createDateCellValue(workbook, orderDateCell, reportData.getTransactionDate());
+        	
         	dataRow.createCell(3).setCellValue(convertToString(reportData.getTotalCost()));
         	dataRow.createCell(4).setCellValue(reportData.getTotalUnits());
         	dataRow.createCell(5).setCellValue(reportData.getPaymentType());
         	dataRow.createCell(6).setCellValue(reportData.getUserId());
+        }
+        
+        for (int i = 0; i <= 6; i++) {
+        	sheet.autoSizeColumn(i);
         }
         
         try {
@@ -132,6 +155,16 @@ public class ReportService {
 		}
 	}
 	
+	private void createDateCellValue(XSSFWorkbook workbook, XSSFCell cell, Date date) {
+		if (date == null) {
+			return;
+		}
+		
+		CellStyle cellStyle = workbook.createCellStyle();
+        cellStyle.setDataFormat(workbook.getCreationHelper().createDataFormat().getFormat("m/d/yy h:mm"));
+        cell.setCellValue(date);
+        cell.setCellStyle(cellStyle);
+	}
 	
 	private String convertToString(BigDecimal value) {
 		return value == null ? "" : value.toString();

@@ -37,6 +37,9 @@
 		<security:intercept-url pattern="/**" access="hasAuthority('admin')" />
 		
 		<security:logout logout-url="/logout" logout-success-url="/" />
+		
+		<security:form-login 
+			authentication-success-handler-ref="defaultAuthenticationSuccessHandler" />
 	</security:http>
 
 	<security:authentication-manager>
@@ -49,6 +52,9 @@
 
 	<jee:jndi-lookup id="restaurantDS" jndi-name="java:/LocalMySqlDS" />
 
+	<bean id="defaultAuthenticationSuccessHandler"
+			class="pjatk.restaurant.app.security.DefaultAuthenticationSuccessHandler" />
+		
 	<bean id="hibernateSessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="restaurantDS" />
