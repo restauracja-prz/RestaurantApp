@@ -1,4 +1,4 @@
-package pjatk.restaurant.app.service.entity;
+package pjatk.restaurant.app.entity;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -24,8 +24,8 @@ public class OrderDetailsEntity {
 	@Column(name="DEVICE_ID")
 	private String deviceId;
 	
-	@Column(name="MEAL_ID")
-	private Long mealId;
+	@Column(name="MENU_ID")
+	private Long menuId;
 	
 	@Column(name="UNIT_PRICE")
 	private BigDecimal unitPrice;
@@ -61,12 +61,12 @@ public class OrderDetailsEntity {
 		this.deviceId = deviceId;
 	}
 
-	public Long getMealId() {
-		return mealId;
+	public Long getMenuId() {
+		return menuId;
 	}
 
-	public void setMealId(Long mealId) {
-		this.mealId = mealId;
+	public void setMenuId(Long menuId) {
+		this.menuId = menuId;
 	}
 
 	public BigDecimal getUnitPrice() {

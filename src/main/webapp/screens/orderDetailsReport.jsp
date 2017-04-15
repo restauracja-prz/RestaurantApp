@@ -60,7 +60,7 @@
 				<tr>
 					<td><c:out value="${report.orderId}" /></td>
 					<td><c:out value="${report.deviceId}" /></td>
-					<td><c:out value="${report.mealId}" /></td>
+					<td><c:out value="${report.menuId}" /></td>
 					<td><c:out value="${report.unitPrice}" /></td>
 					<td><c:out value="${report.clientComment}" /></td>
 				</tr>

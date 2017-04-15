@@ -5,12 +5,15 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 public class ReportModel {
 
+	@Size(min=2, max=64)
 	@NotNull
 	private String dateFrom;
 	
+	@Size(min=2, max=64)
 	@NotNull
 	private String dateTo;
 	

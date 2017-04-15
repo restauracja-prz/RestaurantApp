@@ -14,9 +14,9 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import pjatk.restaurant.app.service.entity.OrderDetailsEntity;
-import pjatk.restaurant.app.service.entity.OrderEntity;
-import pjatk.restaurant.app.service.entity.TransactionEntity;
+import pjatk.restaurant.app.entity.OrderDetailsEntity;
+import pjatk.restaurant.app.entity.OrderEntity;
+import pjatk.restaurant.app.entity.TransactionEntity;
 
 @Service
 public class ReportService {
@@ -36,7 +36,7 @@ public class ReportService {
         
         headerRow.createCell(0).setCellValue("Order Id");
         headerRow.createCell(1).setCellValue("Device Id");
-        headerRow.createCell(2).setCellValue("Meal Id");
+        headerRow.createCell(2).setCellValue("Menu Id");
         headerRow.createCell(3).setCellValue("Unit Price");
         headerRow.createCell(4).setCellValue("Client Comment");
         
@@ -49,7 +49,7 @@ public class ReportService {
         	
         	dataRow.createCell(0).setCellValue(reportData.getOrderId());
         	dataRow.createCell(1).setCellValue(reportData.getDeviceId());
-        	dataRow.createCell(2).setCellValue(reportData.getMealId());
+        	dataRow.createCell(2).setCellValue(reportData.getMenuId());
         	dataRow.createCell(3).setCellValue(convertToString(reportData.getUnitPrice()));
         	
         	if (reportData.getClientComment() != null) {

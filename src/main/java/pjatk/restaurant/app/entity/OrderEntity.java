@@ -1,4 +1,4 @@
-package pjatk.restaurant.app.service.entity;
+package pjatk.restaurant.app.entity;
 
 import java.util.Date;
 

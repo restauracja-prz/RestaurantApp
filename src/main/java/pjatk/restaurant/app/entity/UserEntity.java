@@ -1,4 +1,4 @@
-package pjatk.restaurant.app.service.entity;
+package pjatk.restaurant.app.entity;
 
 import java.util.Date;
 
@@ -19,10 +19,6 @@ public class UserEntity {
 	@Column(name = "USER_ID")
 	private String userId;
 	
-	@Size(min=4, max=25)
-	@Column(name = "USER_NAME")
-	private String name;
-
 	@NotNull
 	@Size(min=4, max=12)
 	@Column(name = "USER_PASSWORD")
@@ -49,14 +45,6 @@ public class UserEntity {
 
 	public void setUserId(String userId) {
 		this.userId = userId;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public String getPassword() {

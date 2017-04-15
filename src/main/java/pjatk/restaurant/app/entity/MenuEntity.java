@@ -1,13 +1,16 @@
-package pjatk.restaurant.app.service.entity;
+package pjatk.restaurant.app.entity;
 
 import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -15,19 +18,21 @@ import javax.validation.constraints.NotNull;
 public class MenuEntity {
 
 	@Id
-	@NotNull
-	@Column(name="MEAL_ID")
-	private Long mealId;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="MENU_ID")
+	private Long menuId;
 	
 	@Column(name="MEAL_TYPE_ID")
 	private Long mealTypeId;
 	
+	@NotNull
 	@Column(name="UNIT_PRICE")
 	private BigDecimal unitPrice;
 	
 	@Column(name="IS_VISIBLE")
 	private String isVisible;
 
+	@Valid
 	@ManyToOne
 	@JoinColumn(name = "MEAL_TRANSLATION_ID")
 	private MealTranslationEntity mealTranslation;
@@ -40,14 +45,14 @@ public class MenuEntity {
 		this.mealTypeId = mealTypeId;
 	}
 	
-	public Long getMealId() {
-		return mealId;
+	public Long getMenuId() {
+		return menuId;
 	}
-	
-	public void setMealId(Long mealId) {
-		this.mealId = mealId;
+
+	public void setMenuId(Long menuId) {
+		this.menuId = menuId;
 	}
-	
+
 	public BigDecimal getUnitPrice() {
 		return unitPrice;
 	}

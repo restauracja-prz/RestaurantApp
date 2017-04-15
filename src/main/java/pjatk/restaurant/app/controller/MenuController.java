@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import pjatk.restaurant.app.entity.MenuEntity;
 import pjatk.restaurant.app.service.MenuDAO;
-import pjatk.restaurant.app.service.entity.MenuEntity;
 
 @Controller
 @RequestMapping("/menu")
@@ -21,24 +21,27 @@ public class MenuController {
 	@Autowired
 	private MenuDAO menuDAO;
 	
-	@RequestMapping
-	public String home(Model model) {
+	@ModelAttribute
+	public void init(Model model) {
 		model.addAttribute("menuItems", menuDAO.findFullMenu());
 		model.addAttribute("menuForm", new MenuEntity());
-		
+	}
+	
+	@RequestMapping
+	public String home(Model model) {
 		return "menu";
 	}
 	
-	@RequestMapping(value = "/disable/{mealId}", method = RequestMethod.GET)
-	public String mealDisable(@PathVariable Integer mealId, Model model) {
-		menuDAO.mealDisable(mealId);
+	@RequestMapping(value = "/disable/{menuId}", method = RequestMethod.GET)
+	public String mealDisable(@PathVariable Integer menuId, Model model) {
+		menuDAO.mealDisable(menuId);
 		
 		return "redirect:/menu";
 	}
 	
-	@RequestMapping(value = "/enable/{mealId}", method = RequestMethod.GET)
-	public String mealEnable(@PathVariable Integer mealId, Model model) {
-		menuDAO.mealEnable(mealId);
+	@RequestMapping(value = "/enable/{menuId}", method = RequestMethod.GET)
+	public String mealEnable(@PathVariable Integer menuId, Model model) {
+		menuDAO.mealEnable(menuId);
 		
 		return "redirect:/menu";
 	}
@@ -51,9 +54,25 @@ public class MenuController {
             return "menu";
         }
 	
-		menu.setIsVisible("Y");
-		menuDAO.menuSave(menu);
+		if (menu.getMenuId() == null) {
+			menu.setIsVisible("Y");
+		}
 		
+		menuDAO.menuSaveOrUpdate(menu);
+		
+		return "redirect:/menu";
+	}
+	
+	@RequestMapping(value = "/edit/{menuId}", method = RequestMethod.GET)
+	public String menuEdit(@PathVariable Long menuId, Model model) {
+		MenuEntity menuToEdit = menuDAO.findMenuById(menuId);
+		model.addAttribute("menuForm", menuToEdit);
+		
+		return "menu";
+	}
+	
+	@RequestMapping(value = "/cancelEdit", method = RequestMethod.GET)
+	public String cancelEdit(Model model) {
 		return "redirect:/menu";
 	}
 }

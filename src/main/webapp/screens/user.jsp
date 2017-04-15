@@ -24,8 +24,8 @@
 	  				<br>
 	  		User Login:
 	  			<form:input type="text" path="userId" 
-	  						readonly="${ userForm.userId == null ? 'false' : 'true' }" 
-	  						cssStyle="${ userForm.userId == null ? '' : 'background-color: #d1d1d1;' }" />		
+	  						readonly="${ userForm.createDate == null ? 'false' : 'true' }" 
+	  						cssStyle="${ userForm.createDate == null ? '' : 'background-color: #d1d1d1;' }" />		
 	  			<form:errors path="userId">Please enter user id</form:errors>
 	  				<br>
 	  		User Password:
@@ -36,6 +36,7 @@
 	  			<form:input type="text" path="userPosition" />
 	  			<form:errors path="userPosition">Please enter user position</form:errors>
 	  				<br>
+	  				
 	  			<input type="submit" value="Submit">
 	  			
 	  			<c:if test="${userForm.userId != null}">

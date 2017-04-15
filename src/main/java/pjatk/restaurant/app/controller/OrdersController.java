@@ -15,8 +15,8 @@ public class OrdersController {
 	private OrderDAO orderDAO;
 	
 	@RequestMapping
-	private String home(Model model) {
-		model.addAttribute("orders", orderDAO.findOrderEntity());
+	public String home(Model model) {
+		model.addAttribute("orders", orderDAO.findOrders());
 		
 		return "orders";
 	}

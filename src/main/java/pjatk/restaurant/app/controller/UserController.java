@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import pjatk.restaurant.app.entity.UserEntity;
 import pjatk.restaurant.app.service.UserDAO;
-import pjatk.restaurant.app.service.entity.UserEntity;
 
 @Controller
 @RequestMapping("/user")
@@ -35,7 +35,7 @@ public class UserController {
 	}
 		
 	@RequestMapping(method = RequestMethod.POST)
-	public String save(@ModelAttribute("userForm") @Valid UserEntity user,
+	public String saveOrUpdateUser(@ModelAttribute("userForm") @Valid UserEntity user,
 			BindingResult result, Model model) {
 		
 		if (result.hasErrors()) {

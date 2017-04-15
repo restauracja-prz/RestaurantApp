@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import pjatk.restaurant.app.service.entity.UserEntity;
+import pjatk.restaurant.app.entity.UserEntity;
 
 @Transactional
 @Repository
