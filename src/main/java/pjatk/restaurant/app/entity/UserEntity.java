@@ -15,12 +15,12 @@ public class UserEntity {
 
 	@Id
 	@NotNull
-	@Size(min=3, max=25)
+	@Size(min=3, max=32)
 	@Column(name = "USER_ID")
 	private String userId;
 	
 	@NotNull
-	@Size(min=4, max=12)
+	@Size(min=4, max=255)
 	@Column(name = "USER_PASSWORD")
 	private String password;
 	

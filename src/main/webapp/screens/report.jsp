@@ -15,7 +15,7 @@
 	<a href="<c:url value="/" />">Home</a><br />
 	
 	<form:form action="${pageContext.request.contextPath}/logout" method="POST">
-	    <input type="submit" value="Logout" />
+	    <input id="logoutButton" type="submit" value="Logout" />
 	</form:form>
 	
 	<h2>List of available reports:</h2><br />
