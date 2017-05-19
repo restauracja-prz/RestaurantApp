@@ -45,8 +45,8 @@
 	<security:authentication-manager>
 		<security:authentication-provider>
 			<security:jdbc-user-service data-source-ref="restaurantDS" 
-				authorities-by-username-query="select user_id, user_position from users where user_id=?" 
-				users-by-username-query="select user_id, user_password, is_enabled from users where user_id=?"/>
+				authorities-by-username-query="select user_id, user_position from USERS where user_id=?"
+				users-by-username-query="select user_id, user_password, is_enabled from USERS where user_id=?"/>
 		</security:authentication-provider>	
 	</security:authentication-manager>
 
