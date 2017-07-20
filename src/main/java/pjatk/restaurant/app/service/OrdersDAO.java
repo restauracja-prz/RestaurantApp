@@ -10,19 +10,19 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import pjatk.restaurant.app.entity.OrderDetailsEntity;
-import pjatk.restaurant.app.entity.OrderEntity;
+import pjatk.restaurant.app.entity.OrdersEntity;
 
 @Repository
 @Transactional
-public class OrderDAO {
+public class OrdersDAO {
 
 	@Autowired
 	private SessionFactory sessionFactory;
 	
 	@SuppressWarnings("unchecked")
-	public List<OrderEntity> findOrders() {
+	public List<OrdersEntity> findOrders() {
 		Query query = sessionFactory.getCurrentSession().createQuery(
-				"select o from OrderEntity o");
+				"select o from OrdersEntity o");
 		
 		return query.list();
 	}
@@ -37,9 +37,9 @@ public class OrderDAO {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<OrderEntity> findOrderAndStatusReport(Date dateFrom, Date dateTo) {
+	public List<OrdersEntity> findOrderAndStatusReport(Date dateFrom, Date dateTo) {
 		Query query = sessionFactory.getCurrentSession().createQuery(
-				"select o from OrderEntity o where o.orderDate >= :dateFrom and o.orderDate <= :dateTo");
+				"select o from OrdersEntity o where o.orderDate >= :dateFrom and o.orderDate <= :dateTo");
 		query.setDate("dateFrom", dateFrom);
 		query.setDate("dateTo", dateTo);
 		return query.list();
