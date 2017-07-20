@@ -5,14 +5,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import pjatk.restaurant.app.service.OrderDAO;
+import pjatk.restaurant.app.service.OrdersDAO;
 
 @Controller
 @RequestMapping("/orders")
 public class OrdersController {
 	
 	@Autowired
-	private OrderDAO orderDAO;
+	private OrdersDAO orderDAO;
 	
 	@RequestMapping
 	public String home(Model model) {
