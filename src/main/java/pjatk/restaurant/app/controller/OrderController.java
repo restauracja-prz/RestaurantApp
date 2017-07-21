@@ -1,7 +1,7 @@
 package pjatk.restaurant.app.controller;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ import pjatk.restaurant.app.service.OrderDAO;
 
 @Controller
 @Scope("session")
-@SessionAttributes("test")
+@SessionAttributes({"orderList", "sum"})
 @RequestMapping("/order")
 public class OrderController {
 
@@ -33,7 +33,7 @@ public class OrderController {
 	private OrderDAO orderDAO;
 	
 	private List<MenuEntity> orders = new ArrayList<MenuEntity>();
-	
+	private BigDecimal orderCostSum;
 	@ModelAttribute
 	public void init(Model model) {
 		model.addAttribute("menuItems", menuDAO.findVisibleMenu());
@@ -41,30 +41,34 @@ public class OrderController {
 	
 	@RequestMapping(value = "/ordermeal/{menuId}", method = RequestMethod.GET)
 	public String mealOrder(@PathVariable Integer menuId, Model model) {
+		
+
+		orderCostSum = new BigDecimal(0);
+		
 		orders.addAll(orderDAO.mealOrder(menuId));
-		model.addAttribute("test", orders);
+		for (MenuEntity o : orders) {
+			orderCostSum = orderCostSum.add(o.getUnitPrice());
+		}
+		
+		model.addAttribute("sum", orderCostSum);
+		model.addAttribute("orderList", orders);
 		
 		return "redirect:/order"; 
 	}
 	
-	@RequestMapping(value = "/delete/{menuId}", method = RequestMethod.GET)
-	public String deleteOrder(@PathVariable Long menuId, Model model) {
+	@RequestMapping(value = "/delete/{indexNumber}", method = RequestMethod.GET)
+	public String deleteOrder(@PathVariable Integer indexNumber, Model model) {
+	
+		orderCostSum = orderCostSum.subtract(orders.get(indexNumber-1).getUnitPrice());
+		orders.remove(indexNumber-1);
+			
+		model.addAttribute("sum", orderCostSum);
+		model.addAttribute("orderList", orders);
 		
-		Iterator<MenuEntity> it = orders.iterator();
-		while(it.hasNext()) {
-			MenuEntity menuEntity = it.next();
-			if(menuEntity.getMenuId() == menuId) {
-				it.remove();
-				break;
-			}
-		}
-		model.addAttribute("test", orders);
 		return "redirect:/order";
 	}
 	
-	
-	
-	
+
 	@RequestMapping
 	public String home(Model model) {
 		return "order";
