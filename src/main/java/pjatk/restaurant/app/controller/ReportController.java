@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import pjatk.restaurant.app.entity.OrderDetailsEntity;
-import pjatk.restaurant.app.entity.OrdersEntity;
+import pjatk.restaurant.app.entity.OrderEntity;
 import pjatk.restaurant.app.entity.TransactionEntity;
 import pjatk.restaurant.app.service.OrdersDAO;
 import pjatk.restaurant.app.service.ReportService;
@@ -59,7 +59,7 @@ public class ReportController {
 		model.addAttribute("reportForm", reportForm);
 		
 		if (!result.hasErrors()) {
-			List<OrdersEntity> reportResult = ordersDAO.findOrderAndStatusReport(
+			List<OrderEntity> reportResult = ordersDAO.findOrderAndStatusReport(
 					reportForm.parseDateFrom(), reportForm.parseDateTo());
 			
 			model.addAttribute("reportResult", reportResult);

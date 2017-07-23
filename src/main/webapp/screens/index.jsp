@@ -17,5 +17,6 @@
 	<a id="ordersLink" href="<c:url value="/orders" />">Orders</a><br />
 	<a id="reportsLink" href="<c:url value="/report" />">Reports</a><br />
 	<a id="userManagementLink" href="<c:url value="/user" />">User management</a><br />
+	<a id="orderDetailsLink" href="<c:url value="/orderdetails" />">Order details</a><br />
 </body>
 </html>

@@ -15,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import pjatk.restaurant.app.entity.OrderDetailsEntity;
-import pjatk.restaurant.app.entity.OrdersEntity;
+import pjatk.restaurant.app.entity.OrderEntity;
 import pjatk.restaurant.app.entity.TransactionEntity;
 
 @Service
@@ -38,7 +38,7 @@ public class ReportService {
         headerRow.createCell(1).setCellValue("Device Id");
         headerRow.createCell(2).setCellValue("Menu Id");
         headerRow.createCell(3).setCellValue("Unit Price");
-        headerRow.createCell(4).setCellValue("Client Comment");
+       
         
         List<OrderDetailsEntity> reportDataList = ordersDAO.findOrderDetailsReport(dateFrom, dateTo);
         
@@ -47,14 +47,11 @@ public class ReportService {
         	
         	XSSFRow dataRow = sheet.createRow(currentRowIndex);
         	
-        	dataRow.createCell(0).setCellValue(reportData.getOrderId());
+        	dataRow.createCell(0).setCellValue(reportData.getOrder().getOrderId());
         	dataRow.createCell(1).setCellValue(reportData.getDeviceId());
-        	dataRow.createCell(2).setCellValue(reportData.getMenuId());
+        	dataRow.createCell(2).setCellValue(reportData.getMenu().getMenuId());
         	dataRow.createCell(3).setCellValue(convertToString(reportData.getUnitPrice()));
         	
-        	if (reportData.getClientComment() != null) {
-        		dataRow.createCell(4).setCellValue(reportData.getClientComment());
-        	}
         }
         
         for (int i = 0; i <= 4; i++) {
@@ -80,10 +77,13 @@ public class ReportService {
         headerRow.createCell(1).setCellValue("Order Date         ");
         headerRow.createCell(2).setCellValue("Order Status");
         headerRow.createCell(3).setCellValue("User Id");
+        headerRow.createCell(4).setCellValue("Client Comment");
         
-        List<OrdersEntity> reportDataList = ordersDAO.findOrderAndStatusReport(dateFrom, dateTo);
+     
         
-        for (OrdersEntity reportData : reportDataList) {
+        List<OrderEntity> reportDataList = ordersDAO.findOrderAndStatusReport(dateFrom, dateTo);
+        
+        for (OrderEntity reportData : reportDataList) {
         	currentRowIndex++;
         	
         	XSSFRow dataRow = sheet.createRow(currentRowIndex);
@@ -95,6 +95,10 @@ public class ReportService {
 
         	dataRow.createCell(2).setCellValue(reportData.getOrderStatus());
         	dataRow.createCell(3).setCellValue(reportData.getUserId());
+        	
+        	   if (reportData.getClientComment() != null) {
+           		dataRow.createCell(4).setCellValue(reportData.getClientComment());
+           	}
         }
         
         for (int i = 0; i <= 3; i++) {

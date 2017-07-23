@@ -52,6 +52,7 @@
 			<td><b>Order Date</b></td>
 			<td><b>Order Status</b></td>
 			<td><b>User Id</b></td>
+			<td><b>Client comment</b></td>
 		</tr>
 	
 		<c:forEach items="${reportResult}" var="report">
@@ -60,6 +61,7 @@
 					<td><c:out value="${report.orderDate}" /></td>
 					<td><c:out value="${report.orderStatus}" /></td>
 					<td><c:out value="${report.userId}" /></td>
+					<td><c:out value="${report.clientComment}"/></td>
 				</tr>
 		</c:forEach>
 	</table>

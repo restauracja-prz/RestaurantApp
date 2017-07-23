@@ -14,16 +14,15 @@
 	
 		<a href="<c:url value="/" />">Home</a><br />
 		
-		<h1>Your order:</h1>
 		
-<fieldset>
+<fieldset><legend><h1>Twoje zamowienie</h1></legend>
 		<c:if test = "${fn:length(orderList) == 0}">
 		<p>Dodaj potrawe do zamowienia</p>
 		</c:if>
 		
 	
 		<c:if test = "${fn:length(orderList) > 0}">
-		
+			
 
 	<table>
 		<tr>
@@ -50,6 +49,8 @@
 		</tr>
 		</table>
 
+		<a href="<c:url value="/order/submitorder" />">Submit order</a>
+
 		
 		</c:if>
 </fieldset>
@@ -70,7 +71,9 @@
 		</c:forEach>
 </table>
 
-		
+
+
+
 
 	
 </body>

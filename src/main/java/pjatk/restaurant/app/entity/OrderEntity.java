@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="ORDERS")
-public class OrdersEntity {
+public class OrderEntity {
 	
 	@Id
 	@Column(name="ORDER_ID")
@@ -21,8 +21,22 @@ public class OrdersEntity {
 	@Column(name="ORDER_STATUS")
 	private String orderStatus;
 	
+	@Column(name="ORDER_PRICE_SUM")
+	private String orderPriceSum;
+	
 	@Column(name="USER_ID")
 	private String userId;
+
+	@Column(name="CLIENT_COMMENT")
+	private String clientComment;
+	
+	public String getClientComment() {
+		return clientComment;
+	}
+
+	public void setClientComment(String clientComment) {
+		this.clientComment = clientComment;
+	}
 
 	public int getOrderId() {
 		return orderId;
@@ -47,6 +61,15 @@ public class OrdersEntity {
 	public void setOrderStatus(String orderStatus) {
 		this.orderStatus = orderStatus;
 	}
+	
+	public String getOrderPriceSum() {
+		return orderPriceSum;
+	}
+
+	public void setOrderPriceSum(String orderPriceSum) {
+		this.orderPriceSum = orderPriceSum;
+	}
+
 
 	public String getUserId() {
 		return userId;

@@ -53,16 +53,14 @@
 			<td><b>Device Id</b></td>
 			<td><b>Meal Id</b></td>
 			<td><b>Unit Price</b></td>
-			<td><b>Client Comment</b></td>
 		</tr>
 	
 		<c:forEach items="${reportResult}" var="report">
 				<tr>
-					<td><c:out value="${report.orderId}" /></td>
+					<td><c:out value="${report.order.orderId}" /></td>
 					<td><c:out value="${report.deviceId}" /></td>
-					<td><c:out value="${report.menuId}" /></td>
+					<td><c:out value="${report.menu.menuId}" /></td>
 					<td><c:out value="${report.unitPrice}" /></td>
-					<td><c:out value="${report.clientComment}" /></td>
 				</tr>
 		</c:forEach>
 	</table>
