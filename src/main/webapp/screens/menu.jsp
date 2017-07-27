@@ -8,6 +8,10 @@
 
 <html>
 
+<head>
+<link rel="stylesheet" type="text/css" href="resources/test.css">
+</head>
+
 <body>
 <h1>Menu</h1>
 
@@ -45,11 +49,11 @@
 	
 	<table>
 		<tr>
-			<td><b>Meal Id</b></td>
-			<td><b>Meal Description PL</b></td>
-			<td><b>Meal Description EN</b></td>
-			<td><b>Cost</b></td>
-			<td><b>Is Visible</b></td>
+			<th><b>Meal Id</b></th>
+			<th><b>Meal Description PL</b></th>
+			<th><b>Meal Description EN</b></th>
+			<th><b>Cost</b></th>
+			<th><b>Is Visible</b></th>
 		</tr>
 		<c:forEach items="${menuItems}" var="menu">
 			<tr>

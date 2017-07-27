@@ -18,6 +18,15 @@ public class MenuDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 	
+
+	
+	@SuppressWarnings("unchecked")
+	public List<MenuEntity> findVisibleFilteredMenu() {
+		Query query = sessionFactory.getCurrentSession().createQuery(
+				"select m from MenuEntity m join fetch m.mealTranslation r join fetch m.mealType t where m.isVisible = 'Y'");
+		return query.list();	
+	}
+	
 	@SuppressWarnings("unchecked")
 	public List<MenuEntity> findVisibleMenu() {
 		Query query = sessionFactory.getCurrentSession().createQuery(

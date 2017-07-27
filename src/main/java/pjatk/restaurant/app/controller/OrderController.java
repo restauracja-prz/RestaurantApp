@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.servlet.view.RedirectView;
 
 import pjatk.restaurant.app.entity.MenuEntity;
 import pjatk.restaurant.app.entity.OrderEntity;
+import pjatk.restaurant.app.service.MealTypeDAO;
 import pjatk.restaurant.app.service.MenuDAO;
 import pjatk.restaurant.app.service.OrderDAO;
 import pjatk.restaurant.app.service.OrderDetailsDAO;
@@ -27,16 +27,13 @@ import pjatk.restaurant.app.service.OrdersDAO;
 
 @Controller
 @Scope("session")
-@SessionAttributes({"orderList", "sum"})
+@SessionAttributes({"orderList", "menuItems"})
 @RequestMapping("/order")
 public class OrderController {
 
 	
 	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 	String currentPrincipalName = authentication.getName();
-	
-	@Autowired
-	private MenuDAO menuDAO;
 	
 	@Autowired
 	private OrderDAO orderDAO;
@@ -47,15 +44,36 @@ public class OrderController {
 	@Autowired
 	private OrderDetailsDAO orderDetailsDAO;
 	
+	@Autowired
+	private MealTypeDAO mealTypeDAO;
+	
+	@Autowired
+	private MenuDAO menuDAO;
+	
 	private List<MenuEntity> orders = new ArrayList<MenuEntity>();
 	private BigDecimal orderCostSum;
 	
+	
+	
 	@ModelAttribute
 	public void init(Model model) {
-		model.addAttribute("menuItems", menuDAO.findVisibleMenu());
+		if(model.containsAttribute("menuItems") == false) {
+			model.addAttribute("menuItems", orderDAO.findVisibleFilteredMenu("%"));
+		}
+		model.addAttribute("mealTypes", mealTypeDAO.findMealTypes());
+		model.addAttribute("orderList", orders);
+	}
+	
 	
 
+	@RequestMapping(value = "/filter/{mealType}", method = RequestMethod.GET)
+	public String filter(@PathVariable String mealType, Model model){
+		if(mealType.equals("all")) {
+			mealType = "%";
+		}
+		model.addAttribute("menuItems", orderDAO.findVisibleFilteredMenu(mealType));
 		
+		return "redirect:/order"; 
 	}
 	
 	@RequestMapping(value = "/ordermeal/{menuId}", method = RequestMethod.GET)
@@ -70,13 +88,11 @@ public class OrderController {
 			orderCostSum = orderCostSum.add(o.getUnitPrice());
 		}
 		
-
-		model.addAttribute("sum", orderCostSum);
 		
-		model.addAttribute("orderList", orders);
+		model.addAttribute("orderList", "orders");
 		
 		
-		return "redirect:/order/"; 
+		return "redirect:/order"; 
 	}
 	
 	@RequestMapping(value = "/delete/{indexNumber}", method = RequestMethod.GET)
@@ -86,14 +102,13 @@ public class OrderController {
 		orders.remove(indexNumber-1);
 	
 		model.addAttribute("sum", orderCostSum);
-		model.addAttribute("orderList", orders);
 		
-		return "redirect:/order/";
+		return "redirect:/order";
 	}
 	
 	
 	@RequestMapping(value = "/submitorder")
-	public String deleteOrder(Model model) {
+	public String submitOrder(Model model) {
 		
 		int lastOrderId;
 		if(orderDAO.findLastOrderId().isEmpty()) {
@@ -104,9 +119,6 @@ public class OrderController {
 			
 			lastOrderId = lastOrder.get(0).getOrderId();
 		}
-		
-		
-		
 		
 		ordersDAO.submitOrder(lastOrderId+1, orderCostSum, currentPrincipalName);
 		orderDetailsDAO.insertOrderDetails(orders, lastOrderId+1);

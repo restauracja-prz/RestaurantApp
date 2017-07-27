@@ -22,8 +22,10 @@ public class MenuEntity {
 	@Column(name="MENU_ID")
 	private Long menuId;
 	
-	@Column(name="MEAL_TYPE_ID")
-	private Long mealTypeId;
+	@Valid
+	@ManyToOne
+	@JoinColumn(name="MEAL_TYPE_ID")
+	private MealTypeEntity mealType;
 	
 	@NotNull
 	@Column(name="UNIT_PRICE")
@@ -37,14 +39,14 @@ public class MenuEntity {
 	@JoinColumn(name = "MEAL_TRANSLATION_ID")
 	private MealTranslationEntity mealTranslation;
 	
-	public Long getMealTypeId() {
-		return mealTypeId;
+	public MealTypeEntity getMealType() {
+		return mealType;
 	}
-	
-	public void setMealTypeId(Long mealTypeId) {
-		this.mealTypeId = mealTypeId;
+
+	public void setMealType(MealTypeEntity mealType) {
+		this.mealType = mealType;
 	}
-	
+
 	public Long getMenuId() {
 		return menuId;
 	}
