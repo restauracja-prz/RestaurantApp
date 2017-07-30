@@ -93,7 +93,7 @@ public class ReportService {
         	XSSFCell orderDateCell = dataRow.createCell(1);
         	createDateCellValue(workbook, orderDateCell, reportData.getOrderDate());
 
-        	dataRow.createCell(2).setCellValue(reportData.getOrderStatus());
+        	dataRow.createCell(2).setCellValue(reportData.getOrderStatus().toString());
         	dataRow.createCell(3).setCellValue(reportData.getUserId());
         }
         

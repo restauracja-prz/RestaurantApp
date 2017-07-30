@@ -1,9 +1,12 @@
 package pjatk.restaurant.app.entity;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -18,8 +21,20 @@ public class OrdersEntity {
 	@Column(name="ORDER_DATE")
 	private Date orderDate;
 	
+	@Column(name="ORDER_PRICE_SUM")
+	private BigDecimal orderPriceSum;
+	
+	public BigDecimal getOrderPriceSum() {
+		return orderPriceSum;
+	}
+
+	public void setOrderPriceSum(BigDecimal orderPriceSum) {
+		this.orderPriceSum = orderPriceSum;
+	}
+
 	@Column(name="ORDER_STATUS")
-	private String orderStatus;
+	@Enumerated(EnumType.STRING)
+	private OrderStatus orderStatus;
 	
 	@Column(name="USER_ID")
 	private String userId;
@@ -40,11 +55,11 @@ public class OrdersEntity {
 		this.orderDate = orderDate;
 	}
 
-	public String getOrderStatus() {
+	public OrderStatus getOrderStatus() {
 		return orderStatus;
 	}
 
-	public void setOrderStatus(String orderStatus) {
+	public void setOrderStatus(OrderStatus orderStatus) {
 		this.orderStatus = orderStatus;
 	}
 

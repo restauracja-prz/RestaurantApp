@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import pjatk.restaurant.app.entity.MenuEntity;
 import pjatk.restaurant.app.service.MenuDAO;
-import pjatk.restaurant.app.service.OrderDAO;
+import pjatk.restaurant.app.service.OrdersDAO;
 
 @Controller
 @Scope("session")
@@ -24,13 +24,11 @@ import pjatk.restaurant.app.service.OrderDAO;
 @RequestMapping("/order")
 public class OrderController {
 
-	
-	
 	@Autowired
 	private MenuDAO menuDAO;
 	
 	@Autowired
-	private OrderDAO orderDAO;
+	private OrdersDAO orderDAO;
 	
 	private List<MenuEntity> orders = new ArrayList<MenuEntity>();
 	private BigDecimal orderCostSum;
@@ -45,7 +43,7 @@ public class OrderController {
 
 		orderCostSum = new BigDecimal(0);
 		
-		orders.addAll(orderDAO.mealOrder(menuId));
+//		orders.addAll(orderDAO.mealOrder(menuId));
 		for (MenuEntity o : orders) {
 			orderCostSum = orderCostSum.add(o.getUnitPrice());
 		}
