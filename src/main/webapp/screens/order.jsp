@@ -12,19 +12,44 @@
 
 
 	
-		<a href="<c:url value="/" />">Home</a><br />
-		
-		<h1>Your order:</h1>
+		<a href="<c:url value="/" />">Home...</a><br />
+		Change status:
+		<form action="/restaurant/orders/changeStatus/${order.orderId }" method='post'>
+				 		<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+					    <select name="status" id="status">
+					    <option value="IN_PROGRESS"> IN_PROGRESS </option>
+					    <option value="CANCEL"> CANCEL </option>
+					    <option value="NEW"> NEW </option>
+						<option value="CLOSED"> CLOSED </option>
+					    
+					    </select>       
+					
+					    <input type="submit"/>
+					</form>
+					<br />
+				Save order:
+					<form action="/restaurant/order/saveOrder" method='post'>
+				 		<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+					    <select name="statusToSave" id="statusToSave">
+					    <option value="IN_PROGRESS"> IN_PROGRESS </option>
+					    <option value="CANCEL"> CANCEL </option>
+					    <option value="NEW"> NEW </option>
+						<option value="CLOSED"> CLOSED </option>
+					    </select>   
+					
+					    <input type="submit"/>
+					</form>
+		<h1>Your orderatko:</h1>
 		
 <fieldset>
 		<c:if test = "${fn:length(orderList) == 0}">
-		<p>Dodaj potrawe do zamowienia</p>
+		<p>Dodaj potrawe do zamowienia aaaa</p>
 		</c:if>
 		
 	
 		<c:if test = "${fn:length(orderList) > 0}">
 		
-
+Suma: ${sum}
 	<table>
 		<tr>
 			<td><b>Numer</b></td>

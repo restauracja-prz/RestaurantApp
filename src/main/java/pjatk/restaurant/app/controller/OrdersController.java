@@ -50,6 +50,17 @@ public class OrdersController {
 	
 	@RequestMapping(value="/changeStatus/{orderId}", method = RequestMethod.POST)
 	public String changeStatus(@PathVariable Integer orderId, HttpServletRequest request, Model model) {
+		changeOrderStatus(orderId, request);
+		return "redirect:/orders"; 
+	}
+	
+	@RequestMapping(value="/changeStatusWhileOrder/{orderId}", method = RequestMethod.POST)
+	public String changeStatusWhileOrder(@PathVariable Integer orderId, HttpServletRequest request, Model model) {
+		changeOrderStatus(orderId, request);
+		return "redirect:/order"; 
+	}
+
+	private void changeOrderStatus(Integer orderId, HttpServletRequest request) {
 		String status = request.getParameter("status");
 		System.out.println("STUSIATKO "+status);
 		OrderStatus newStatus = OrderStatus.valueOf(status);
@@ -57,7 +68,6 @@ public class OrdersController {
 		System.out.println("ORDEREK "+order.getOrderId());
 		order.setOrderStatus(newStatus);
 		orderDAO.save(order);
-		return "redirect:/orders"; 
 	}
 	
 	@RequestMapping(value="/filtrByStatus", method = RequestMethod.POST)

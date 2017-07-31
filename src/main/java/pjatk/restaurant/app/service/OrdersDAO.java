@@ -76,7 +76,5 @@ public class OrdersDAO{
 		sess.close();
 				
 	}
-	
-	
 
 }
