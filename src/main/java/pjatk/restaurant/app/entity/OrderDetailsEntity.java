@@ -24,7 +24,7 @@ public class OrderDetailsEntity {
 	@Valid
 	@ManyToOne
 	@JoinColumn(name="ORDER_ID")
-	private OrderEntity order;
+	private OrdersEntity order;
 	
 	@Column(name="DEVICE_ID")
 	private String deviceId;
@@ -49,11 +49,11 @@ public class OrderDetailsEntity {
 		this.orderDetailsId = orderDetailsId;
 	}
 
-	public OrderEntity getOrder() {
+	public OrdersEntity getOrder() {
 		return order;
 	}
 
-	public void setOrder(OrderEntity order) {
+	public void setOrder(OrdersEntity order) {
 		this.order = order;
 	}
 

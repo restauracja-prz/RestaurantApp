@@ -9,13 +9,18 @@
 <html>
 
 <head>
-<link rel="stylesheet" type="text/css" href="resources/test.css">
+<link rel="stylesheet" type="text/css" href="resources/order.css">
 </head>
 
 <body>
-<h1>Menu</h1>
 
-<a href="<c:url value="/" />">Home</a><br />
+<%@include file="/screens/index.jsp"%>
+
+<br>
+<br>
+
+
+<h1>Menu</h1>
 
 	<fieldset>
 		<form:form method="post" modelAttribute="menuForm" action="${saveMenuUrl}">
@@ -47,13 +52,16 @@
 		</form:form> 
 	</fieldset>
 	
-	<table>
+	<table cellspacing="0" cellpadding="0">
 		<tr>
 			<th><b>Meal Id</b></th>
 			<th><b>Meal Description PL</b></th>
 			<th><b>Meal Description EN</b></th>
 			<th><b>Cost</b></th>
 			<th><b>Is Visible</b></th>
+			<th></th>
+			<th></th>
+			<th></th>
 		</tr>
 		<c:forEach items="${menuItems}" var="menu">
 			<tr>

@@ -10,15 +10,22 @@
 <html>
 
 <head>
-<link rel="stylesheet" type="text/css" href="resources/test.css">
+<link rel="stylesheet" type="text/css" href="resources/order.css">
 </head>
 
 
 <body>
 
 
-	
-		<a href="<c:url value="/" />">Home</a><br />
+<%@include file="/screens/index.jsp"%>
+
+	<br>
+	<br>
+	<br>
+	<br>
+		
+
+
 		
 		
 <fieldset><legend><h1>Twoje zamowienie</h1></legend>
@@ -33,18 +40,15 @@
 	<table>
 		<tr>
 			<th><b>Numer</b></th>
-			<th><b>MenuId</b></th>
 			<th><b>Meal</b></th>
-			<th><b>MealType</b></th>
 			<th><b>Cost</b></th>
+			<th></th>
 		</tr>
 		<c:set var="sum" value="${0}"/>
 		<c:forEach items="${orderList}" var="ord" varStatus="loop">
 		<tr>
-				<td><c:out value="${loop.count}" />    </td>
-				<td><c:out value="${ord.menuId}" /></td>
+				<td><c:out value="${loop.count}" /></td>
 				<td><c:out value="${ord.mealTranslation.mealDescPl}" /></td>
-				<td><c:out value="${ord.mealType.mealTypePl}" /></td>
 				<td><c:out value="${ord.unitPrice}" /></td>
 				<td><a href="<c:url value="/order/delete/${loop.count}" />">Delete</a><br /></td>
 				<c:set var="sum" value="${sum + ord.unitPrice}"/> 
@@ -52,47 +56,44 @@
 		</c:forEach>
 		<tr>
 		<td></td>
-		<td></td>
 		<td align="right"><b>Suma: </b></td>
 		<td><c:out value="${sum}" /> </td>
 		</tr>
 		</table>
 
 		<a href="<c:url value="/order/submitorder" />">Submit order</a>
-
-		
 		</c:if>
 </fieldset>
+<br>
+
+
+<div class="btn-group">
 		<c:set var="nofilter" value = "all"/>
-		<table>
-		<tr>
-		<td><a href="<c:url value="/order/filter/${nofilter}"/>">USUN FILTER</a></td>
+		<a href="<c:url value="/order/filter/${nofilter}"/>" class="button">USUN FILTER</a>
 		<c:forEach items="${mealTypes}" var="type">
-		<td><a href="<c:url value="/order/filter/${type.mealTypePl}" />"><c:out value="${type.mealTypePl}"/></a><br /></td>
+		<a href="<c:url value="/order/filter/${type.mealTypePl}" />" class="button"><c:out value="${type.mealTypePl}"/></a>
 		</c:forEach>
-		</tr>
-		</table>
+	</div>
+
 	
+	<br>
+	<br>
+	<br>
+	<br>
 		<table>
 		<tr>
-			<th><b>Meal Id</b></th>
-			<th><b>Meal Type</b></th>
 			<th><b>Meal Description PL</b></th>
 			<th><b>Cost</b></th>
+			<th></th>
 		</tr>
-		
 		<c:forEach items="${menuItems}" var="menu">
-			<tr>
-				<td><c:out value="${menu.menuId}" /></td>
-				<td><c:out value="${menu.mealType.mealTypePl}" /></td>
+		<tr>
 				<td><c:out value="${menu.mealTranslation.mealDescPl}" /></td>
 				<td><c:out value="${menu.unitPrice}" /></td>
 				<td><a href="<c:url value="/order/ordermeal/${menu.menuId}" />">Add to order</a><br /></td>
 			</tr>
 		</c:forEach>
 </table>
-
-
 
 
 

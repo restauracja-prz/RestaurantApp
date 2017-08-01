@@ -2,7 +2,10 @@ package pjatk.restaurant.app.controller;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -18,7 +21,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import pjatk.restaurant.app.entity.MenuEntity;
-import pjatk.restaurant.app.entity.OrderEntity;
+import pjatk.restaurant.app.entity.OrderStatus;
+import pjatk.restaurant.app.entity.OrdersEntity;
 import pjatk.restaurant.app.service.MealTypeDAO;
 import pjatk.restaurant.app.service.MenuDAO;
 import pjatk.restaurant.app.service.OrderDAO;
@@ -58,8 +62,9 @@ public class OrderController {
 	@ModelAttribute
 	public void init(Model model) {
 		if(model.containsAttribute("menuItems") == false) {
-			model.addAttribute("menuItems", orderDAO.findVisibleFilteredMenu("%"));
+			model.addAttribute("menuItems", menuDAO.findVisibleFilteredMenu("%"));
 		}
+		
 		model.addAttribute("mealTypes", mealTypeDAO.findMealTypes());
 		model.addAttribute("orderList", orders);
 	}
@@ -71,7 +76,7 @@ public class OrderController {
 		if(mealType.equals("all")) {
 			mealType = "%";
 		}
-		model.addAttribute("menuItems", orderDAO.findVisibleFilteredMenu(mealType));
+		model.addAttribute("menuItems", menuDAO.findVisibleFilteredMenu(mealType));
 		
 		return "redirect:/order"; 
 	}
@@ -101,8 +106,6 @@ public class OrderController {
 		orderCostSum = orderCostSum.subtract(orders.get(indexNumber-1).getUnitPrice());
 		orders.remove(indexNumber-1);
 	
-		model.addAttribute("sum", orderCostSum);
-		
 		return "redirect:/order";
 	}
 	
@@ -111,11 +114,11 @@ public class OrderController {
 	public String submitOrder(Model model) {
 		
 		int lastOrderId;
-		if(orderDAO.findLastOrderId().isEmpty()) {
+		if(ordersDAO.findLastOrderId().isEmpty()) {
 			lastOrderId = 20170000;
 		}
 		else {
-			List<OrderEntity> lastOrder = orderDAO.findLastOrderId();
+			List<OrdersEntity> lastOrder = orderDAO.findLastOrderId();
 			
 			lastOrderId = lastOrder.get(0).getOrderId();
 		}
@@ -128,6 +131,20 @@ public class OrderController {
 		return "redirect:/orderdetails";
 	}
 	
+	
+	@RequestMapping(value = "/saveOrder", method = RequestMethod.POST)
+	public String saveOrder(HttpServletRequest request) {
+	
+		OrdersEntity newOrder = new OrdersEntity();
+		newOrder.setOrderDate(new Date());
+		System.out.println("extra suma "+orderCostSum);
+		newOrder.setOrderPriceSum(orderCostSum);
+		newOrder.setOrderStatus(OrderStatus.NEW);
+		newOrder.setUserId("aduchna");
+//		newOrder.setUserId(request.getParameter("userId"));
+		ordersDAO.save(newOrder);
+		return "redirect:/orders";
+	}
 	
 
 	@RequestMapping

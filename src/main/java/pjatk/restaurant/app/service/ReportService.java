@@ -15,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import pjatk.restaurant.app.entity.OrderDetailsEntity;
-import pjatk.restaurant.app.entity.OrderEntity;
+import pjatk.restaurant.app.entity.OrdersEntity;
 import pjatk.restaurant.app.entity.TransactionEntity;
 
 @Service
@@ -81,9 +81,9 @@ public class ReportService {
         
      
         
-        List<OrderEntity> reportDataList = ordersDAO.findOrderAndStatusReport(dateFrom, dateTo);
+        List<OrdersEntity> reportDataList = ordersDAO.findOrderAndStatusReport(dateFrom, dateTo);
         
-        for (OrderEntity reportData : reportDataList) {
+        for (OrdersEntity reportData : reportDataList) {
         	currentRowIndex++;
         	
         	XSSFRow dataRow = sheet.createRow(currentRowIndex);
@@ -93,7 +93,7 @@ public class ReportService {
         	XSSFCell orderDateCell = dataRow.createCell(1);
         	createDateCellValue(workbook, orderDateCell, reportData.getOrderDate());
 
-        	dataRow.createCell(2).setCellValue(reportData.getOrderStatus());
+        	dataRow.createCell(2).setCellValue(reportData.getOrderStatus().toString());
         	dataRow.createCell(3).setCellValue(reportData.getUserId());
         	
         	   if (reportData.getClientComment() != null) {

@@ -7,15 +7,16 @@
 <spring:url value="/user" var="saveUserUrl" />
 
 <html>
-<body>
-	<h2>RestaurantApp : </h2>
-	
-	<form:form action="${pageContext.request.contextPath}/logout" method="POST">
-	    <input id="logoutButton" type="submit" value="Logout" />
-	</form:form>
-	
-	<a href="<c:url value="/" />">Home</a><br />
 
+<head>
+<link rel="stylesheet" type="text/css" href="resources/order.css">
+</head>
+<body>
+	<%@include file="/screens/index.jsp"%>
+	<br>
+	<br>
+
+	<h2>User management </h2>
 	<fieldset>
 		<form:form method="post" modelAttribute="userForm" action="${saveUserUrl}">
 	  		User name:
@@ -47,11 +48,14 @@
 
 	<table>
 		<tr>
-			<td><b>Name</b></td>
-			<td><b>Login</b></td>
-			<td><b>Password</b></td>
-			<td><b>Position</b></td>
-			<td><b>Is Enabled</b></td>
+			<th><b>Name</b></th>
+			<th><b>Login</b></th>
+			<th><b>Password</b></th>
+			<th><b>Position</b></th>
+			<th><b>Is Enabled</b></th>
+			<th></th>
+			<th></th>
+			<th></th>
 		</tr>
 	
 		<c:forEach items="${users}" var="user">

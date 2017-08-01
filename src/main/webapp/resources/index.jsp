@@ -12,10 +12,10 @@
 
 <body>
 	<h2>RestaurantApp</h2>
-<form:form action="${pageContext.request.contextPath}/logout" method="POST">
+
+	<form:form action="${pageContext.request.contextPath}/logout" method="POST">
 	    <input id="logoutButton" type="submit" value="Logout" />
 	</form:form>
-	
 <div class="btn-group">
 	<a id="menuManagementLink" href="<c:url value="/menu" />" class="button">Menu management</a>
 	<a id="orderLink" href="<c:url value="/order" />" class="button">Order</a>
