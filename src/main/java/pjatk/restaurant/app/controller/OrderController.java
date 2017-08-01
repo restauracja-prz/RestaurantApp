@@ -78,7 +78,7 @@ public class OrderController {
 		newOrder.setOrderDate(new Date());
 		System.out.println("extra suma "+orderCostSum);
 		newOrder.setOrderPriceSum(orderCostSum);
-		newOrder.setOrderStatus(OrderStatus.valueOf(request.getParameter("statusToSave")));
+		newOrder.setOrderStatus(OrderStatus.NEW);
 //		newOrder.setUserId(request.getParameter("userId"));
 		orderDAO.save(newOrder);
 		return "redirect:/orders";
