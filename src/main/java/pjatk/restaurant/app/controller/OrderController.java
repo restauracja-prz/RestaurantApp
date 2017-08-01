@@ -44,7 +44,7 @@ public class OrderController {
 	
 	@RequestMapping(value = "/ordermeal/{menuId}", method = RequestMethod.GET)
 	public String mealOrder(@PathVariable Integer menuId, Model model) {
-		
+		System.out.println("menu id "+menuId);
 
 		orderCostSum = new BigDecimal(0);
 		

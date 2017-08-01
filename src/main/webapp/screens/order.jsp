@@ -10,7 +10,7 @@
 <html>
 <body>
 
-
+<a>${pageContext.request.userPrincipal.name}</a>
 	
 		<a href="<c:url value="/" />">Home...</a><br />
 		
