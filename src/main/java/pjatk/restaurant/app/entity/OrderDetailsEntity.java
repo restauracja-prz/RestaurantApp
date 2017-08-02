@@ -8,9 +8,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.Valid;
 
 @Entity
 @Table(name="ORDER_DETAILS")
@@ -21,14 +24,18 @@ public class OrderDetailsEntity {
 	@Column(name="ORDER_DETAILS_ID")
 	private int orderDetailsId;
 	
-	@Column(name="ORDER_ID")
-	private int orderId;
+	@Valid
+	@ManyToOne
+	@JoinColumn(name="ORDER_ID")
+	private OrdersEntity order;
 	
 	@Column(name="DEVICE_ID")
 	private String deviceId;
 	
-	@Column(name="MENU_ID")
-	private Long menuId;
+	@Valid
+	@ManyToOne
+	@JoinColumn(name="MENU_ID")
+	private MenuEntity menu;
 	
 	@Column(name="UNIT_PRICE")
 	private BigDecimal unitPrice;
@@ -36,9 +43,6 @@ public class OrderDetailsEntity {
 	@Column(name="TIMESTAMP")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date timestamp;
-	
-	@Column(name="CLIENT_COMMENT")
-	private String clientComment;
 
 	public int getOrderDetailsId() {
 		return orderDetailsId;
@@ -48,12 +52,12 @@ public class OrderDetailsEntity {
 		this.orderDetailsId = orderDetailsId;
 	}
 
-	public int getOrderId() {
-		return orderId;
+	public OrdersEntity getOrder() {
+		return order;
 	}
 
-	public void setOrderId(int orderId) {
-		this.orderId = orderId;
+	public void setOrder(OrdersEntity order) {
+		this.order = order;
 	}
 
 	public String getDeviceId() {
@@ -64,12 +68,14 @@ public class OrderDetailsEntity {
 		this.deviceId = deviceId;
 	}
 
-	public Long getMenuId() {
-		return menuId;
+
+
+	public MenuEntity getMenu() {
+		return menu;
 	}
 
-	public void setMenuId(Long menuId) {
-		this.menuId = menuId;
+	public void setMenu(MenuEntity menu) {
+		this.menu = menu;
 	}
 
 	public BigDecimal getUnitPrice() {
@@ -88,12 +94,5 @@ public class OrderDetailsEntity {
 		this.timestamp = timestamp;
 	}
 
-	public String getClientComment() {
-		return clientComment;
-	}
-
-	public void setClientComment(String clientComment) {
-		this.clientComment = clientComment;
-	}
 
 }

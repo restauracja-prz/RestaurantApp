@@ -74,6 +74,17 @@ public class OrdersEntity {
 		this.userId = userId;
 	}
 	
+	@Column(name="CLIENT_COMMENT")
+	private String clientComment;
+	
+	public String getClientComment() {
+		return clientComment;
+	}
+	public void setClientComment(String clientComment) {
+		this.clientComment = clientComment;
+	}
+
+	
 	
 	
 	

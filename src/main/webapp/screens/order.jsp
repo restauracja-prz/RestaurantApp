@@ -8,10 +8,30 @@
 <spring:url value="/order" var="saveOrderUrl"/>
 
 <html>
+
+<head>
+<link rel="stylesheet" type="text/css" href="resources/order.css">
+</head>
+
+
 <body>
 
-<a>${pageContext.request.userPrincipal.name}</a>
-	
+<%@include file="/screens/index.jsp"%>
+
+	<br>
+	<br>
+	<br>
+	<br>
+		
+
+
+		
+		
+<fieldset><legend><h1>Twoje zamowienie</h1></legend>
+		<c:if test = "${fn:length(orderList) == 0}">
+		<p>Dodaj potrawe do zamowienia</p>
+		</c:if>
+		
 		<a href="<c:url value="/" />">Home...</a><br />
 		
 				Save order:
@@ -28,7 +48,6 @@
 		<p>Dodaj potrawe do zamowienia</p>
 		</c:if>
 		
-	
 		<c:if test = "${fn:length(orderList) > 0}">
 		
 Suma: ${sum}
@@ -78,6 +97,28 @@ Suma: ${sum}
 </table>
 
 		
+=======
+	<br>
+	<br>
+	<br>
+	<br>
+		<table>
+		<tr>
+			<th><b>Meal Description PL</b></th>
+			<th><b>Cost</b></th>
+			<th></th>
+		</tr>
+		<c:forEach items="${menuItems}" var="menu">
+		<tr>
+				<td><c:out value="${menu.mealTranslation.mealDescPl}" /></td>
+				<td><c:out value="${menu.unitPrice}" /></td>
+				<td><a href="<c:url value="/order/ordermeal/${menu.menuId}" />">Add to order</a><br /></td>
+			</tr>
+		</c:forEach>
+</table>
+
+
+>>>>>>> branch 'master' of https://github.com/restauracja-prz/RestaurantApp.git
 
 	
 </body>

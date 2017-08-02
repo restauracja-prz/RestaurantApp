@@ -15,6 +15,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import pjatk.restaurant.app.entity.OrderStatus;
 import pjatk.restaurant.app.entity.OrdersEntity;
+import pjatk.restaurant.app.service.OrderDAO;
 import pjatk.restaurant.app.service.OrdersDAO;
 
 @Controller
@@ -22,7 +23,9 @@ import pjatk.restaurant.app.service.OrdersDAO;
 public class OrdersController {
 	
 	@Autowired
-	private OrdersDAO orderDAO;
+	private OrderDAO orderDAO;
+	@Autowired
+	private OrdersDAO ordersDAO;
 	
 	@RequestMapping
 	public String home(Model model,HttpServletRequest request) {
@@ -41,7 +44,7 @@ public class OrdersController {
 //		else{
 //			System.out.println("laduje co mam");
 ////			model.getModelMap().put("orders", orderDAO.findOrders());
-			model.addAttribute("orders", orderDAO.findOrders());
+			model.addAttribute("orders", ordersDAO.findOrders());
 //		}
 		
 		
@@ -85,7 +88,7 @@ public class OrdersController {
 		if(status != null && !status.equals("-") && !status.equals("DEFAULT")){
 			System.out.println("STUSIATKO "+status);
 			OrderStatus newStatus = OrderStatus.valueOf(status);
-			List<OrdersEntity> order = orderDAO.findOrdersByStatus(newStatus);
+			List<OrdersEntity> order = ordersDAO.findOrdersByStatus(newStatus);
 			System.out.println("LISTA ORDEROW "+order.size());
 //			model.getModelMap().put("orders", order);
 			model.addAttribute("orders", order);
@@ -93,7 +96,7 @@ public class OrdersController {
 			else{
 				System.out.println("laduje co mam");
 //				model.getModelMap().put("orders", orderDAO.findOrders());
-				model.addAttribute("orders", orderDAO.findOrders());
+				model.addAttribute("orders", ordersDAO.findOrders());
 			}
 		return "ordersFiltered"; 
 	}

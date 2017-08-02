@@ -35,6 +35,8 @@
 		<security:intercept-url pattern="/orders**" access="hasAuthority('admin')" />
 		<security:intercept-url pattern="/order**" access="hasAnyAuthority('client', 'admin')" />
 		<security:intercept-url pattern="/**" access="hasAuthority('admin')" />
+		<security:intercept-url pattern="/*" access="hasAuthority('kitchen')" />
+		<security:intercept-url pattern="/orders" access="hasAuthority('kitchen')" />
 		
 		<security:logout logout-url="/logout" logout-success-url="/" />
 		
@@ -50,6 +52,9 @@
 		</security:authentication-provider>	
 	</security:authentication-manager>
 
+	<mvc:resources mapping="/css/**" location="/css/" />
+	<mvc:annotation-driven />
+	
 	<jee:jndi-lookup id="restaurantDS" jndi-name="java:/LocalMySqlDS" />
 
 	<bean id="defaultAuthenticationSuccessHandler"
