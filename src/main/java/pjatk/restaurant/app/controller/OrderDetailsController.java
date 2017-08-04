@@ -49,8 +49,8 @@ public class OrderDetailsController {
 		}
 		model.addAttribute("orderNumbers", orderNumbers);
 		}
-		
-		
+		System.out.println("co my tutaj mamy "+authentication.getPrincipal());
+		System.out.println("USER??? "+currentPrincipalName);
 		model.addAttribute("orderItems", orderDetailsDAO.findUserOrderDetails(currentPrincipalName));
 		
 	}	

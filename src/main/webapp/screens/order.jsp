@@ -34,10 +34,16 @@
 		
 		<a href="<c:url value="/" />">Home...</a><br />
 		
-				Save order:
-					<form action="/restaurant/order/saveOrder" method='post'>
-				 		<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
-					   
+		<form action="/restaurant/order/callwaiter" method='get'>
+				 		<!-- <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>-->
+			Call waiter:		   
+					
+					    <input type="submit"/>
+					</form>
+				
+					<form action="/restaurant/order/submitorder" method='get'>
+				 		<!-- <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>-->
+				Save order:	   
 					
 					    <input type="submit"/>
 					</form>
@@ -95,31 +101,6 @@ Suma: ${sum}
 			</tr>
 		</c:forEach>
 </table>
-
-		
-=======
-	<br>
-	<br>
-	<br>
-	<br>
-		<table>
-		<tr>
-			<th><b>Meal Description PL</b></th>
-			<th><b>Cost</b></th>
-			<th></th>
-		</tr>
-		<c:forEach items="${menuItems}" var="menu">
-		<tr>
-				<td><c:out value="${menu.mealTranslation.mealDescPl}" /></td>
-				<td><c:out value="${menu.unitPrice}" /></td>
-				<td><a href="<c:url value="/order/ordermeal/${menu.menuId}" />">Add to order</a><br /></td>
-			</tr>
-		</c:forEach>
-</table>
-
-
->>>>>>> branch 'master' of https://github.com/restauracja-prz/RestaurantApp.git
-
 	
 </body>
 </html>

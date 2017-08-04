@@ -1,5 +1,6 @@
 package pjatk.restaurant.app.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -100,5 +101,6 @@ public class OrdersController {
 			}
 		return "ordersFiltered"; 
 	}
-		
+	
+	
 }

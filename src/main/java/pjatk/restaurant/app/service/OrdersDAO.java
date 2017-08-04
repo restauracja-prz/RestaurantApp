@@ -57,10 +57,28 @@ public class OrdersDAO {
 	
 	
 	public void submitOrder(int orderId, BigDecimal sum, String userId) {
+		System.out.println("ORDER STATUS "+OrderStatus.NEW);
 		Query query = sessionFactory.getCurrentSession().createSQLQuery(
-				"INSERT INTO orders (order_id, order_date, order_status, order_price_sum, user_id) values (:orderId, NOW(), :order_status, :order_price_sum, :userId)");
+				"INSERT INTO orders (order_id, order_date, order_status, order_price_sum, user_id) "
+				+ "values (:orderId, NOW(), :order_status, :order_price_sum, :userId)");
 		query.setParameter("orderId", orderId);
-		query.setParameter("order_status", OrderStatus.NEW);
+		
+		query.setParameter("order_status", OrderStatus.NEW.name());
+		query.setParameter("order_price_sum", sum);
+		query.setParameter("userId", userId);
+		query.executeUpdate();
+		
+		
+	}
+	
+	public void submitOrderWaiterNeed(int orderId, BigDecimal sum, String userId, boolean waiterNeed ) {
+		System.out.println("ORDER STATUS "+OrderStatus.NEW);
+		Query query = sessionFactory.getCurrentSession().createSQLQuery(
+				"INSERT INTO orders (order_id, order_date, order_status, order_price_sum, user_id) "
+				+ "values (:orderId, NOW(), :order_status, :order_price_sum, :userId, :waiterNeed)");
+		query.setParameter("orderId", orderId);
+		query.setParameter("waiterNeed", waiterNeed);
+		query.setParameter("order_status", OrderStatus.NEW.name());
 		query.setParameter("order_price_sum", sum);
 		query.setParameter("userId", userId);
 		query.executeUpdate();

@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import pjatk.restaurant.app.entity.MenuEntity;
 import pjatk.restaurant.app.entity.OrderDetailsEntity;
+import pjatk.restaurant.app.entity.OrderStatus;
 import pjatk.restaurant.app.entity.OrdersEntity;
 
 @Repository
@@ -50,7 +51,7 @@ public class OrderDetailsDAO {
 	@SuppressWarnings("unchecked")
 	public List<OrderDetailsEntity> findUserOrderDetails(String userId){
 		Query query = sessionFactory.getCurrentSession().createQuery("select d from OrderDetailsEntity d join fetch d.order o join fetch d.menu m join fetch m.mealTranslation where o.userId is :userId and o.orderStatus not like :orderStatus");
-		query.setParameter("orderStatus", "closed");
+		query.setParameter("orderStatus", OrderStatus.CLOSED);
 		query.setParameter("userId", userId);
 		return query.list();
 	}
