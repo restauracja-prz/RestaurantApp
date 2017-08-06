@@ -32,8 +32,6 @@
 		<p>Dodaj potrawe do zamowienia</p>
 		</c:if>
 		
-		<a href="<c:url value="/" />">Home...</a><br />
-		
 		<form action="/restaurant/order/callwaiter" method='get'>
 				 		<!-- <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>-->
 			Call waiter:		   
@@ -43,7 +41,7 @@
 				
 					<form action="/restaurant/order/submitorder" method='get'>
 				 		<!-- <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>-->
-				Save order:	   
+					   Save order:
 					
 					    <input type="submit"/>
 					</form>
@@ -56,7 +54,6 @@
 		
 		<c:if test = "${fn:length(orderList) > 0}">
 		
-Suma: ${sum}
 	<table>
 		<tr>
 			<td><b>Numer</b></td>

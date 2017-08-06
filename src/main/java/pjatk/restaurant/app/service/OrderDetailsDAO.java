@@ -55,7 +55,24 @@ public class OrderDetailsDAO {
 		query.setParameter("userId", userId);
 		return query.list();
 	}
-
+	@SuppressWarnings("unchecked")
+	public List<OrderDetailsEntity> findOrderDetailsByOrderStatus(OrderStatus status){
+		String czescZapytaniaDotyczacaStatusu =status == null ? "" : " where o.orderStatus =:orderStatus";
+		Query query = sessionFactory.getCurrentSession().createQuery("select d from OrderDetailsEntity d join fetch d.order o join fetch d.menu m join fetch m.mealTranslation "+czescZapytaniaDotyczacaStatusu);
+		if(status != null) {
+			query.setParameter("orderStatus", status);
+		}
+		return query.list();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<OrderDetailsEntity> findOrderDetailsByOrderId(int orderId){
+		Query query = sessionFactory.getCurrentSession().createQuery("select d from OrderDetailsEntity d join fetch d.order o join fetch d.menu m join fetch m.mealTranslation "
+				+ " where o.id =:orderId");
+		query.setParameter("orderId", orderId);
+		return query.list();
+	}
+	
 	@SuppressWarnings("unchecked")
 	public List<OrdersEntity> findUserOrders(String userId){
 		Query query = sessionFactory.getCurrentSession().createQuery("select o from OrdersEntity o where o.userId is :userId and o.orderStatus not like 'closed'");

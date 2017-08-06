@@ -66,41 +66,12 @@ public class OrdersController {
 
 	private void changeOrderStatus(Integer orderId, HttpServletRequest request) {
 		String status = request.getParameter("status");
-		System.out.println("STUSIATKO "+status);
 		OrderStatus newStatus = OrderStatus.valueOf(status);
 		OrdersEntity order = orderDAO.findOrderById(orderId);
-		System.out.println("ORDEREK "+order.getOrderId());
 		order.setOrderStatus(newStatus);
 		orderDAO.save(order);
 	}
-	
-	@RequestMapping(value="/filtrByStatus", method = RequestMethod.POST)
-	public String filtrByStatus(HttpServletRequest request, Model model) {
-//		ModelAndView modelTmp = new ModelAndView("redirect:/orders");
-//		String status = request.getParameter("statusToFiltr");
-//		System.out.println("STUSIATKO "+status);
-//		OrderStatus newStatus = OrderStatus.valueOf(status);
-//		List<OrdersEntity> order = orderDAO.findOrdersByStatus(newStatus);
-//		System.out.println("LISTA ORDEROW "+order.size());
-//		modelTmp.addObject("orders", order);
-//		return new ModelAndView(new RedirectView(home(model, request)));
-		
-		String status = request.getParameter("statusToFiltr");
-		if(status != null && !status.equals("-") && !status.equals("DEFAULT")){
-			System.out.println("STUSIATKO "+status);
-			OrderStatus newStatus = OrderStatus.valueOf(status);
-			List<OrdersEntity> order = ordersDAO.findOrdersByStatus(newStatus);
-			System.out.println("LISTA ORDEROW "+order.size());
-//			model.getModelMap().put("orders", order);
-			model.addAttribute("orders", order);
-			}
-			else{
-				System.out.println("laduje co mam");
-//				model.getModelMap().put("orders", orderDAO.findOrders());
-				model.addAttribute("orders", ordersDAO.findOrders());
-			}
-		return "ordersFiltered"; 
-	}
+
 	
 	
 }

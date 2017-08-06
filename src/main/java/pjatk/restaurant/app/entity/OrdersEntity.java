@@ -2,6 +2,8 @@ package pjatk.restaurant.app.entity;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="ORDERS")
@@ -83,7 +86,29 @@ public class OrdersEntity {
 	public void setClientComment(String clientComment) {
 		this.clientComment = clientComment;
 	}
+	@Column(name="WAITER_NEED")
+	private boolean waiterNeed;
 
+	public boolean isWaiterNeed() {
+		return waiterNeed;
+	}
+
+	public void setWaiterNeed(boolean waiterNeed) {
+		this.waiterNeed = waiterNeed;
+	}
+	@Transient
+	private Set<OrderDetailsEntity> orderDetails = new HashSet<>();
+	
+	public Set<OrderDetailsEntity> getOrderDetails() {
+		return orderDetails;
+	}
+
+	public void setOrderDetails(Set<OrderDetailsEntity> orderDetails) {
+		this.orderDetails = orderDetails;
+	}
+	
+	
+	
 	
 	
 	

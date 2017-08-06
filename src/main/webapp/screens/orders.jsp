@@ -8,7 +8,7 @@
 	<h2>RestaurantApp : Orders</h2>
 	
 	<a href="<c:url value="/" />">Home</a><br />
-	<form action="/restaurant/orders/filtrByStatus" method='post'>
+	<form action="/restaurant/orderdetails/filtrByStatus" method='post'>
 				 		<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
 					    <select name="statusToFiltr" id="statusToFiltr">
 					    <option value="DEFAULT"> - </option>
@@ -42,7 +42,10 @@
 					
 					    <input type="submit"/>
 					</form>
-<br /></td>
+					<br /></td>
+					<c:if test = "${order.waiterNeed}">
+						<td><c:out value="Kelnera wezwał: ${order.userId}" /></td>
+					</c:if>
 				 </tr>
 			</c:forEach>
 		</table>
