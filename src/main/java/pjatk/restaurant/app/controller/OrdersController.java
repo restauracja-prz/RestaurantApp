@@ -55,7 +55,7 @@ public class OrdersController {
 	@RequestMapping(value="/changeStatus/{orderId}", method = RequestMethod.POST)
 	public String changeStatus(@PathVariable Integer orderId, HttpServletRequest request, Model model) {
 		changeOrderStatus(orderId, request);
-		return "redirect:/orders"; 
+		return "redirect:/orderdetails/filtrByStatus"; 
 	}
 	
 	@RequestMapping(value="/changeStatusWhileOrder/{orderId}", method = RequestMethod.POST)

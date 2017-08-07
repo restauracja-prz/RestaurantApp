@@ -41,7 +41,7 @@ public class UserController {
 		if (result.hasErrors()) {
             return "user";
         }
-	
+		
 		user.setIsEnabled(true);
 		userDAO.userSaveOrUpdate(user);
 		

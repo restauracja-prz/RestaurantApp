@@ -74,7 +74,6 @@ public class OrderController {
 	@ModelAttribute
 	public void init(Model model) {
 		// if(model.containsAttribute("menuItems") == false) {
-		System.out.println("wystawil " + menuDAO.findVisibleMenu().size());
 		model.addAttribute("menuItems", menuDAO.findVisibleMenu());
 		// }
 

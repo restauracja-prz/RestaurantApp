@@ -16,7 +16,6 @@ import javax.validation.constraints.Size;
 public class UserEntity {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	@NotNull
 	@Size(min=3, max=32)
 	@Column(name = "USER_ID")
