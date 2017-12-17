@@ -2,12 +2,17 @@
 <%@page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<head>
+<link rel="stylesheet" type="text/css" href="resources/order.css">
+</head>
 
 <html>
 <body>
 	<h2>RestaurantApp : Orders</h2>
 	
-	<a href="<c:url value="/" />">Home</a><br />
+	<%@include file="/screens/index.jsp"%>
 	<form action="/restaurant/orderdetails/filtrByStatus" method='post'>
 				 		<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
 					    <select name="statusToFiltr" id="statusToFiltr">

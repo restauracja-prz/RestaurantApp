@@ -55,9 +55,17 @@ public class OrderDetailsController {
 			}
 			model.addAttribute("orderNumbers", orderNumbers);
 		}
+		
 		System.out.println("co my tutaj mamy " + authentication.getPrincipal());
 		System.out.println("USER??? " + currentPrincipalName);
-		model.addAttribute("orderItems", orderDetailsDAO.findUserOrderDetails(currentPrincipalName));
+		List<OrderDetailsEntity> o = orderDetailsDAO.findUserOrderDetails(currentPrincipalName);
+		for(OrderDetailsEntity o1 : o) {
+			System.out.println(o1.getOrder().getOrderId()+" "+o1.getOrder().getWaiterNeed());
+//		for (OrdersEntity ot : o1.getOrder()) {
+//			System.out.println("...." + ot.getOrderId() + " size zamowieni " + ot.getOrderDetails().size()+" "+ot.getWaiterNeed());
+//		}
+		}
+		model.addAttribute("orderItems", o);
 
 	}
 
@@ -93,10 +101,11 @@ public class OrderDetailsController {
 				o.setOrderDetails(new HashSet<OrderDetailsEntity>(orderDetails));
 			}
 			for (OrdersEntity ot : order) {
-				System.out.println("...." + ot.getOrderId() + " size zamowieni " + ot.getOrderDetails().size());
+				System.out.println("...." + ot.getOrderId() + " size zamowieni " + ot.getOrderDetails().size()+" "+ot.getWaiterNeed());
 			}
 			model.addAttribute("ord", order);
 		}
+		model.addAttribute("orderItems", orderDetailsDAO.findUserOrderDetails(currentPrincipalName));
 		return "ordersFiltered";
 	}
 

@@ -2,21 +2,21 @@
 <%@page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.min.css" />
+<head>
+
+</head>
+
 <script src="http://code.jquery.com/jquery-3.2.0.min.js"></script>
 <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 
 <html>
 <body>
-	<h2>RestaurantApp</h2>
-	<h3>REPORTS</h3>
-	
-	<a href="<c:url value="/" />">Home</a><br />
-	
-	<form:form action="${pageContext.request.contextPath}/logout" method="POST">
-	    <input id="logoutButton" type="submit" value="Logout" />
-	</form:form>
+	<%@include file="/screens/index.jsp"%>
+	<br><br><br>
+
 	
 	<h2>List of available reports:</h2><br />
 	

@@ -50,7 +50,7 @@ public class OrderDetailsDAO {
 	
 	@SuppressWarnings("unchecked")
 	public List<OrderDetailsEntity> findUserOrderDetails(String userId){
-		Query query = sessionFactory.getCurrentSession().createQuery("select d from OrderDetailsEntity d join fetch d.order o join fetch d.menu m join fetch m.mealTranslation where o.userId is :userId and o.orderStatus not like :orderStatus");
+		Query query = sessionFactory.getCurrentSession().createQuery("select d from OrderDetailsEntity d left join fetch d.order o left join fetch d.menu m left join fetch m.mealTranslation where o.userId is :userId and o.orderStatus not like :orderStatus");
 		query.setParameter("orderStatus", OrderStatus.CLOSED);
 		query.setParameter("userId", userId);
 		return query.list();

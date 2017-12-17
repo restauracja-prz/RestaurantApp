@@ -6,7 +6,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 
-<spring:url value="/orderdetails" var="saveYourOrderUrl"/>
+<spring:url value="/orderdetails" var="saveYourOrderUrl" />
 
 <head>
 <link rel="stylesheet" type="text/css" href="resources/order.css">
@@ -36,6 +36,7 @@
 		<c:set var = "count" value="${0}"/>
 		<c:set var = "sum" value="${0}"/>
 		<c:set var = "lastOrderStatus" value="NEW"/>
+		
 		<c:forEach items="${orderItems}" var="orders" varStatus="loop">
 			
 			<c:if test = "${x == orders.order.orderId}">
@@ -48,8 +49,13 @@
 			</tr>
 				<c:set var="sum" value="${sum + orders.unitPrice}"/>
 				<c:set var = "lastOrderStatus" value = "${orders.order.orderStatus}"/>
+		<c:if test="${orders.order.waiterNeed}">
+			<c:out value="Kelnera wezwał: ${orders.order.userId}" />
+		</c:if>
 			</c:if>
+		
 		</c:forEach>
+		
 			<tr>
 				<td></td>
 				<td align="right"><b>Suma:</b></td>

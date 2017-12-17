@@ -89,7 +89,7 @@ public class OrdersEntity {
 	@Column(name="WAITER_NEED")
 	private boolean waiterNeed;
 
-	public boolean isWaiterNeed() {
+	public boolean getWaiterNeed() {
 		return waiterNeed;
 	}
 
