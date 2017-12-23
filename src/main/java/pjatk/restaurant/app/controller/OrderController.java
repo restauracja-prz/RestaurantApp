@@ -73,9 +73,9 @@ public class OrderController {
 
 	@ModelAttribute
 	public void init(Model model) {
-		// if(model.containsAttribute("menuItems") == false) {
+		 if(model.containsAttribute("menuItems") == false) {
 		model.addAttribute("menuItems", menuDAO.findVisibleMenu());
-		// }
+		 }
 
 		model.addAttribute("mealTypes", mealTypeDAO.findMealTypes());
 		model.addAttribute("orderList", orders);
@@ -86,9 +86,7 @@ public class OrderController {
 		if (mealType.equals("all")) {
 			mealType = "%";
 		}
-		List<MenuEntity> menuItems = menuDAO.findVisibleFilteredMenu(mealType);
-		System.out.println("menu items " + menuItems.size());
-		model.addAttribute("menuItems", menuItems);
+		model.addAttribute("menuItems", menuDAO.findVisibleFilteredMenu(mealType));
 
 		return "redirect:/order";
 	}

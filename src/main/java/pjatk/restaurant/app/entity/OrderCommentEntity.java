@@ -18,16 +18,16 @@ public class OrderCommentEntity {
 	private int orderRatingId;	
 
 	@Column(name="ORDER_ID")
-	private int OrderId;
+	private int orderId;
 	
 	@Column(name = "MEAL_QUALITY")
-	private String mealQuality;
+	private Integer mealQuality;
 	
 	@Column(name = "SERVICE_QUICKNESS")
-	private String serviceQuickness;
+	private Integer serviceQuickness;
 	
 	@Column(name = "SERVICE_QUALITY")
-	private String serviceQuality;
+	private Integer serviceQuality;
 	
 	@Column(name = "CLIENT_COMMENT")
 	private String clientComment;
@@ -41,34 +41,34 @@ public class OrderCommentEntity {
 	}
 
 	public int getOrderId() {
-		return OrderId;
+		return orderId;
 	}
 
 	public void setOrderId(int orderId) {
-		OrderId = orderId;
+		orderId = orderId;
 	}
 
-	public String getMealQuality() {
+	public Integer getMealQuality() {
 		return mealQuality;
 	}
 
-	public void setMealQuality(String mealQuality) {
+	public void setMealQuality(Integer mealQuality) {
 		this.mealQuality = mealQuality;
 	}
 
-	public String getServiceQuickness() {
+	public Integer getServiceQuickness() {
 		return serviceQuickness;
 	}
 
-	public void setServiceQuickness(String serviceQuickness) {
+	public void setServiceQuickness(Integer serviceQuickness) {
 		this.serviceQuickness = serviceQuickness;
 	}
 
-	public String getServiceQuality() {
+	public Integer getServiceQuality() {
 		return serviceQuality;
 	}
 
-	public void setServiceQuality(String serviceQuality) {
+	public void setServiceQuality(Integer serviceQuality) {
 		this.serviceQuality = serviceQuality;
 	}
 

@@ -59,8 +59,8 @@ public class OrdersDAO {
 	public void submitOrder(int orderId, BigDecimal sum, String userId) {
 		System.out.println("ORDER STATUS "+OrderStatus.NEW);
 		Query query = sessionFactory.getCurrentSession().createSQLQuery(
-				"INSERT INTO orders (order_id, order_date, order_status, order_price_sum, user_id,waiter_need) "
-				+ "values (:orderId, NOW(), :order_status, :order_price_sum, :userId,0)");
+				"INSERT INTO orders (order_id, order_date, order_status, order_price_sum, user_id, waiter_need) "
+				+ "values (:orderId, NOW(), :order_status, :order_price_sum, :userId, 0)");
 		query.setParameter("orderId", orderId);
 		
 		query.setParameter("order_status", OrderStatus.NEW.name());

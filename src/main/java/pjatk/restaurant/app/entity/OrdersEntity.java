@@ -12,8 +12,11 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.Valid;
 
 @Entity
 @Table(name="ORDERS")
@@ -77,15 +80,28 @@ public class OrdersEntity {
 		this.userId = userId;
 	}
 	
-	@Column(name="CLIENT_COMMENT")
-	private String clientComment;
+//	@Column(name="CLIENT_COMMENT")
+//	private String clientComment;
+//	
+//	public String getClientComment() {
+//		return clientComment;
+//	}
+//	public void setClientComment(String clientComment) {
+//		this.clientComment = clientComment;
+//	}
+	@Valid
+	@ManyToOne
+	@JoinColumn(name = "ORDER_RATING_ID")
+	private OrderCommentEntity orderComment;
+
+	public OrderCommentEntity getOrderComment() {
+		return orderComment;
+	}
+
+	public void setOrderComment(OrderCommentEntity orderComment) {
+		this.orderComment = orderComment;
+	}
 	
-	public String getClientComment() {
-		return clientComment;
-	}
-	public void setClientComment(String clientComment) {
-		this.clientComment = clientComment;
-	}
 	@Column(name="WAITER_NEED")
 	private boolean waiterNeed;
 

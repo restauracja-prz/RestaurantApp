@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import pjatk.restaurant.app.entity.OrdersEntity;
 import pjatk.restaurant.app.entity.MenuEntity;
+import pjatk.restaurant.app.entity.OrderCommentEntity;
 
 @Repository
 @Transactional
@@ -23,6 +24,24 @@ public class OrderCommentDAO {
 	private Session currentSession() {
 		return sessionFactory.getCurrentSession();
 	}
+	
+	
+	public void insertComment(int orderId, int mealQuality, int serviceQuickness, int serviceQuality, String clientComment){
+		Query query = sessionFactory.getCurrentSession().createSQLQuery(
+			"INSERT INTO order_rating (order_id, client_comment) values (:orderId, :clientComment)");
+		query.setParameter("orderId", orderId);
+		query.setParameter("clientComment", clientComment);
+		query.executeUpdate();
+	
+}
+
+@SuppressWarnings("unchecked")
+public List<OrderCommentEntity> findOrderComment(int orderId) {
+	Query query = currentSession().createQuery(
+			"select o from OrderCommentEntity o where o.orderId is :orderId");
+	query.setParameter("orderId", orderId);
+	return query.list();
+}
 	
 	@SuppressWarnings("unchecked")
 	public List<OrdersEntity> findLastOrderId() {
