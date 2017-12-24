@@ -1,5 +1,6 @@
 package pjatk.restaurant.app.controller;
 
+import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
@@ -151,6 +152,15 @@ public class OrderController {
 		ordersDAO.submitOrderWaiterNeed(lastOrderId + 1, BigDecimal.ZERO, currentPrincipalName, true);
 
 		return "redirect:/orderdetails";
+	}
+	
+	@RequestMapping(value = "/changeStatus/{orderId}", method=RequestMethod.GET)
+	public String changeStatusWaiter(@PathVariable("orderId") Integer orderId , Model model) {
+		System.out.println("wlazl czy nie?");
+
+		ordersDAO.updateOrderWaiterNeed(orderId, BigDecimal.ZERO, currentPrincipalName, false);
+
+		return "redirect:/ordersFiltered";
 	}
 
 	@RequestMapping(value = "/saveOrder", method = RequestMethod.POST)

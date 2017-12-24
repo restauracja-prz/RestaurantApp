@@ -6,7 +6,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <head>
-<link rel="stylesheet" type="text/css" href="../resources/order.css">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="resources/order.css">
 </head>
 
 <html>
@@ -14,7 +15,7 @@
 	<%@include file="/screens/index.jsp"%>
 	<br><br><br>
 		
-	<form action="/restaurant/orderdetails/filtrByStatus" method='post'>
+	<form action="/restaurant/ordersFiltered" method='post'>
 		<input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}" /> <select name="statusToFiltr"
 			id="statusToFiltr">
@@ -30,13 +31,21 @@
 		<c:forEach items="${ord}" var="ord">
 		<fieldset><legend><h2>Zamowienie numer: ${ord.orderId}</h2></legend>
 			<table>
-			<tr>
+			
+			<c:if test = "${ord.waiterNeed}"> <c:out value="Kelnera wezwał: ${ord.userId}" />
+			   <a href="<c:url value="/order/changeStatus/${ord.orderId}" />">Change status</a><br />
+			</c:if>
+			<c:if test = "${fn:length(ord.orderDetails) != 0}"> 
+			  	<tr>
 				<th><b>Pozycja</b></th>
 				<th><b>Meal</b></th>
 				<th><b>Unit Price</b></th>
 				<th><b>Status</b></th>
 				<th><b>Opcje</b></th>
-			</tr>
+				</tr>
+			</c:if>
+			
+			
 
 
 			<c:set var="count" value="${0}" />
@@ -67,9 +76,6 @@
 				</tr>
 				
 			</c:forEach>
-			<c:if test="${ord.waiterNeed}">
-					<c:out value="Kelnera wezwał: ${ord.userId}" />
-				</c:if>
 			</table>
 			</fieldset>
 		</c:forEach>

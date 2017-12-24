@@ -86,6 +86,21 @@ public class OrdersDAO {
 		
 	}
 	
+	public void updateOrderWaiterNeed(int orderId, BigDecimal sum, String userId, boolean waiterNeed ) {
+		System.out.println("update waiter");
+				 
+		Session sess = sessionFactory.openSession();
+		Transaction tx = sess.beginTransaction();
+		OrdersEntity ord = findOrderById(orderId);
+		ord.setWaiterNeed(false);
+		sess.saveOrUpdate(ord);
+		tx.commit();
+		sess.close();
+				
+		
+		
+	}
+	
 	@SuppressWarnings("unchecked")
 	public List<MenuEntity> mealOrder(int menuId) {
 		Query query = currentSession().createQuery("select m from MenuEntity m join fetch m.mealTranslation where m.isVisible = 'Y' and m.menuId is :menuId");

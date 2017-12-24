@@ -30,32 +30,14 @@ public class OrdersController {
 	
 	@RequestMapping
 	public String home(Model model,HttpServletRequest request) {
-		
-//		System.out.println("IS IT STATUS "+model.getModel().containsKey("orders"));
-//		String status = request.getParameter("statusToFiltr");
-//		System.out.println("CO JEST W STATUSIE "+status);
-//		if(status != null && !status.equals("-") && !status.equals("DEFAULT")){
-//		System.out.println("STUSIATKO "+status);
-//		OrderStatus newStatus = OrderStatus.valueOf(status);
-//		List<OrdersEntity> order = orderDAO.findOrdersByStatus(newStatus);
-//		System.out.println("LISTA ORDEROW "+order.size());
-////		model.getModelMap().put("orders", order);
-//		model.addAttribute("orders", order);
-//		}
-//		else{
-//			System.out.println("laduje co mam");
-////			model.getModelMap().put("orders", orderDAO.findOrders());
-			model.addAttribute("orders", ordersDAO.findOrders());
-//		}
-		
-		
+		model.addAttribute("orders", ordersDAO.findOrders());
 		return "orders";
 	}
 	
 	@RequestMapping(value="/changeStatus/{orderId}", method = RequestMethod.POST)
 	public String changeStatus(@PathVariable Integer orderId, HttpServletRequest request, Model model) {
 		changeOrderStatus(orderId, request);
-		return "redirect:/orderdetails/filtrByStatus"; 
+		return "redirect:/ordersFiltered"; 
 	}
 	
 	@RequestMapping(value="/changeStatusWhileOrder/{orderId}", method = RequestMethod.POST)
