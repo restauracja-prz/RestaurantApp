@@ -32,20 +32,17 @@
 	<security:http auto-config="true">
 		<security:intercept-url pattern="/resources/**" access="permitAll()" />
 		
-		<security:intercept-url pattern="/ordersFiltered**" access="hasAnyAuthority('admin','kitchen')" />
+		<security:intercept-url pattern="/orders**" access="hasAuthority('admin')" />
 		<security:intercept-url pattern="/order*" access="hasAnyAuthority('client', 'admin')" />
-		<security:intercept-url pattern="/user*" access="hasAnyAuthority( 'admin')" />
 		<security:intercept-url pattern="/order/**" access="hasAnyAuthority('client', 'admin')" />
-		<security:intercept-url pattern="/**" access="hasAnyAuthority('admin','kitchen')" />
-		<security:intercept-url pattern="/index*" access="hasAnyAuthority('kitchen','client', 'waiter')" />
+		<security:intercept-url pattern="/**" access="hasAuthority('admin')" />
+		<security:intercept-url pattern="/*" access="hasAuthority('kitchen')" />
 		<security:intercept-url pattern="/orders" access="hasAuthority('kitchen')" />
 		
 		<security:logout logout-url="/logout" logout-success-url="/" />
 		
 		<security:form-login 
-			authentication-success-handler-ref="defaultAuthenticationSuccessHandler" 
-			default-target-url="/index"
-			/>
+			authentication-success-handler-ref="defaultAuthenticationSuccessHandler" />
 	</security:http>
 
 	<security:authentication-manager>

@@ -26,7 +26,7 @@
 <div class="btn-group">
 	<a id="menuManagementLink" href="<c:url value="/menu" />" class="button">Menu management</a>
 	<a id="orderLink" href="<c:url value="/order" />" class="button">Order</a>
-	<a id="ordersLink" href="<c:url value="/ordersFiltered" />" class="button">Orders</a>
+	<a id="ordersLink" href="<c:url value="/orderdetails/filtrByStatus" />" class="button">Orders</a>
 	<a id="reportsLink" href="<c:url value="/report" />" class="button">Reports</a>
 	<a id="userManagementLink" href="<c:url value="/user" />" class="button">User management</a>
 	<a id="orderDetailsLink" href="<c:url value="/orderdetails" />" class="button">Order details</a>

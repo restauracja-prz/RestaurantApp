@@ -61,9 +61,52 @@ public class OrderDetailsController {
 		List<OrderDetailsEntity> o = orderDetailsDAO.findUserOrderDetails(currentPrincipalName);
 		for(OrderDetailsEntity o1 : o) {
 			System.out.println(o1.getOrder().getOrderId()+" "+o1.getOrder().getWaiterNeed());
+//		for (OrdersEntity ot : o1.getOrder()) {
+//			System.out.println("...." + ot.getOrderId() + " size zamowieni " + ot.getOrderDetails().size()+" "+ot.getWaiterNeed());
+//		}
 		}
 		model.addAttribute("orderItems", o);
 
+	}
+
+	@RequestMapping(value = "/filtrByStatus", method= {RequestMethod.GET,RequestMethod.POST})
+	public String filtrByStatus(HttpServletRequest request, Model model) {
+		// ModelAndView modelTmp = new ModelAndView("redirect:/orders");
+		// String status = request.getParameter("statusToFiltr");
+		// System.out.println("STUSIATKO "+status);
+		// OrderStatus newStatus = OrderStatus.valueOf(status);
+		// List<OrdersEntity> order = orderDAO.findOrdersByStatus(newStatus);
+		// System.out.println("LISTA ORDEROW "+order.size());
+		// modelTmp.addObject("orders", order);
+		// return new ModelAndView(new RedirectView(home(model, request)));
+
+		String status = request.getParameter("statusToFiltr");
+		if (status != null && !status.equals("-") && !status.equals("DEFAULT")) {
+			OrderStatus newStatus = OrderStatus.valueOf(status);
+			List<OrdersEntity> order = orderDAO.findOrdersByStatus(newStatus);
+			for (OrdersEntity o : order) {
+				List<OrderDetailsEntity> orderDetails = orderDetailsDAO.findOrderDetailsByOrderId(o.getOrderId());
+				o.setOrderDetails(new HashSet<OrderDetailsEntity>(orderDetails));
+			}
+			for (OrdersEntity ot : order) {
+				System.out.println("...." + ot.getOrderId() + " size zamowieni " + ot.getOrderDetails().size());
+			}
+			model.addAttribute("ord", order);
+
+		} else {
+			// model.getModelMap().put("orders", orderDAO.findOrders());
+			List<OrdersEntity> order = orderDAO.findOrders();
+			for (OrdersEntity o : order) {
+				List<OrderDetailsEntity> orderDetails = orderDetailsDAO.findOrderDetailsByOrderId(o.getOrderId());
+				o.setOrderDetails(new HashSet<OrderDetailsEntity>(orderDetails));
+			}
+			for (OrdersEntity ot : order) {
+				System.out.println("...." + ot.getOrderId() + " size zamowieni " + ot.getOrderDetails().size()+" "+ot.getWaiterNeed());
+			}
+			model.addAttribute("ord", order);
+		}
+		model.addAttribute("orderItems", orderDetailsDAO.findUserOrderDetails(currentPrincipalName));
+		return "ordersFiltered";
 	}
 
 	@RequestMapping

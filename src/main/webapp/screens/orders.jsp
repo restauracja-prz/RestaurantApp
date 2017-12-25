@@ -13,7 +13,7 @@
 	<h2>RestaurantApp : Orders</h2>
 	
 	<%@include file="/screens/index.jsp"%>
-	<form action="/restaurant/ordersFiltered" method='post'>
+	<form action="/restaurant/orderdetails/filtrByStatus" method='post'>
 				 		<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
 					    <select name="statusToFiltr" id="statusToFiltr">
 					    <option value="DEFAULT"> - </option>
