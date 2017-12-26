@@ -24,6 +24,7 @@ import pjatk.restaurant.app.entity.MenuEntity;
 import pjatk.restaurant.app.entity.OrderDetailsEntity;
 import pjatk.restaurant.app.entity.OrderStatus;
 import pjatk.restaurant.app.entity.OrdersEntity;
+import pjatk.restaurant.app.service.OrderCommentDAO;
 import pjatk.restaurant.app.service.OrderDAO;
 import pjatk.restaurant.app.service.OrderDetailsDAO;
 import pjatk.restaurant.app.service.OrdersDAO;
@@ -40,10 +41,15 @@ public class OrderDetailsController {
 	private OrderDetailsDAO orderDetailsDAO;
 
 	@Autowired
+	private OrderCommentDAO orderCommentDAO;
+	
+	@Autowired
 	private OrdersDAO orderDAO;
 
 	private List<OrdersEntity> orders = new ArrayList<OrdersEntity>();
 	private List<Integer> orderNumbers = new ArrayList<Integer>();
+	private List<Integer> ordersWithNoComment = new ArrayList<Integer>();
+
 
 	@ModelAttribute
 	public void init(Model model) {
@@ -54,18 +60,16 @@ public class OrderDetailsController {
 				orderNumbers.add(o.getOrderId());
 			}
 			model.addAttribute("orderNumbers", orderNumbers);
+			
+			for (int x : orderNumbers) {
+				if(orderCommentDAO.findOrderComment(x).isEmpty() == true) {
+					ordersWithNoComment.add(x);
+				}
+			}
+			
+			model.addAttribute("ordersWithNoComment", ordersWithNoComment);
 		}
-		
-		System.out.println("co my tutaj mamy " + authentication.getPrincipal());
-		System.out.println("USER??? " + currentPrincipalName);
-		List<OrderDetailsEntity> o = orderDetailsDAO.findUserOrderDetails(currentPrincipalName);
-		for(OrderDetailsEntity o1 : o) {
-			System.out.println(o1.getOrder().getOrderId()+" "+o1.getOrder().getWaiterNeed());
-//		for (OrdersEntity ot : o1.getOrder()) {
-//			System.out.println("...." + ot.getOrderId() + " size zamowieni " + ot.getOrderDetails().size()+" "+ot.getWaiterNeed());
-//		}
-		}
-		model.addAttribute("orderItems", o);
+		model.addAttribute("orderItems", orderDetailsDAO.findUserOrderDetails(currentPrincipalName));
 
 	}
 

@@ -78,10 +78,21 @@
 		<td><c:out value="${sum}" /> </td>
 		</tr>
 		</table>
-
+		
+		<a href="<c:url value="/order/submitorder" />">Submit order</a>
 		
 		</c:if>
 </fieldset>
+
+<br>
+<div class="btn-group">
+		<c:set var="nofilter" value = "all"/>
+		<a href="<c:url value="/order/filter/${nofilter}"/>" class="button">USUN FILTER</a>
+		<c:forEach items="${mealTypes}" var="type">
+		<a href="<c:url value="/order/filter/${type.mealTypePl}" />" class="button"><c:out value="${type.mealTypePl}"/></a>
+		</c:forEach>
+	</div>
+
 		<table>
 		<tr>
 			<td><b>Meal Id</b></td>

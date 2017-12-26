@@ -6,7 +6,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 
-<spring:url value="/orderdetails" var="saveYourOrderUrl" />
+<spring:url value="/orderdetails" var="saveYourOrderUrl"/>
 
 <head>
 <link rel="stylesheet" type="text/css" href="resources/order.css">
@@ -36,7 +36,6 @@
 		<c:set var = "count" value="${0}"/>
 		<c:set var = "sum" value="${0}"/>
 		<c:set var = "lastOrderStatus" value="NEW"/>
-		
 		<c:forEach items="${orderItems}" var="orders" varStatus="loop">
 			
 			<c:if test = "${x == orders.order.orderId}">
@@ -49,21 +48,30 @@
 			</tr>
 				<c:set var="sum" value="${sum + orders.unitPrice}"/>
 				<c:set var = "lastOrderStatus" value = "${orders.order.orderStatus}"/>
-		<c:if test="${orders.order.waiterNeed}">
-			<c:out value="Kelnera wezwał: ${orders.order.userId}" />
-		</c:if>
 			</c:if>
-		
 		</c:forEach>
-		
 			<tr>
 				<td></td>
 				<td align="right"><b>Suma:</b></td>
 				<td><c:out value="${sum}"/></td>
 			</tr>
 	</table>
-<c:if test="${lastOrderStatus == 'SERVICED' }">
+<c:if test="${lastOrderStatus == 'DONE' }">
+	<c:set var = "hasComment" value="${1}" />
+	<c:forEach items="${ordersWithNoComment}" var="nocomm">
+		<c:if test = "${nocomm == orderNumbers[orderLoop.index]}">
+			<c:set var = "hasComment" value="${0}" />
+			</c:if>
+	</c:forEach>
+
+
+
+	<c:if test = "${hasComment == 0 }">
 	<a href="<c:url value="/ordercomment/${orderNumbers[orderLoop.index]}"/>">Oceń zamówienie</a>
+	</c:if>
+	<c:if test = "${hasComment == 1 }">
+	<p>Dziekujemy za ocene</p>
+	</c:if>
 </c:if>
 </fieldset>
 </c:if>
@@ -71,5 +79,12 @@
 
 <p>*Gdy kelner dostarczy zamówione przez Ciebie potrawy do stolika, będziesz miał mozliwość oceny swojego zamówienia.</p>
 
+<table>
+	<c:forEach items="${ordersWithNoComment}" var="nocomm" varStatus="loop">
+			<tr>
+				<td><c:out value="${nocomm}" /></td>
+			</tr>
+		</c:forEach>
+</table>
 </body>
 </html>

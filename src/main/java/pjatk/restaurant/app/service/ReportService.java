@@ -94,9 +94,9 @@ public class ReportService {
         	dataRow.createCell(2).setCellValue(reportData.getOrderStatus().toString());
         	dataRow.createCell(3).setCellValue(reportData.getUserId());
         	
-        	   if (reportData.getClientComment() != null) {
-           		dataRow.createCell(4).setCellValue(reportData.getClientComment());
-           	}
+//        	  if (reportData.getOrderComment() != null) {
+//             	dataRow.createCell(4).setCellValue(reportData.getOrderComment().getClientComment());
+//           	}
         }
         
         for (int i = 0; i <= 3; i++) {
