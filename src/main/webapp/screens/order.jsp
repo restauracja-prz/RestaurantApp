@@ -6,109 +6,136 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <spring:url value="/order" var="saveOrderUrl"/>
-
-<html>
-
-<head>
-<link rel="stylesheet" type="text/css" href="resources/order.css">
-</head>
+<%@include file="/screens/header.jsp"%>
+<%@include file="/screens/navbar.jsp"%>
 
 
-<body>
-
-<%@include file="/screens/index.jsp"%>
-
-	<br>
-	<br>
-	<br>
-	<br>
-		
+<!-- HEADER -->
+    <header class="main">
+      <div class="container">
+          <div class="intro-text">Jedyna taka<br/>restauracja</div>
+            <div><a class="btn btn-intro" href="#container-menu">ZAMÓW</a></div>
+        </div>
+    </header>
 
 
-		
-		
-<fieldset><legend><h1>Twoje zamowienie</h1></legend>
-		<c:if test = "${fn:length(orderList) == 0}">
-		<p>Dodaj potrawe do zamowienia</p>
+<!-- KONTENER MENU -->
+  <div class="container" id="container-menu">
+    <h2><p class="text-center">MENU</p></h2>
+    
+    <c:if test = "${fn:length(mealTypes) > 20}">
+		<p>Nie</p>
 		</c:if>
-		
-		<form action="/restaurant/order/callwaiter" method='get'>
-				 		<!-- <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>-->
-			Call waiter:		   
-					
-					    <input type="submit"/>
-					</form>
-				
-					<form action="/restaurant/order/submitorder" method='get'>
-				 		<!-- <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>-->
-					   Save order:
-					
-					    <input type="submit"/>
-					</form>
-		<h1>Your order:</h1>
-		
-<fieldset>
-		<c:if test = "${fn:length(orderList) == 0}">
-		<p>Dodaj potrawe do zamowienia</p>
-		</c:if>
-		
-		<c:if test = "${fn:length(orderList) > 0}">
-		
-	<table>
-		<tr>
-			<td><b>Numer</b></td>
-			<td><b>MenuId</b></td>
-			<td><b>Meal</b></td>
-			<td><b>Cost</b></td>
-		</tr>
-		
-		<c:forEach items="${orderList}" var="ord" varStatus="loop">
-		<tr>
-				<td><c:out value="${loop.count}" />    </td>
-				<td><c:out value="${ord.menuId}" /></td>
-				<td><c:out value="${ord.mealTranslation.mealDescPl}" /></td>
-				<td><c:out value="${ord.unitPrice}" /></td>
-				<td><a href="<c:url value="/order/delete/${loop.count}" />">Delete</a><br /></td>
-			</tr>
-		</c:forEach>
-		<tr>
-		<td></td>
-		<td></td>
-		<td align="right"><b>Suma: </b></td>
-		<td><c:out value="${sum}" /> </td>
-		</tr>
-		</table>
-		
-		<a href="<c:url value="/order/submitorder" />">Submit order</a>
-		
-		</c:if>
-</fieldset>
+    
+    <div class="btn-group btn-group-justified">
+    	<c:set var="nofilter" value = "all"/>
+    	<c:forEach items="${mealTypes}" var="type">
+    		<a href="<c:url value="/order/filter/${type.mealTypePl}" />" class="btn btn-menu"><c:out value="${type.mealTypePl}"/></a>
+    	</c:forEach>
+    </div>
+    
+   <!-- 
+      <div class="btn-group btn-group-justified">
+        <a href="#" class="btn btn-menu">Desery</a>
+        <a href="#" class="btn btn-menu">Soki</a>
+        <a href="#" class="btn btn-menu">Piwo</a>
+    </div>
+      <div class="btn-group btn-group-justified">
+        <a href="#" class="btn btn-menu">Kawa</a>
+        <a href="#" class="btn btn-menu">Herbata</a>
+        <a href="#" class="btn btn-menu">Napoje</a>
+    </div>
+    -->
+      
+    <ul class="list-group">
+    	<c:forEach items="${menuItems}" var="menu">
+    		<li class="list-group-item">
+    			<c:out value="${menu.mealTranslation.mealDescPl}" />
+            	<a class="btn btn-success pull-right" href="<c:url value="/order/ordermeal/${menu.menuId}" />">Dodaj</a>
+            	<span class="label label-default label-margin-s"><c:out value="${menu.unitPrice}" /></span>
+        	</li>
+    	</c:forEach>
+    </ul>
+   </div>
 
-<br>
-<div class="btn-group">
-		<c:set var="nofilter" value = "all"/>
-		<a href="<c:url value="/order/filter/${nofilter}"/>" class="button">USUN FILTER</a>
-		<c:forEach items="${mealTypes}" var="type">
-		<a href="<c:url value="/order/filter/${type.mealTypePl}" />" class="button"><c:out value="${type.mealTypePl}"/></a>
-		</c:forEach>
-	</div>
 
-		<table>
-		<tr>
-			<td><b>Meal Id</b></td>
-			<td><b>Meal Description PL</b></td>
-			<td><b>Cost</b></td>
-		</tr>
-		
-		<c:forEach items="${menuItems}" var="menu">
-			<tr>
-				<td><c:out value="${menu.menuId}" /></td>
-				<td><c:out value="${menu.mealTranslation.mealDescPl}" /></td>
-				<td><c:out value="${menu.unitPrice}" /></td>
-				<td><a href="<c:url value="/order/ordermeal/${menu.menuId}" />">Add to order</a><br /></td>
-			</tr>
-		</c:forEach>
-</table>
+<!-- KONTENER ZAMÓWIENIE -->
+<div class="bg-1">
+<div class="container">
+
+	<c:if test = "${fn:length(orderList) == 0}">
+		<h2><p class="text-center">Dodaj potrawę do zamówienia</p></h2>
+	</c:if>
 	
-</body>
-</html>
+	<c:if test = "${fn:length(orderList) > 0}">
+		<h2><p class="text-center">Twoje zamówienie</p></h2>
+    	
+    	<ul class="list-group">
+    		<c:forEach items="${orderList}" var="ord" varStatus="loop">
+    			<li class="list-group-item"><c:out value="${ord.mealTranslation.mealDescPl}" />
+            		<a class="btn btn-danger pull-right" href="<c:url value="/order/delete/${loop.count}" />">Usuń</a>
+            		<span class="label label-default label-margin-s"><c:out value="${ord.unitPrice}" /></span>
+        		</li>
+    		</c:forEach>
+    	</ul>
+    	<div class="row">
+        	<div class="col-sm-6">Suma</div>
+        	<div class="col-sm-6 text-right"><c:out value="${sum}" />
+            	<button class="btn btn-success btn-margin-m pull-right" type="submit" data-toggle="modal" data-target="#myModal">Zamów</button>
+        	</div>
+    	</div>
+    </c:if>
+</div>
+</div>
+    
+<!-- MODAL -->
+<div class="bg-1">
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2><button class="btn close" data-dismiss="modal">&times;</button></h2>
+        <h3 class="modal-title">Zamówienie</h3>
+      </div>
+      <div class="modal-body">
+        <p>Czy na pewno chcesz złożyć zamówienie o wartości <c:out value="${sum}" />?</p>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-success" href="<c:url value="/order/submitorder" />">Złóż zamówienie</a>
+        <button class="btn btn-default" data-dismiss="modal">Anuluj</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+    
+<!-- KONTENER WEZWIJ KELNERA -->
+<div class="bg-2">
+<div class="container">
+  <h2 class="text-center">Obsługa</h2>
+      
+        <div class="row">
+            <div class="col-md-12">
+                &nbsp;
+            </div>
+        </div>
+    
+        <div class="row">
+            <div class="col-sm-6">
+                    <p><span class="glyphicon glyphicon-map-marker"></span> Gdańsk, PL</p>
+                    <p><span class="glyphicon glyphicon-phone"></span> +48 58 623 01 84</p>
+                    <p><span class="glyphicon glyphicon-envelope"></span> restauracja.prz@gmail.com</p>
+            </div>
+            <div class="col-sm-6">
+                    Zamówienie tradycyjne: <button class="btn btn-success btn-margin-m" type="submit">Wezwij kelnera</button>
+            </div>
+        </div>
+</div>
+</div>
+		
+
+
+<%@include file="/screens/footer.jsp"%>

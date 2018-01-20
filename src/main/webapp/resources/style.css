@@ -1,0 +1,198 @@
+/* GENERYCZNE */
+body {
+    font: 400 300%/1.8 "Amatic SC", sans-serif;
+    color: #d5d5d5;
+    background-color: #2d2d30;
+}
+
+@media (max-width: 768px) {
+  body {
+    font: 400 250%/1.8 "Amatic SC", sans-serif;
+	}
+}
+
+.container {
+    padding: 4em 120px;
+}
+
+.btn {
+    font-size: 0.9em;
+    transition: .2s;
+}
+
+
+/* rozmiary i marginesy */
+.btn-margin-s, .label-margin-s {
+    margin-left: 3px;
+}
+
+.btn-margin-m, .label-margin-m {
+    margin-left: 10px;
+}
+
+.glyphicon-s {
+    font-size: 0.8em;
+}
+
+
+/* widocznosc - glyphicons */
+.visible-y.glyphicon-eye-open {
+    display: inline;
+    color: dimgrey;
+}
+
+.visible-y.glyphicon-eye-close {
+    display: none;
+}
+
+.visible-n.glyphicon-eye-close {
+    display: inline;
+    color: lightgrey;
+}
+
+.visible-n.glyphicon-eye-open {
+    display: none;
+}
+
+
+/* naglowki */
+h1 {font-size: 2.0em;}
+h2 {font-size: 1.7em;}
+h3 {font-size: 1.4em;}
+h4 {font-size: 1.2em;}
+h5 {font-size: 0.9em;}
+
+/* ustawienia formularzy */
+.form-control {
+    height: 2em;
+    font-size: 1em;
+    display: inline;
+    border-radius: 20;
+}
+
+/* Textarea */
+textarea {
+    resize: none;
+}
+
+
+/* NAVBAR */
+.navbar {
+    margin-bottom: 0;
+    background-color: #2d2d30;
+    border: 0;
+    letter-spacing: 1px;
+    opacity: 0.85;
+}
+
+/* linki - kolor */
+.navbar li a, .navbar .navbar-brand { 
+    color: #d5d5d5 !important;
+}
+
+/* on hover - white */
+.navbar-nav li a:hover {
+    color: #fff !important;
+}
+
+/* aktywny link */
+.navbar-nav li.active a {
+    color: #fff !important;
+    background-color:#29292c !important;
+}
+
+
+/* HEADER - style */
+header.main {
+  text-align: center;
+  color: white;
+  
+  background-image: url("img/ryba.png");
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position: center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; 
+}
+
+header.main  {
+    padding-top: 100px;
+    padding-bottom: 50px;
+}
+
+@media (min-width: 768px) {
+  header.main {
+    padding-top: 100px;
+    padding-bottom: 100px; }
+}
+
+.intro-text {
+    font: 400 4em/1.2 "Amatic SC", sans-serif;
+}
+
+.btn-intro {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #d5d5d5;
+    border-radius: 20;
+    font-size: 1.2em; 
+    margin-top: 20px;
+}
+
+/* style do kontenerow 1 i 2 */
+.bg-1 {
+    background: #fff;
+    color: #555;
+}
+
+.bg-2 {
+    background: #8b5f5b;
+    color: #bdbdbd;
+}
+
+/* style kontenera 0 (menu) */
+.btn-menu {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #d5d5d5;
+    border-radius: 0;
+    font-size: 1.4em;
+}
+
+.btn-menu:hover, .btn-menu:focus, .btn-intro:hover, .btn-intro:focus {
+    border: 1px solid #555;
+    background-color: #fff;
+    color: #333;
+}
+
+.list-group-item {
+    color: #555;
+}
+
+.list-group-item:first-child {
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+}
+
+.list-group-item:last-child {
+    border-bottom-right-radius: 20;
+    border-bottom-left-radius: 20;
+}
+
+/* FOOTER - style */
+footer {
+    background-color: #2d2d30;
+    color: #f5f5f5;
+    padding: 20px;
+}
+
+footer a {
+    color: #f5f5f5;
+}
+
+footer a:hover {
+    color: #777;
+    text-decoration: none;
+}
