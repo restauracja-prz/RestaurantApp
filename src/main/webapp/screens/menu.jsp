@@ -28,47 +28,60 @@
   </div>
 
 
-<!-- KONTENER DODAJ POZYCJĘ MENU -->
+<!-- KONTENER ZMIEŃ MENU -->
 <div class="bg-1">
 <div class="container" id="container-edit">
-  <h2><p class="text-center">Zmień pozycję menu</p></h2>
+  <h2><p class="text-center">Zmień menu</p></h2>
     
 <form:form method="post" modelAttribute="menuForm" action="${saveMenuUrl}">
-   <ul class="list-group">
-      <li class="list-group-item">
-          <div class="row">
-            <div class="col-sm-2">Nazwa</div>
-            <div class="col-sm-8">
-              <form:input type="text" path="mealTranslation.mealDescPl" class="form-control input-lg" id="nazwa" placeholder="nazwa potrawy" />
-            </div>
-            <div class="col-sm-2"></div>
-          </div>
-      </li>
-      <li class="list-group-item">
-          <div class="row">
-            <div class="col-sm-2">Cena</div>
-            <div class="col-sm-8">
-              <form:input type="number" path="unitPrice" class="form-control input-lg" id="cena" placeholder="cena w pln" />
-            </div>
-            <div class="col-sm-2"></div>
-          </div>
-      </li>
-  </ul>    
+    
+    <form:input type="hidden" path="menuId" readonly="true" cssStyle="background-color: #d1d1d1;" />
+  	<form:errors path="menuId">Please enter meal id</form:errors>
+  	
+    <ul class="list-group">
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-sm-2">Nazwa</div>
+                    <div class="col-sm-8">
+                   	 <form:input type="text" path="mealTranslation.mealDescPl" class="form-control input-lg" placeholder="nazwa potrawy" />
+  					 <form:errors path="mealTranslation.mealDescPl">Please enter meal description</form:errors>
+                   	</div>
+                    <div class="col-sm-2"></div>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-sm-2">Nazwa [EN]</div>
+                    <div class="col-sm-8">
+                     <form:input type="text" path="mealTranslation.mealDescEn" class="form-control input-lg" placeholder="nazwa potrawy po angielsku" />
+  					 <form:errors path="mealTranslation.mealDescEn">Please enter meal description</form:errors>
+                    </div>
+                    <div class="col-sm-2"></div>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-sm-2">Cena</div>
+                    <div class="col-sm-8">
+                   	 <form:input type="number" path="unitPrice" class="form-control input-lg" id="cena" placeholder="cena w pln" />
+  					 <form:errors path="unitPrice">Please enter meal cost</form:errors>
+                    </div>
+                    <div class="col-sm-2"></div>
+                </div>
+            </li>
+    </ul>    
     <div class="row">
         <div class="col-sm-12">
-        	<form:input type="hidden" path="isVisible" />
-        	
-        	<c:if test="${menuForm.menuId != null}">
-           	 <a class="btn btn-default btn-margin-s pull-right" href="<c:url value="/menu/cancelEdit" />">Anuluj</a>
-            </c:if>
-             <input type="submit" value="Submit">  
-           <!-- <button class="btn btn-success pull-right" type="submit">Zapisz</button> -->
-           
+            <form:input type="hidden" path="isVisible" />
+  			<c:if test="${menuForm.menuId != null}">
+  				<a class="btn btn-default btn-margin-s pull-right" href="<c:url value="/menu/cancelEdit" />">Anuluj</a>
+  			</c:if>
+  			<input type="submit" value="Zapisz" class="btn btn-success pull-right">
         </div>
     </div>
-	</form:form>
+</form:form>
 </div>
-</div>	
+</div>
 
 	
 <%@include file="/screens/footer.jsp"%>
