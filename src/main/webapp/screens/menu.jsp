@@ -5,78 +5,68 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <spring:url value="/menu" var="saveMenuUrl" />
-
-<html>
-
-<head>
-<link rel="stylesheet" type="text/css" href="resources/order.css">
-</head>
-
-<body>
-
-<%@include file="/screens/index.jsp"%>
-
-<br>
-<br>
+<%@include file="/screens/header.jsp"%>
+<%@include file="/screens/navbar.jsp"%>
 
 
-<h1>Menu</h1>
+<!-- KONTENER MENU -->
+  <div class="container" id="container-menu">
+    <h2><p class="text-center">EDYCJA MENU</p></h2>
+      
+    <ul class="list-group">
+        <c:forEach items="${menuItems}" var="menu">
+        	<li class="list-group-item"><c:out value="${menu.mealTranslation.mealDescPl}" />
+           	 <a class="btn btn-primary btn-margin-s pull-right" href="<c:url value="/menu/edit/${menu.menuId}" />#container-edit">Edit</a>
+           	 <a class="btn btn-danger btn-margin-s pull-right" href="<c:url value="/menu/disable/${menu.menuId}" />">Off</a>
+           	 <a class="btn btn-success btn-margin-s pull-right" href="<c:url value="/menu/enable/${menu.menuId}" />">On</a>
+           	 <span class="label label-default label-margin-s"><c:out value="${menu.unitPrice}" /></span>
+           	 <span class="glyphicon visible-<c:out value="${menu.isVisible}" /> glyphicon-eye-open glyphicon-s"></span>
+           	 <span class="glyphicon visible-<c:out value="${menu.isVisible}" /> glyphicon-eye-close glyphicon-s"></span>
+        	</li>
+        </c:forEach>
+    </ul>
+  </div>
 
-	<fieldset>
-		<form:form method="post" modelAttribute="menuForm" action="${saveMenuUrl}">
-	  		Meal Id:
-  			<form:input type="text" path="menuId" readonly="true" cssStyle="background-color: #d1d1d1;" />
-  			<form:errors path="menuId">Please enter meal id</form:errors>
-  			<br>
-  			
-	  		Meal Description PL:
-  			<form:input type="text" path="mealTranslation.mealDescPl" />
-  			<form:errors path="mealTranslation.mealDescPl">Please enter meal description</form:errors>
-  			<br>
-  			
-  			Meal Description EN:
-  			<form:input type="text" path="mealTranslation.mealDescEn" />
-  			<form:errors path="mealTranslation.mealDescEn">Please enter meal description</form:errors>
-  			<br>
-  			
-	  		Meal cost:
-  			<form:input type="text" path="unitPrice" />
-  			<form:errors path="unitPrice">Please enter meal cost</form:errors>
-			<br>
-  			
-  			<form:input type="hidden" path="isVisible" />
-  			<input type="submit" value="Submit">
-  			<c:if test="${menuForm.menuId != null}">
-  				<a href="<c:url value="/menu/cancelEdit" />">Cancel edit</a>
-  			</c:if>
-		</form:form> 
-	</fieldset>
+
+<!-- KONTENER DODAJ POZYCJĘ MENU -->
+<div class="bg-1">
+<div class="container" id="container-edit">
+  <h2><p class="text-center">Zmień pozycję menu</p></h2>
+    
+<form:form method="post" modelAttribute="menuForm" action="${saveMenuUrl}">
+   <ul class="list-group">
+      <li class="list-group-item">
+          <div class="row">
+            <div class="col-sm-2">Nazwa</div>
+            <div class="col-sm-8">
+              <form:input type="text" path="mealTranslation.mealDescPl" class="form-control input-lg" id="nazwa" placeholder="nazwa potrawy" />
+            </div>
+            <div class="col-sm-2"></div>
+          </div>
+      </li>
+      <li class="list-group-item">
+          <div class="row">
+            <div class="col-sm-2">Cena</div>
+            <div class="col-sm-8">
+              <form:input type="number" path="unitPrice" class="form-control input-lg" id="cena" placeholder="cena w pln" />
+            </div>
+            <div class="col-sm-2"></div>
+          </div>
+      </li>
+  </ul>    
+    <div class="row">
+        <div class="col-sm-12">
+        	<form:input type="hidden" path="isVisible" />
+        	<c:if test="${menuForm.menuId != null}">
+            <a class="btn btn-default btn-margin-s pull-right" href="<c:url value="/menu/cancelEdit" />">Anuluj</a>
+            </c:if>
+            <input type="submit" value="Submit">
+            <button class="btn btn-success pull-right">Zapisz</button>
+        </div>
+    </div>
+</form:form>
+</div>
+</div>	
+
 	
-	<table cellspacing="0" cellpadding="0">
-		<tr>
-			<th><b>Meal Id</b></th>
-			<th><b>Meal Description PL</b></th>
-			<th><b>Meal Description EN</b></th>
-			<th><b>Cost</b></th>
-			<th><b>Is Visible</b></th>
-			<th></th>
-			<th></th>
-			<th></th>
-		</tr>
-		<c:forEach items="${menuItems}" var="menu">
-			<tr>
-				<td><c:out value="${menu.menuId}" /></td>
-				<td><c:out value="${menu.mealTranslation.mealDescPl}" /></td>
-				<td><c:out value="${menu.mealTranslation.mealDescEn}" /></td>
-				<td><c:out value="${menu.unitPrice}" /></td>
-				<td><c:out value="${menu.isVisible}" /></td>
-				<td><a href="<c:url value="/menu/enable/${menu.menuId}" />">Enable</a><br /></td>
-				<td><a href="<c:url value="/menu/disable/${menu.menuId}" />">Disable</a><br /></td>
-				<td><a href="<c:url value="/menu/edit/${menu.menuId}" />">Edit</a><br /></td>
-			</tr>
-		</c:forEach>
-</table>
-	
-</body>
-
-</html>
+<%@include file="/screens/footer.jsp"%>

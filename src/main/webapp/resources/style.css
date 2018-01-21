@@ -12,7 +12,7 @@ body {
 }
 
 .container {
-    padding: 4em 120px;
+    padding: 2.5em 3em;
 }
 
 .btn {
@@ -36,21 +36,21 @@ body {
 
 
 /* widocznosc - glyphicons */
-.visible-y.glyphicon-eye-open {
+.visible-Y.glyphicon-eye-open {
     display: inline;
     color: dimgrey;
 }
 
-.visible-y.glyphicon-eye-close {
+.visible-Y.glyphicon-eye-close {
     display: none;
 }
 
-.visible-n.glyphicon-eye-close {
+.visible-N.glyphicon-eye-close {
     display: inline;
     color: lightgrey;
 }
 
-.visible-n.glyphicon-eye-open {
+.visible-N.glyphicon-eye-open {
     display: none;
 }
 

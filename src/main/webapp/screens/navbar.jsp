@@ -17,9 +17,22 @@
         <li><a id="userManagementLink" href="<c:url value="/user" />">Users</a></li>
         <li><a id="orderDetailsLink" href="<c:url value="/orderdetails" />">Order details</a></li>
       </ul>
+     <!--  
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="login.html"><span class="glyphicon glyphicon-log-out glyphicon-s"></span></a></li>
+        <li>
+        	<form:form action="${pageContext.request.contextPath}/logout" method="POST">
+        		<button class="btn-link btn-logout" id="logoutButton" type="submit" /><span class="glyphicon glyphicon-log-out glyphicon-s"></span></button>
+        	</form:form>   
+        </li>
       </ul>
+      -->
     </div>
   </div>
 </nav>
+
+
+
+
+
+	    
+	

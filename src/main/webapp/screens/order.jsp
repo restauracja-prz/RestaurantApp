@@ -23,48 +23,37 @@
   <div class="container" id="container-menu">
     <h2><p class="text-center">MENU</p></h2>
     
-    <c:if test = "${fn:length(mealTypes) > 20}">
-		<p>Nie</p>
-		</c:if>
-    
     <div class="btn-group btn-group-justified">
     	<c:set var="nofilter" value = "all"/>
-    	<c:forEach items="${mealTypes}" var="type">
-    		<a href="<c:url value="/order/filter/${type.mealTypePl}" />" class="btn btn-menu"><c:out value="${type.mealTypePl}"/></a>
+    	<c:forEach items="${mealTypes}" var="type" varStatus="loop">
+    		<a href="<c:url value="/order/filter/${type.mealTypePl}" />#container-menu" class="btn btn-menu">
+    			<c:out value="${type.mealTypePl}"/>
+    		</a>	
+    			<c:if test = "${loop.count == 3}"></div><div class="btn-group btn-group-justified"></c:if>
+    			<c:if test = "${loop.count == 6}"></div><div class="btn-group btn-group-justified"></c:if>
     	</c:forEach>
     </div>
-    
-   <!-- 
-      <div class="btn-group btn-group-justified">
-        <a href="#" class="btn btn-menu">Desery</a>
-        <a href="#" class="btn btn-menu">Soki</a>
-        <a href="#" class="btn btn-menu">Piwo</a>
-    </div>
-      <div class="btn-group btn-group-justified">
-        <a href="#" class="btn btn-menu">Kawa</a>
-        <a href="#" class="btn btn-menu">Herbata</a>
-        <a href="#" class="btn btn-menu">Napoje</a>
-    </div>
-    -->
+ 
       
     <ul class="list-group">
     	<c:forEach items="${menuItems}" var="menu">
     		<li class="list-group-item">
     			<c:out value="${menu.mealTranslation.mealDescPl}" />
-            	<a class="btn btn-success pull-right" href="<c:url value="/order/ordermeal/${menu.menuId}" />">Dodaj</a>
+            	<a class="btn btn-success pull-right" href="<c:url value="/order/ordermeal/${menu.menuId}" />#container-zamowienie">Dodaj</a>
             	<span class="label label-default label-margin-s"><c:out value="${menu.unitPrice}" /></span>
         	</li>
     	</c:forEach>
     </ul>
+    
    </div>
 
 
 <!-- KONTENER ZAMÓWIENIE -->
 <div class="bg-1">
-<div class="container">
+<div class="container" id="container-zamowienie">
 
 	<c:if test = "${fn:length(orderList) == 0}">
-		<h2><p class="text-center">Dodaj potrawę do zamówienia</p></h2>
+		<h2><p class="text-center">Brak zamówionych produktów</p></h2>
 	</c:if>
 	
 	<c:if test = "${fn:length(orderList) > 0}">
@@ -73,7 +62,7 @@
     	<ul class="list-group">
     		<c:forEach items="${orderList}" var="ord" varStatus="loop">
     			<li class="list-group-item"><c:out value="${ord.mealTranslation.mealDescPl}" />
-            		<a class="btn btn-danger pull-right" href="<c:url value="/order/delete/${loop.count}" />">Usuń</a>
+            		<a class="btn btn-danger pull-right" href="<c:url value="/order/delete/${loop.count}" />#container-zamowienie">Usuń</a>
             		<span class="label label-default label-margin-s"><c:out value="${ord.unitPrice}" /></span>
         		</li>
     		</c:forEach>
