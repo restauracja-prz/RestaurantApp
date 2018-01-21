@@ -15,7 +15,7 @@
       
     <ul class="list-group">
         <c:forEach items="${menuItems}" var="menu">
-        	<li class="list-group-item"><c:out value="${menu.mealTranslation.mealDescPl}" />
+        	<li class="list-group-item" id="menuid-<c:out value="${menu.menuId}" />"><c:out value="${menu.mealTranslation.mealDescPl}" />
            	 <a class="btn btn-primary btn-margin-s pull-right" href="<c:url value="/menu/edit/${menu.menuId}" />#container-edit">Edit</a>
            	 <a class="btn btn-danger btn-margin-s pull-right" href="<c:url value="/menu/disable/${menu.menuId}" />">Off</a>
            	 <a class="btn btn-success btn-margin-s pull-right" href="<c:url value="/menu/enable/${menu.menuId}" />">On</a>
@@ -57,14 +57,16 @@
     <div class="row">
         <div class="col-sm-12">
         	<form:input type="hidden" path="isVisible" />
+        	
         	<c:if test="${menuForm.menuId != null}">
-            <a class="btn btn-default btn-margin-s pull-right" href="<c:url value="/menu/cancelEdit" />">Anuluj</a>
+           	 <a class="btn btn-default btn-margin-s pull-right" href="<c:url value="/menu/cancelEdit" />">Anuluj</a>
             </c:if>
-            <input type="submit" value="Submit">
-            <button class="btn btn-success pull-right">Zapisz</button>
+             <input type="submit" value="Submit">  
+           <!-- <button class="btn btn-success pull-right" type="submit">Zapisz</button> -->
+           
         </div>
     </div>
-</form:form>
+	</form:form>
 </div>
 </div>	
 
