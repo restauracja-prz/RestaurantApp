@@ -16,7 +16,7 @@
     <ul class="list-group">
         <c:forEach items="${menuItems}" var="menu">
         	<li class="list-group-item" id="menuid-<c:out value="${menu.menuId}" />"><c:out value="${menu.mealTranslation.mealDescPl}" />
-           	 <a class="btn btn-primary btn-margin-s pull-right" href="<c:url value="/menu/edit/${menu.menuId}" />#container-edit">Edit</a>
+           	 <a class="btn btn-primary btn-margin-s pull-right" href="<c:url value="/menu/edit/${menu.menuId}" />#container-edit"><span class="glyphicon glyphicon-cog glyphicon-s"></a>
            	 <a class="btn btn-danger btn-margin-s pull-right" href="<c:url value="/menu/disable/${menu.menuId}" />">Off</a>
            	 <a class="btn btn-success btn-margin-s pull-right" href="<c:url value="/menu/enable/${menu.menuId}" />">On</a>
            	 <span class="label label-default label-margin-s"><c:out value="${menu.unitPrice}" /></span>
