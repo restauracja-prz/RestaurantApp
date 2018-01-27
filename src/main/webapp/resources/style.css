@@ -38,7 +38,7 @@ body {
 /* widocznosc - glyphicons */
 .visible-Y.glyphicon-eye-open {
     display: inline;
-    color: dimgrey;
+    color: #696969;
 }
 
 .visible-Y.glyphicon-eye-close {
@@ -47,7 +47,7 @@ body {
 
 .visible-N.glyphicon-eye-close {
     display: inline;
-    color: lightgrey;
+    color: #cd5c5c;
 }
 
 .visible-N.glyphicon-eye-open {

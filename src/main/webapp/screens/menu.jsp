@@ -11,7 +11,7 @@
 
 <!-- KONTENER MENU -->
   <div class="container" id="container-menu">
-    <h2><p class="text-center">EDYCJA MENU</p></h2>
+    <h2><p class="text-center">Edytuj menu</p></h2>
       
     <ul class="list-group">
         <c:forEach items="${menuItems}" var="menu">
