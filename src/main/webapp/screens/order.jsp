@@ -53,7 +53,7 @@
 <div class="container" id="container-zamowienie">
 
 	<c:if test = "${fn:length(orderList) == 0}">
-		<h2><p class="text-center">Dodaj pozycję w MENU</p></h2>
+		<h2><p class="text-center">Dodaj pozycję do zamówienia</p></h2>
 	</c:if>
 	
 	<c:if test = "${fn:length(orderList) > 0}">
