@@ -72,10 +72,10 @@
     </ul>    
     		<li class="list-group-item list-group-item-bg-1-footer">
 		  	 <form:input type="hidden" path="isVisible" />
-      			<c:if test="${menuForm.menuId != null}">
-                	<a class="btn btn-default btn-margin-s pull-right" href="<c:url value="/menu/cancelEdit" />">Anuluj</a>
-            	</c:if>
-                	<input type="submit" value="Zapisz" class="btn btn-success pull-right">
+		  	 	<c:if test="${menuForm.menuId != null}">
+					<a class="btn btn-default btn-margin-s pull-right" href="<c:url value="/menu/cancelEdit" />">Anuluj</a>
+				</c:if>
+					<input type="submit" value="Zapisz" class="btn btn-success pull-right">
 			</li>
 		
 </form:form>
