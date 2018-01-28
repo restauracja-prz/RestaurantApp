@@ -53,7 +53,7 @@
 <div class="container" id="container-zamowienie">
 
 	<c:if test = "${fn:length(orderList) == 0}">
-		<h2><p class="text-center">Brak zamówionych produktów</p></h2>
+		<h2><p class="text-center">Dodaj pozycję w MENU</p></h2>
 	</c:if>
 	
 	<c:if test = "${fn:length(orderList) > 0}">
@@ -117,12 +117,13 @@
                     <p><span class="glyphicon glyphicon-envelope"></span> restauracja.prz@gmail.com</p>
             </div>
             <div class="col-sm-6">
-                    Zamówienie tradycyjne: <button class="btn btn-success btn-margin-m" type="submit">Wezwij kelnera</button>
+				<form action="/restaurant/order/callwaiter" method='get'>
+					Zamówienie tradycyjne: <input type="submit" class="btn btn-success btn-margin-m" value="Wezwij kelnera" />
+				</form>
             </div>
         </div>
 </div>
 </div>
 		
-
 
 <%@include file="/screens/footer.jsp"%>
