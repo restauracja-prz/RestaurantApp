@@ -31,7 +31,7 @@
 <!-- KONTENER ZMIEŃ MENU -->
 <div class="bg-1">
 <div class="container" id="container-edit">
-  <h2><p class="text-center">Zmiana menu</p></h2>
+  <h2><p class="text-center">Zmień menu</p></h2>
     
 <form:form method="post" modelAttribute="menuForm" action="${saveMenuUrl}">
     
@@ -44,7 +44,7 @@
                     <div class="col-sm-2">Nazwa</div>
                     <div class="col-sm-8">
                    	 <form:input type="text" path="mealTranslation.mealDescPl" class="form-control input-lg" placeholder="nazwa potrawy" />
-  					 <form:errors path="mealTranslation.mealDescPl">Please enter meal description</form:errors>
+  					 <form:errors path="mealTranslation.mealDescPl">Podaj nazwę</form:errors>
                    	</div>
                     <div class="col-sm-2"></div>
                 </div>
@@ -54,7 +54,7 @@
                     <div class="col-sm-2">Nazwa [EN]</div>
                     <div class="col-sm-8">
                      <form:input type="text" path="mealTranslation.mealDescEn" class="form-control input-lg" placeholder="nazwa potrawy po angielsku" />
-  					 <form:errors path="mealTranslation.mealDescEn">Please enter meal description</form:errors>
+  					 <form:errors path="mealTranslation.mealDescEn">Podaj nazwę</form:errors>
                     </div>
                     <div class="col-sm-2"></div>
                 </div>
@@ -64,7 +64,7 @@
                     <div class="col-sm-2">Cena</div>
                     <div class="col-sm-8">
                    	 <form:input type="number" path="unitPrice" class="form-control input-lg" id="cena" placeholder="cena w pln" />
-  					 <form:errors path="unitPrice">Please enter meal cost</form:errors>
+  					 <form:errors path="unitPrice">Podaj cenę</form:errors>
                     </div>
                     <div class="col-sm-2"></div>
                 </div>
