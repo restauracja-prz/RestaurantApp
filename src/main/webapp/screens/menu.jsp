@@ -11,7 +11,7 @@
 
 <!-- KONTENER MENU -->
   <div class="container" id="container-menu">
-    <h2><p class="text-center">Edytuj menu</p></h2>
+    <h2><p class="text-center">Edycja menu</p></h2>
       
     <ul class="list-group">
         <c:forEach items="${menuItems}" var="menu">
@@ -31,7 +31,7 @@
 <!-- KONTENER ZMIEŃ MENU -->
 <div class="bg-1">
 <div class="container" id="container-edit">
-  <h2><p class="text-center">Zmień menu</p></h2>
+  <h2><p class="text-center">Zmiana menu</p></h2>
     
 <form:form method="post" modelAttribute="menuForm" action="${saveMenuUrl}">
     
@@ -70,15 +70,14 @@
                 </div>
             </li>
     </ul>    
-    <div class="row">
-        <div class="col-sm-12">
-            <form:input type="hidden" path="isVisible" />
-  			<c:if test="${menuForm.menuId != null}">
-  				<a class="btn btn-default btn-margin-s pull-right" href="<c:url value="/menu/cancelEdit" />">Anuluj</a>
-  			</c:if>
-  			<input type="submit" value="Zapisz" class="btn btn-success pull-right">
-        </div>
-    </div>
+    		<li class="list-group-item list-group-item-bg-1-footer">
+		  	 <form:input type="hidden" path="isVisible" />
+      			<c:if test="${menuForm.menuId != null}">
+                	<a class="btn btn-default btn-margin-s pull-right" href="<c:url value="/menu/cancelEdit" />">Anuluj</a>
+            	</c:if>
+                	<input type="submit" value="Zapisz" class="btn btn-success pull-right">
+			</li>
+		
 </form:form>
 </div>
 </div>

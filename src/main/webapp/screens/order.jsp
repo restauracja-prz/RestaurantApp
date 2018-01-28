@@ -67,12 +67,10 @@
         		</li>
     		</c:forEach>
     	</ul>
-    	<div class="row">
-        	<div class="col-sm-6">Suma</div>
-        	<div class="col-sm-6 text-right"><c:out value="${sum}" />
-            	<button class="btn btn-success btn-margin-m pull-right" type="submit" data-toggle="modal" data-target="#myModal">Zamów</button>
-        	</div>
-    	</div>
+    	<li class="list-group-item list-group-item-bg-1-footer">Suma
+            <button class="btn btn-success btn-margin-m pull-right" type="submit" data-toggle="modal" data-target="#myModal">Zamów</button>
+            <span class="pull-right"><c:out value="${sum}" /></span>
+        </li>
     </c:if>
 </div>
 </div>
