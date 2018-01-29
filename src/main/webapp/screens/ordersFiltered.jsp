@@ -34,6 +34,20 @@
    <br />
 
    <c:forEach items="${ord}" var="ord">
+     
+    <c:if test = "${ord.waiterNeed}"> 
+    
+    <li class="list-group-item list-group-item-header-bg-0">Zamówienie numer: ${ord.orderId}</li>
+    <ul class="list-group">
+        <li class="list-group-item">
+        	Kelnera wezwał 
+        	<span class="btn btn-default btn-margin-s pull-right">Obsługa kelnerska</span>
+        	<a class="btn btn-success pull-right" href="<c:url value="/order/changeStatus/${ord.orderId}" />">OK</a>
+        	<span class="label label-default label-margin-s"><c:out value="${ord.userId}" /></span>
+        </li>
+    </ul>
+	</c:if>
+	
     <c:if test = "${fn:length(ord.orderDetails) != 0}">
 	 <c:set var="count" value="${0}" />
 
@@ -43,10 +57,11 @@
        	<li class="list-group-item list-group-item-header-bg-0">Zamówienie numer: ${ord.orderId}
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 			<button class="btn btn-cancel pull-right" name="status" id="status" value="CANCEL"><span class="glyphicon glyphicon-remove"></span></button>
-		 </li>
+		</li>
 		</form>
       
       	<c:choose>
+      	 
       	 <c:when test = "${ord.orderStatus == 'NEW'}">
       	  <form action="/restaurant/orders/changeStatus/${ord.orderId }" method='post'>
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
