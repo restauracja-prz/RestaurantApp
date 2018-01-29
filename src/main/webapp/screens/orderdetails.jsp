@@ -55,6 +55,7 @@
             	<c:if test = "${orders.order.orderStatus == 'NEW'}"><span class="btn btn-info pull-right">Nowe</span></c:if>
             	<c:if test = "${orders.order.orderStatus == 'IN_PROGRESS'}"><span class="btn btn-success pull-right">W przygotowaniu</span></c:if>
             	<c:if test = "${orders.order.orderStatus == 'CANCEL'}"><span class="btn btn-danger pull-right">Anulowane</span></c:if>
+            	<c:if test = "${orders.order.orderStatus == 'DONE'}"><span class="btn btn-default pull-right">Gotowe</span></c:if>
             	<span class="label label-default label-margin-s"><c:out value="${orders.unitPrice}" /></span>
         	</li>
 			<c:set var = "lastOrderStatus" value = "${orders.order.orderStatus}"/>
@@ -102,6 +103,7 @@
         			<c:if test = "${status == 'NEW'}"><span class="btn btn-info pull-right">Nowe</span></c:if>
             		<c:if test = "${status == 'IN_PROGRESS'}"><span class="btn btn-success pull-right">W przygotowaniu</span></c:if>
             		<c:if test = "${status == 'CANCEL'}"><span class="btn btn-danger pull-right">Anulowane</span></c:if>
+            		<c:if test = "${status == 'DONE'}"><span class="btn btn-default pull-right">Gotowe</span></c:if>
             		<span class="label label-default label-margin-s"><c:out value="${sum}"/></span>
         		</li>
         	 </c:otherwise>	
