@@ -20,6 +20,21 @@ body {
     transition: .2s;
 }
 
+.glyphicon {
+    font-size: 0.8em;
+}
+
+/* rozmiary i marginesy */
+.btn-margin-s, .label-margin-s {
+    margin-left: 3px;
+}
+
+.btn-margin-m, .label-margin-m {
+    margin-left: 10px;
+}
+
+/* badge */
+
 .badge-new {
     color: #fff;
     background-color: #cd5c5c;
@@ -32,19 +47,6 @@ body {
     font-size: 0.65em;
 }
 
-
-/* rozmiary i marginesy */
-.btn-margin-s, .label-margin-s {
-    margin-left: 3px;
-}
-
-.btn-margin-m, .label-margin-m {
-    margin-left: 10px;
-}
-
-.glyphicon-s {
-    font-size: 0.8em;
-}
 
 /* widocznosc - glyphicons */
 .visible-Y.glyphicon-eye-open {
@@ -176,26 +178,28 @@ header.main  {
     color: #333;
 }
 
-.btn-menu-cancel {
-    padding: 10px 20px;
-    background-color: indianred;
-    color: #d5d5d5;
-    border-radius: 0;
-    font-size: 1.4em;
+.btn-cancel {
+    background-color: #cd5c5c;
 }
 
 .btn-menu-cancel:hover, .btn-menu-cancel:focus {
     border: 1px solid #555;
     background-color: #fff;
     color: #333;
+    outline: 0;
 }
 
-.a-orderlist {
+.btn-orderlist, .a-orderlist {
+    border: 0;
+    outline: 0;
+    background-color: #2d2d30;
     color: #d5d5d5;
 }
 
-.a-orderlist:hover, .a-orderlist:focus {
+.btn-orderlist:hover, .a-orderlist:hover {
+    background-color: #2d2d30;
     color: #fff;
+    outline: 0;
 }
 
 
@@ -227,16 +231,14 @@ header.main  {
     border-bottom-left-radius: 20;
 }
 
-.list-group-item-bg-0-header {
-    border-top: 0;
-    border-left: 0;
-    border-right: 0;
+.list-group-item-header-bg-0 {
+    border: 0;
     background: none;
     padding: 0;
     color: #d5d5d5;
 }
 
-.list-group-item-bg-1-footer {
+.list-group-item-footer-bg-0, .list-group-item-footer-bg-1 {
     border: 0;
     background: none;
     padding: 0;

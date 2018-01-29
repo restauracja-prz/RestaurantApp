@@ -67,7 +67,7 @@
         		</li>
     		</c:forEach>
     	</ul>
-    	<li class="list-group-item list-group-item-bg-1-footer">Suma
+    	<li class="list-group-item list-group-item-footer-bg-1">Suma
             <button class="btn btn-success btn-margin-m pull-right" type="submit" data-toggle="modal" data-target="#myModal">Zamów</button>
             <span class="pull-right"><c:out value="${sum}" /></span>
         </li>

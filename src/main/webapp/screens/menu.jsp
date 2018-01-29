@@ -16,12 +16,12 @@
     <ul class="list-group">
         <c:forEach items="${menuItems}" var="menu">
         	<li class="list-group-item" id="menuid-<c:out value="${menu.menuId}" />"><c:out value="${menu.mealTranslation.mealDescPl}" />
-           	 <a class="btn btn-primary btn-margin-s pull-right" href="<c:url value="/menu/edit/${menu.menuId}" />#container-edit"><span class="glyphicon glyphicon-cog glyphicon-s"></a>
+           	 <a class="btn btn-primary btn-margin-s pull-right" href="<c:url value="/menu/edit/${menu.menuId}" />#container-edit"><span class="glyphicon glyphicon-cog"></a>
            	 <a class="btn btn-danger btn-margin-s pull-right" href="<c:url value="/menu/disable/${menu.menuId}" />">Off</a>
            	 <a class="btn btn-success btn-margin-s pull-right" href="<c:url value="/menu/enable/${menu.menuId}" />">On</a>
            	 <span class="label label-default label-margin-s"><c:out value="${menu.unitPrice}" /></span>
-           	 <span class="glyphicon visible-<c:out value="${menu.isVisible}" /> glyphicon-eye-open glyphicon-s"></span>
-           	 <span class="glyphicon visible-<c:out value="${menu.isVisible}" /> glyphicon-eye-close glyphicon-s"></span>
+           	 <span class="glyphicon visible-<c:out value="${menu.isVisible}" /> glyphicon-eye-open"></span>
+           	 <span class="glyphicon visible-<c:out value="${menu.isVisible}" /> glyphicon-eye-close"></span>
         	</li>
         </c:forEach>
     </ul>
@@ -70,7 +70,7 @@
                 </div>
             </li>
     </ul>    
-    		<li class="list-group-item list-group-item-bg-1-footer">
+    		<li class="list-group-item list-group-item-footer-bg-1">
 		  	 <form:input type="hidden" path="isVisible" />
 		  	 	<c:if test="${menuForm.menuId != null}">
 					<a class="btn btn-default btn-margin-s pull-right" href="<c:url value="/menu/cancelEdit" />">Anuluj</a>

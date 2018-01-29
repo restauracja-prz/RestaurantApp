@@ -15,7 +15,7 @@
  <div class="container" id="container-menu">
      <h2>
        <p class="text-center">Twoje zamówienia
-         <a href="#order-list" class="a-orderlist pull-right"><span class="glyphicon glyphicon-list glyphicon-s"></span></a>
+         <a href="#order-list" class="a-orderlist pull-right"><span class="glyphicon glyphicon-list"></span></a>
        </p>
      </h2>
      <br />
@@ -32,7 +32,7 @@
 			</c:if>
 		</c:forEach>
 
-        <li class="list-group-item list-group-item-bg-0-header">
+        <li class="list-group-item list-group-item-header-bg-0">
       		Zamówienie numer: ${x}
       	 <c:if test = "${sum != 0}">
       		<span class="pull-right">Suma: <c:out value="${sum}"/></span>
@@ -115,7 +115,7 @@
 		</c:if>
 	</c:forEach>
   	</ul>
-        		<li class="list-group-item list-group-item-bg-1-footer">
+        		<li class="list-group-item list-group-item-footer-bg-1">
         			Suma całkowita: <span class="pull-right">
         			<c:if test = "${waiter == 1}">zamówienie u obsługi<c:if test = "${total > 0}"> + <c:out value="${total}"/></c:if></c:if>
         			<c:if test = "${waiter == 0}"><c:out value="${total}"/></c:if></span>
