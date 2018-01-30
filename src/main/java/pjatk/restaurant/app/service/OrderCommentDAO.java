@@ -28,13 +28,15 @@ public class OrderCommentDAO {
 	
 	public void insertComment(int orderId, int mealQuality, int serviceQuickness, int serviceQuality, String clientComment){
 		Query query = sessionFactory.getCurrentSession().createSQLQuery(
-			"INSERT INTO order_rating (order_id, client_comment) values (:orderId, :clientComment)");
+			"INSERT INTO order_rating (order_id, meal_quality, service_quickness, service_quality, client_comment) values (:orderId, :mealQuality, :serviceQuickness, :serviceQuality, :clientComment)");
 		query.setParameter("orderId", orderId);
+		query.setParameter("mealQuality", mealQuality);
+		query.setParameter("serviceQuickness", serviceQuickness);
+		query.setParameter("serviceQuality", serviceQuality);
 		query.setParameter("clientComment", clientComment);
 		query.executeUpdate();
+	}
 	
-}
-
 @SuppressWarnings("unchecked")
 public List<OrderCommentEntity> findOrderComment(int orderId) {
 	Query query = currentSession().createQuery(

@@ -29,7 +29,8 @@
   			<form:errors path="menuId">Please enter meal id</form:errors>
   			<br>
   			
-	  		Meal Description PL:
+  			
+	  		Meal Descriptionss PL:
   			<form:input type="text" path="mealTranslation.mealDescPl" />
   			<form:errors path="mealTranslation.mealDescPl">Please enter meal description</form:errors>
   			<br>
@@ -37,6 +38,16 @@
   			Meal Description EN:
   			<form:input type="text" path="mealTranslation.mealDescEn" />
   			<form:errors path="mealTranslation.mealDescEn">Please enter meal description</form:errors>
+  			<br>
+  			
+  			Meal Type PL
+  			  <select  name="mealType.mealTypeId" path="mealType">
+  			  	<c:forEach items="${mealTypes}" var="types">
+					    <option value="${types.mealTypeId}"> ${types.mealTypePl}</option>
+				</c:forEach>
+					    </select>       
+  			
+  			
   			<br>
   			
 	  		Meal cost:

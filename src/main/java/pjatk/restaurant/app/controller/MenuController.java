@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import pjatk.restaurant.app.entity.MenuEntity;
+import pjatk.restaurant.app.service.MealTypeDAO;
 import pjatk.restaurant.app.service.MenuDAO;
 
 @Controller
@@ -21,10 +22,14 @@ public class MenuController {
 	@Autowired
 	private MenuDAO menuDAO;
 	
+	@Autowired
+	private MealTypeDAO mealTypeDAO;
+	
 	@ModelAttribute
 	public void init(Model model) {
 		model.addAttribute("menuItems", menuDAO.findFullMenu());
 		model.addAttribute("menuForm", new MenuEntity());
+		model.addAttribute("mealTypes", mealTypeDAO.findTypes());
 	}
 	
 	@RequestMapping

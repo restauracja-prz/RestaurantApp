@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import pjatk.restaurant.app.entity.MealTypeEntity;
 import pjatk.restaurant.app.entity.MenuEntity;
+
 
 
 @Repository
@@ -22,6 +24,14 @@ public class MealTypeDAO {
 	private Session currentSession() {
 		return sessionFactory.getCurrentSession();
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<MealTypeEntity> findTypes() {
+		Query query = currentSession().createQuery(
+				"select t from MealTypeEntity t");
+		return query.list();
+	}
+
 	
 	@SuppressWarnings("unchecked")
 	public List<MenuEntity> findMealTypes() {
