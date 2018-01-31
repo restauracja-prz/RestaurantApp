@@ -66,10 +66,14 @@
                         <div class="form-group">
                             <select path="mealType" name="mealType.mealTypeId" class="form-control" id="kategoria">
                                 <c:forEach items="${mealTypes}" var="types">
-                                	<c:if test="${menuForm.mealType.mealTypeId == types.mealTypeId}">
-  										<option value="${types.mealTypeId}" selected> ${types.mealTypePl}</option>
-  									</c:if>
-					    				<option value="${types.mealTypeId}"> ${types.mealTypePl}</option>
+                                 <c:choose>
+                                  <c:when test="${menuForm.mealType.mealTypeId == types.mealTypeId}">
+                                   <option value="${types.mealTypeId}" selected> ${types.mealTypePl}</option>
+                                  </c:when>
+                                  <c:otherwise>
+                                   <option value="${types.mealTypeId}">${types.mealTypePl}</option>
+                                  </c:otherwise>
+                                 </c:choose>
 								</c:forEach>
                             </select>
                         </div>
