@@ -35,7 +35,7 @@
     
 <form:form method="post" modelAttribute="menuForm" action="${saveMenuUrl}">
     
-    <form:input type="hidden" path="menuId" readonly="true" cssStyle="background-color: #d1d1d1;" />
+    <form:input type="hidden" path="menuId" readonly="true" />
   	<form:errors path="menuId">Please enter meal id</form:errors>
   	
     <ul class="list-group">
@@ -51,20 +51,25 @@
             </li>
             <li class="list-group-item">
                 <div class="row">
-                    <div class="col-sm-2">Nazwa [EN]</div>
+                    <div class="col-sm-2">Cena</div>
                     <div class="col-sm-8">
-                     <form:input type="text" path="mealTranslation.mealDescEn" class="form-control input-lg" placeholder="nazwa potrawy po angielsku" />
-  					 <form:errors path="mealTranslation.mealDescEn">Podaj nazwę</form:errors>
+                   	 <form:input type="number" path="unitPrice" class="form-control input-lg" id="cena" placeholder="cena w pln" />
+  					 <form:errors path="unitPrice">Podaj cenę</form:errors>
                     </div>
                     <div class="col-sm-2"></div>
                 </div>
             </li>
             <li class="list-group-item">
                 <div class="row">
-                    <div class="col-sm-2">Cena</div>
+                    <div class="col-sm-2">Kategoria</div>
                     <div class="col-sm-8">
-                   	 <form:input type="number" path="unitPrice" class="form-control input-lg" id="cena" placeholder="cena w pln" />
-  					 <form:errors path="unitPrice">Podaj cenę</form:errors>
+                        <div class="form-group">
+                            <select path="mealType" name="mealType.mealTypeId" class="form-control" id="kategoria">
+                                <c:forEach items="${mealTypes}" var="types">
+									<option value="${types.mealTypeId}">${types.mealTypePl}</option>
+								</c:forEach>
+                            </select>
+                        </div>
                     </div>
                     <div class="col-sm-2"></div>
                 </div>
