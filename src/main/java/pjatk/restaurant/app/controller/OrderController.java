@@ -68,6 +68,8 @@ public class OrderController {
 
 	@Autowired
 	private MenuDAO menuDAO;
+	
+	private static String chosenMealType;
 
 	private List<MenuEntity> orders = new ArrayList<MenuEntity>();
 	private BigDecimal orderCostSum;
@@ -77,18 +79,23 @@ public class OrderController {
 		 if(model.containsAttribute("menuItems") == false) {
 		model.addAttribute("menuItems", menuDAO.findVisibleMenu());
 		 }
-
+		 else {
+			 model.addAttribute("menuItems", menuDAO.findVisibleFilteredMenu(chosenMealType));
+		 }
+		 
 		model.addAttribute("mealTypes", mealTypeDAO.findMealTypes());
 		model.addAttribute("orderList", orders);
 	}
 
+	@SuppressWarnings("static-access")
 	@RequestMapping(value = "/filter/{mealType}", method = RequestMethod.GET)
 	public String filter(@PathVariable String mealType, Model model) {
 		if (mealType.equals("all")) {
 			mealType = "%";
 		}
+		
+		this.setChosenMealType(mealType);
 		model.addAttribute("menuItems", menuDAO.findVisibleFilteredMenu(mealType));
-
 		return "redirect:/order";
 	}
 
@@ -180,6 +187,14 @@ public class OrderController {
 	public String home(Model model) {
 		model.addAttribute("sum", orderCostSum);
 		return "order";
+	}
+
+	public static String getChosenMealType() {
+		return chosenMealType;
+	}
+
+	public static void setChosenMealType(String chosenMealType) {
+		OrderController.chosenMealType = chosenMealType;
 	}
 
 }
