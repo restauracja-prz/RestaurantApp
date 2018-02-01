@@ -37,11 +37,11 @@
      
     <c:if test = "${ord.waiterNeed}"> 
     
-    <li class="list-group-item list-group-item-header-bg-0">Zamówienie numer: ${ord.orderId}</li>
+    <li class="list-group-item list-group-item-header-bg-0">Numer: ${ord.orderId}</li>
     <ul class="list-group">
         <li class="list-group-item">
         	Kelnera wezwał 
-        	<span class="btn btn-default btn-margin-s pull-right">Obsługa kelnerska</span>
+        	<span class="btn btn-default btn-margin-s pull-right">Wezwanie kelnera</span>
         	<a class="btn btn-success pull-right" href="<c:url value="/order/changeStatus/${ord.orderId}" />">OK</a>
         	<span class="label label-default label-margin-s"><c:out value="${ord.userId}" /></span>
         </li>
@@ -49,7 +49,6 @@
 	</c:if>
 	
     <c:if test = "${fn:length(ord.orderDetails) != 0}">
-	 <c:set var="count" value="${0}" />
 
        <c:forEach items="${ord.orderDetails}" var="orders"></c:forEach>
        
@@ -132,7 +131,6 @@
     <ul class="list-group">
     
     	<c:forEach items="${ord.orderDetails}" var="orders">
-    		<c:set var="count" value="${count + 1}" />
     
         	<li class="list-group-item">
         		<c:out value="${orders.menu.mealTranslation.mealDescPl}" />

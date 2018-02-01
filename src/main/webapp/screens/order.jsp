@@ -118,7 +118,7 @@
             </div>
             <div class="col-sm-6">
 				<form action="/restaurant/order/callwaiter" method='get'>
-					Zamówienie tradycyjne: <input type="submit" class="btn btn-success btn-margin-m" value="Wezwij kelnera" />
+					Potrzebujesz pomocy obsługi? <input type="submit" class="btn btn-success btn-margin-m" value="Wezwij kelnera" />
 				</form>
             </div>
         </div>

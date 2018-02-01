@@ -11,7 +11,7 @@
 <%@include file="/screens/navbar.jsp"%>
 
 
-<!-- KONTENER MENU -->
+<!-- KONTENER ZAMÓWIENIA -->
  <div class="container" id="container-menu">
      <h2>
        <p class="text-center">Twoje zamówienia
@@ -19,36 +19,45 @@
        </p>
      </h2>
      <br />
-
+     
+		<c:set var = "order_count" value="${0}"/>
 <c:forEach items="${orderNumbers}" var="x" varStatus="orderLoop">
 	<c:if test = "${fn:length(orderNumbers) != 0}">
-      
-        <c:set var = "count" value="${0}"/>
 		<c:set var = "sum" value="${0}"/>
+		<c:set var = "item_count" value="${0}"/>
 		<c:set var = "lastOrderStatus" value="NEW"/>
+		
 		<c:forEach items="${orderItems}" var="orders" varStatus="loop">
 			<c:if test = "${x == orders.order.orderId}">
 				<c:set var="sum" value="${sum + orders.unitPrice}"/>
+				<c:set var="item_count" value="${item_count + 1}"/>
 			</c:if>
 		</c:forEach>
+			
+			<c:if test = "${item_count > 0}">
+				<c:set var="order_count" value="${order_count + 1}"/>
+			</c:if>
 
         <li class="list-group-item list-group-item-header-bg-0">
-      		Zamówienie numer: ${x}
-      	 <c:if test = "${sum != 0}">
-      		<span class="pull-right">Suma: <c:out value="${sum}"/></span>
-       	 </c:if>
+      		<c:choose>
+      		 <c:when test = "${item_count == 0}">
+      		 	Numer: ${x}
+      		 </c:when>
+      		 <c:otherwise>
+      		 	Zamówienie numer: ${x}<span class="pull-right">Suma: <c:out value="${sum}"/></span>
+      		 </c:otherwise>
+      		</c:choose>
         </li>
     <ul class="list-group">
    	 <c:choose>
-    	<c:when test = "${sum == 0}">
+    	<c:when test = "${item_count == 0}">
    			<li class="list-group-item">
-   				Twoje zamówienie przyjmiemy osobiście!<span class="btn btn-default pull-right">Obsługa kelnerska</span>
+   				Obsługa została powiadomiona!<span class="btn btn-default pull-right">Wezwanie kelnera</span>
    			</li>
    		</c:when>
      	<c:otherwise>
     	 <c:forEach items="${orderItems}" var="orders" varStatus="loop">
 		  <c:if test = "${x == orders.order.orderId}">
-		 	<c:set var = "count" value="${count + 1}"/>
     	
         	<li class="list-group-item">
         		<c:out value="${orders.menu.mealTranslation.mealDescPl}" />
@@ -72,32 +81,35 @@
 </div>
 
 
-<!-- KONTENER ZAMÓWIENIE -->
+<!-- KONTENER PODSUMOWANIE ZAMÓWIEŃ -->
 <div class="bg-1">
 <div class="container" id="order-list">
-  <h2><p class="text-center">Podsumowanie twoich zamówień</p></h2>
+
+ <c:choose>
+  <c:when test = "${order_count == 0}">
+  	<h2><p class="text-center">Twoja lista zamówień jest pusta</p></h2>
+  </c:when>
+  <c:otherwise>
+  	<h2><p class="text-center">Podsumowanie twoich zamówień</p></h2>
+  </c:otherwise>
+ </c:choose>
   
   	<ul class="list-group">
-  			<c:set var="waiter" value="${0}" />
-  	<c:forEach items="${orderNumbers}" var="x" varStatus="orderLoop">
+  	 <c:forEach items="${orderNumbers}" var="x" varStatus="orderLoop">
 		<c:if test = "${fn:length(orderNumbers) != 0}">
 			<c:set var = "sum" value="${0}"/>
+			<c:set var = "item_count" value="${0}"/>
 			<c:set var = "lastOrderStatus" value="NEW"/>
+			
 			<c:forEach items="${orderItems}" var="orders" varStatus="loop">
 				<c:if test = "${x == orders.order.orderId}">
 					<c:set var="sum" value="${sum + orders.unitPrice}"/>
+					<c:set var="item_count" value="${item_count + 1}"/>
 					<c:set var="status" value="${orders.order.orderStatus}" />
 				</c:if>
 			</c:forEach>
-			
-			<c:choose>
-			 <c:when test = "${sum == 0}">
-			 	<c:set var="waiter" value="${1}" />
-			 	<li class="list-group-item">
-			 		Zamówienie numer: ${x}<span class="btn btn-default pull-right">Obsługa kelnerska</span>
-			 	</li>
-			 </c:when>
-			 <c:otherwise>
+
+			 <c:if test = "${item_count > 0}">
         		<li class="list-group-item">
         			Zamówienie numer: ${x}
         			<c:if test = "${status == 'NEW'}"><span class="btn btn-info pull-right">Nowe</span></c:if>
@@ -106,20 +118,20 @@
             		<c:if test = "${status == 'DONE'}"><span class="btn btn-default pull-right">Gotowe</span></c:if>
             		<span class="label label-default label-margin-s"><c:out value="${sum}"/></span>
         		</li>
-        	 </c:otherwise>	
-        	</c:choose>	
+			 </c:if>
+	
         		
 		</c:if>
 		<c:if test = "${status != 'CANCEL'}">
 			<c:set var="total" value="${total + sum}"/>
 		</c:if>
-	</c:forEach>
+	 </c:forEach>
   	</ul>
+  			<c:if test = "${total > 0}">
         		<li class="list-group-item list-group-item-footer-bg-1">
-        			Suma całkowita: <span class="pull-right">
-        			<c:if test = "${waiter == 1}">zamówienie u obsługi<c:if test = "${total > 0}"> + <c:out value="${total}"/></c:if></c:if>
-        			<c:if test = "${waiter == 0}"><c:out value="${total}"/></c:if></span>
+        			Suma całkowita: <span class="pull-right"><c:out value="${total}"/></span>
         		</li>
+        	</c:if>
 		
 </div>
 </div>
