@@ -115,7 +115,22 @@
         			<c:if test = "${status == 'NEW'}"><span class="btn btn-info pull-right">Nowe</span></c:if>
             		<c:if test = "${status == 'IN_PROGRESS'}"><span class="btn btn-success pull-right">W przygotowaniu</span></c:if>
             		<c:if test = "${status == 'CANCEL'}"><span class="btn btn-danger pull-right">Anulowane</span></c:if>
-            		<c:if test = "${status == 'DONE'}"><span class="btn btn-default pull-right">Gotowe</span></c:if>
+            		<c:if test = "${status == 'DONE'}">
+            		
+					<c:set var = "hasComment" value="${1}" />
+					<c:forEach items="${ordersWithNoComment}" var="nocomm">
+						<c:if test = "${nocomm == orderNumbers[orderLoop.index]}">
+							<c:set var = "hasComment" value="${0}" />
+						</c:if>
+					</c:forEach>
+
+					<c:if test = "${hasComment == 0 }">
+					<span class="btn btn-default btn-margin-s pull-right">Gotowe</span>
+					<a class="btn btn-warning pull-right" href="<c:url value="/ordercomment/${orderNumbers[orderLoop.index]}"/>">Oceń</a>
+					</c:if>
+					<c:if test = "${hasComment == 1 }"><span class="pull-right">Dziękujemy za ocenę!</span></c:if>
+            		
+            		</c:if>
             		<span class="label label-default label-margin-s"><c:out value="${sum}"/></span>
         		</li>
 			 </c:if>
