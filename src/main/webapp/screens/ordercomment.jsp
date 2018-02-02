@@ -20,13 +20,25 @@
       
       <ul class="list-group">
           <li class="list-group-item">Jakość przygotowanych potraw<br/>
-			<form:radiobuttons path="mealQuality" name="mealQuality" items="${numberList}"  />
+			<form:radiobutton path="mealQuality" name="mealQuality" value="1"/> 1 &nbsp;&nbsp;
+			<form:radiobutton path="mealQuality" name="mealQuality" value="2"/> 2 &nbsp;&nbsp;
+			<form:radiobutton path="mealQuality" name="mealQuality" value="3"/> 3 &nbsp;&nbsp;
+			<form:radiobutton path="mealQuality" name="mealQuality" value="4"/> 4 &nbsp;&nbsp;
+			<form:radiobutton path="mealQuality" name="mealQuality" value="5"/> 5 &nbsp;&nbsp;
         </li>
         <li class="list-group-item">Czas oczekiwania na zamówienie<br/>
-			<form:radiobuttons path="serviceQuickness" name="serviceQuickness" items="${numberList}"  />
+			<form:radiobutton path="serviceQuickness" name="serviceQuickness" value="1"/> 1 &nbsp;&nbsp;
+			<form:radiobutton path="serviceQuickness" name="serviceQuickness" value="2"/> 2 &nbsp;&nbsp;
+			<form:radiobutton path="serviceQuickness" name="serviceQuickness" value="3"/> 3 &nbsp;&nbsp;
+			<form:radiobutton path="serviceQuickness" name="serviceQuickness" value="4"/> 4 &nbsp;&nbsp;
+			<form:radiobutton path="serviceQuickness" name="serviceQuickness" value="5"/> 5 &nbsp;&nbsp;
         </li>
         <li class="list-group-item">Obsługa w restauracji<br/>
-			<form:radiobuttons path="serviceQuality" name="serviceQuality" items="${numberList}"  />
+			<form:radiobutton path="serviceQuality" name="serviceQuality" value="1"/> 1 &nbsp;&nbsp;
+			<form:radiobutton path="serviceQuality" name="serviceQuality" value="2"/> 2 &nbsp;&nbsp;
+			<form:radiobutton path="serviceQuality" name="serviceQuality" value="3"/> 3 &nbsp;&nbsp;
+			<form:radiobutton path="serviceQuality" name="serviceQuality" value="4"/> 4 &nbsp;&nbsp;
+			<form:radiobutton path="serviceQuality" name="serviceQuality" value="5"/> 5 &nbsp;&nbsp;
         </li>
         <li class="list-group-item">Pozostaw komentarz&nbsp;
             <form:textarea path="clientComment" name="clientComment" type="text" rows="2" class="form-control input-lg"></form:textarea>
