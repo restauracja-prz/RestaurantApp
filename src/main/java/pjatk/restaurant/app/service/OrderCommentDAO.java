@@ -26,7 +26,7 @@ public class OrderCommentDAO {
 	}
 	
 	
-	public void insertComment(int orderId, int mealQuality, int serviceQuickness, int serviceQuality, String clientComment){
+	public void insertComment(int orderId, Integer mealQuality, Integer serviceQuickness, Integer serviceQuality, String clientComment){
 		Query query = sessionFactory.getCurrentSession().createSQLQuery(
 			"INSERT INTO order_rating (order_id, meal_quality, service_quickness, service_quality, client_comment) values (:orderId, :mealQuality, :serviceQuickness, :serviceQuality, :clientComment)");
 		query.setParameter("orderId", orderId);
