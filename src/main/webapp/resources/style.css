@@ -5,14 +5,28 @@ body {
     background-color: #2d2d30;
 }
 
-@media (max-width: 768px) {
-  body {
-    font: 400 250%/1.8 "Amatic SC", sans-serif;
-	}
-}
-
 .container {
     padding: 2.5em 3em;
+}
+
+@media (max-width: 992px) {
+    body {
+        font: 400 250%/1.8 "Amatic SC", sans-serif;
+	}
+    
+    .container {
+    	padding: 2.5em 1.5em;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        font: 400 220%/1.6 "Amatic SC", sans-serif;
+	}
+    
+    .container {
+        padding: 2em 1em;
+    }
 }
 
 .btn {

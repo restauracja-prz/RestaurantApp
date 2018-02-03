@@ -29,8 +29,8 @@
     		<a href="<c:url value="/order/filter/${type.mealTypePl}" />#container-menu" class="btn btn-menu">
     			<c:out value="${type.mealTypePl}"/>
     		</a>	
-    			<c:if test = "${loop.count == 3}"></div><div class="btn-group btn-group-justified"></c:if>
-    			<c:if test = "${loop.count == 6}"></div><div class="btn-group btn-group-justified"></c:if>
+    			<c:if test = "${loop.count %3 == 0}"></div><div class="btn-group btn-group-justified"></c:if>
+    			
     	</c:forEach>
     </div>
  
