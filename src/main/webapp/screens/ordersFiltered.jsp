@@ -53,7 +53,7 @@
        <c:forEach items="${ord.orderDetails}" var="orders"></c:forEach>
        
        <form action="/restaurant/orders/changeStatus/${ord.orderId }" method='post'>
-       	<li class="list-group-item list-group-item-header-bg-0">Zamówienie numer: ${ord.orderId}
+       	<li class="list-group-item list-group-item-header-bg-0">Zamówienie numer: ${ord.orderId} <span class="label label-default label-margin-s"><c:out value="${ord.userId}" /></span>
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 			<button class="btn btn-cancel pull-right" name="status" id="status" value="CANCEL"><span class="glyphicon glyphicon-remove"></span></button>
 		</li>
