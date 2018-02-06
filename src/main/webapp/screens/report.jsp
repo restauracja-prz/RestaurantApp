@@ -14,13 +14,13 @@
     <h2><p class="text-center">Raporty</p></h2>
       
     <ul class="list-group">
-        <li class="list-group-item">Orders and status report
+        <li class="list-group-item">Raport Zamówień i Statusów
             <a class="btn btn-primary pull-right" href="<c:url value="/report/orders-and-status-report" />">Wybierz</a>
         </li>
-        <li class="list-group-item">Order details report
+        <li class="list-group-item">Raport Szczegółów Zamówień
             <a class="btn btn-primary pull-right" href="<c:url value="/report/order-details-report" />">Wybierz</a>
         </li>
-        <li class="list-group-item">Sales report
+        <li class="list-group-item">Raport Sprzedaży
             <a class="btn btn-primary pull-right" href="<c:url value="/report/sales-report" />">Wybierz</a>
         </li> 
     </ul>
