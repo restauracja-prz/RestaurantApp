@@ -107,11 +107,11 @@ INSERT INTO MEAL_TRANSLATION (MEAL_ID,MEAL_DESC_PL,MEAL_DESC_EN) VALUES(14,'Krem
 INSERT INTO MEAL_TRANSLATION (MEAL_ID,MEAL_DESC_PL,MEAL_DESC_EN) VALUES(20,'Pstrąg smażony z ziemniakami i warzywami','Fried trout with potato and vegetables');
 INSERT INTO MEAL_TRANSLATION (MEAL_ID,MEAL_DESC_PL,MEAL_DESC_EN) VALUES(21,'Halibut w sosie krewetkowym z ziemniakami i warzywami','Fried halibut in shrimp sauce with potato and vegetables');
 INSERT INTO MEAL_TRANSLATION (MEAL_ID,MEAL_DESC_PL,MEAL_DESC_EN) VALUES(22,'Grillowany łosoś z frytkami i surówką z marchewki','Grilled salmon with french fries and carrot salad');
-INSERT INTO MEAL_TRANSLATION (MEAL_ID,MEAL_DESC_PL,MEAL_DESC_EN) VALUES(30,'Soczyste panierowane polędwiczki z kurczaka podawane  z frytkami i surówką','Juicy breaded chicken fillets served with fries and salad');
+INSERT INTO MEAL_TRANSLATION (MEAL_ID,MEAL_DESC_PL,MEAL_DESC_EN) VALUES(30,'Panierowane polędwiczki z kurczaka z frytkami i surówką','Breaded chicken fillets served with fries and salad');
 INSERT INTO MEAL_TRANSLATION (MEAL_ID,MEAL_DESC_PL,MEAL_DESC_EN) VALUES(31,'Zrazy wołowe z pieczonymi ziemniakami i surówką','Wound beef chops with baked potato and salad');
-INSERT INTO MEAL_TRANSLATION (MEAL_ID,MEAL_DESC_PL,MEAL_DESC_EN) VALUES(32,'Polędwica wołowa z masłem czosnkowym, pieczonymi ziemniakami i surówką','Beef fillet with garlic butter, baked potato and salad');
+INSERT INTO MEAL_TRANSLATION (MEAL_ID,MEAL_DESC_PL,MEAL_DESC_EN) VALUES(32,'Wołowina z masłem czosnkowym, ziemniakami i surówką','Beef with garlic butter, potato and salad');
 INSERT INTO MEAL_TRANSLATION (MEAL_ID,MEAL_DESC_PL,MEAL_DESC_EN) VALUES(33,'Kotlet schabowy podawany z ziemniakami i surówką','Pork chop with potato and salad');
-INSERT INTO MEAL_TRANSLATION (MEAL_ID,MEAL_DESC_PL,MEAL_DESC_EN) VALUES(34,'Kaczka z konfiturą wiśniową, jabłkiem pieczonym i pieczonymi ziemniakami','Duck with apples and cherry jam, served with baked potato');
+INSERT INTO MEAL_TRANSLATION (MEAL_ID,MEAL_DESC_PL,MEAL_DESC_EN) VALUES(34,'Kaczka z konfiturą wiśniową i pieczonymi ziemniakami','Duck with cherry jam, served with baked potato');
 INSERT INTO MEAL_TRANSLATION (MEAL_ID,MEAL_DESC_PL,MEAL_DESC_EN) VALUES(40,'Naleśniki z owocami i likierem','Pancakes with fruites and licquer');
 INSERT INTO MEAL_TRANSLATION (MEAL_ID,MEAL_DESC_PL,MEAL_DESC_EN) VALUES(41,'Torcik lodowy waniliowy','Vanilla Ice Cream');
 INSERT INTO MEAL_TRANSLATION (MEAL_ID,MEAL_DESC_PL,MEAL_DESC_EN) VALUES(42,'Creme brulee','Creme brulee');
