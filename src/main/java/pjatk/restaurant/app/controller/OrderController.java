@@ -69,7 +69,7 @@ public class OrderController {
 	@Autowired
 	private MenuDAO menuDAO;
 	
-	private static String chosenMealType;
+	private String chosenMealType;
 
 	private List<MenuEntity> orders = new ArrayList<MenuEntity>();
 	private BigDecimal orderCostSum;
@@ -94,7 +94,7 @@ public class OrderController {
 			mealType = "%";
 		}
 		
-		this.setChosenMealType(mealType);
+		chosenMealType = mealType;
 		model.addAttribute("menuItems", menuDAO.findVisibleFilteredMenu(mealType));
 		return "redirect:/order";
 	}
@@ -189,12 +189,10 @@ public class OrderController {
 		return "order";
 	}
 
-	public static String getChosenMealType() {
+	public String getChosenMealType() {
 		return chosenMealType;
 	}
 
-	public static void setChosenMealType(String chosenMealType) {
-		OrderController.chosenMealType = chosenMealType;
-	}
+
 
 }
