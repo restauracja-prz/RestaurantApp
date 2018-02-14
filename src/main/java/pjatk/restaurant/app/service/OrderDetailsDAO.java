@@ -75,7 +75,7 @@ public class OrderDetailsDAO {
 	
 	@SuppressWarnings("unchecked")
 	public List<OrdersEntity> findUserOrders(String userId){
-		Query query = sessionFactory.getCurrentSession().createQuery("select o from OrdersEntity o where o.userId is :userId or (o.waiterNeed=TRUE and o.userId is :userId)");
+		Query query = sessionFactory.getCurrentSession().createQuery("select o from OrdersEntity o where o.userId is :userId and o.waiterNeed=TRUE or ( o.userId is :userId and o.waiterNeed=FALSE and o.orderStatus not in ('closed')))");
 		query.setParameter("userId", userId);
 		return query.list();
 	}
