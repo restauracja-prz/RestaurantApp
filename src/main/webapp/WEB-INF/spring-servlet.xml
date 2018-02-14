@@ -43,7 +43,8 @@
 		<security:logout logout-url="/logout" logout-success-url="/" />
 		
 		<security:form-login 
-			authentication-success-handler-ref="defaultAuthenticationSuccessHandler"
+			authentication-success-handler-ref="defaultAuthenticationSuccessHandler" 
+			default-target-url="/index"
 			/>
 	</security:http>
 
