@@ -93,6 +93,7 @@ public class OrdersDAO {
 		Transaction tx = sess.beginTransaction();
 		OrdersEntity ord = findOrderById(orderId);
 		ord.setWaiterNeed(false);
+		ord.setOrderStatus(OrderStatus.CLOSED);
 		sess.saveOrUpdate(ord);
 		tx.commit();
 		sess.close();
