@@ -31,5 +31,7 @@
 	<a id="userManagementLink" href="<c:url value="/user" />" class="button">User management</a>
 	<a id="orderDetailsLink" href="<c:url value="/orderdetails" />" class="button">Order details</a>
 	</div>
+	<br><br><br><br><br><br>
+<c:out value="${currentUser.userPosition}"/>
 </body>
 </html>

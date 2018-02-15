@@ -20,7 +20,7 @@
 <link rel="stylesheet" type="text/css" href="resources/order.css">
 </head>
 <body>
-	<%@include file="/screens/index_old.jsp"%>
+	<%@include file="/screens/index.jsp"%>
 	<br>
 	<br>
 
@@ -80,5 +80,7 @@
 		</c:forEach>
 	</table>
 	<br><br>
+		<br><br><br><br><br><br>
+<c:out value="${currentUser.userPosition}"/>
 </body>
 </html>

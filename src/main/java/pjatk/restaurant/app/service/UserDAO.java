@@ -6,6 +6,8 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +23,16 @@ public class UserDAO {
 	@SuppressWarnings("unchecked")
 	public List<UserEntity> findAll() {
 		return currentSession().createQuery("SELECT u FROM UserEntity u").list();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<UserEntity> findUser() {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String userName = authentication.getName();
+		Query query = currentSession().createQuery("SELECT u FROM UserEntity u WHERE u.userId is :userName");
+		query.setString("userName", userName);
+		return query.list();
+		
 	}
 	
 	private Session currentSession() {
