@@ -6,7 +6,7 @@
   <p>Powered by Bootstrap</p> 
 </footer>
 
-	<c:if test = "${order_count > 0}">
+	<c:if test = "${order_count >= 0}">
   		<script>setTimeout('window.location.reload();', 3000);</script>
 	</c:if>
 
