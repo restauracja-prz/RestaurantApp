@@ -17,7 +17,9 @@
       
       <h2>
         <p class="text-center">Wyświetl zamówienia
-          <button class="btn-orderlist pull-right" name="statusToFiltr" id="statusToFiltr" value="DEFAULT"><span class="glyphicon glyphicon-menu-hamburger"></span></button>
+          <button class="btn-orderlist pull-right" name="statusToFiltr" id="statusToFiltr" value="DEFAULT">
+          	<span class="glyphicon glyphicon-filter"><span class="glyphicon glyphicon-remove glyphicon-s"></span></span>
+          </button>
         </p>
       </h2>
       

@@ -38,6 +38,10 @@ body {
     font-size: 0.8em;
 }
 
+.glyphicon-s {
+    font-size: 0.55em;
+}
+
 /* rozmiary i marginesy */
 .btn-margin-s, .label-margin-s {
     margin-left: 3px;
