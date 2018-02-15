@@ -12,7 +12,7 @@
 <body>
 	<h2>RestaurantApp : Orders</h2>
 	
-	<%@include file="/screens/index.jsp"%>
+	<%@include file="/screens/index_old.jsp"%>
 	<form action="/restaurant/ordersFiltered" method='post'>
 				 		<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
 					    <select name="statusToFiltr" id="statusToFiltr">

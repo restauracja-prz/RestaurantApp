@@ -16,7 +16,7 @@
 
 <body>
 
-<%@include file="/screens/index.jsp"%>
+<%@include file="/screens/index_old.jsp"%>
 
 	<br>
 	<br>
