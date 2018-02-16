@@ -36,9 +36,9 @@ public class HomeController {
 	@SuppressWarnings("unlikely-arg-type")
 	@RequestMapping
 	public String home(Model model) {
-		if(userDAO.findUser().get(0).getUserPosition().equals("client")){
-			return "redirect:/order";
-		}
+//		if(userDAO.findUser().get(0).getUserPosition().equals("client")){
+//			return "redirect:/order";
+//		}
 		return "index";
 	}
 }
