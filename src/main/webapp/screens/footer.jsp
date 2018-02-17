@@ -7,7 +7,7 @@
 </footer>
 
 	<c:if test = "${order_count >= 0}">
-  		<script>setTimeout('window.location.reload();', 3000);</script>
+  		<script>setTimeout('window.location.reload();', 10000);</script>
 	</c:if>
 
 </body>
